@@ -296,7 +296,7 @@ for i in xrange(n_sample):
                             p_true_pos_m[i], 
                             p_false_pos_m[i]
                         ])])) - array([test_rate_m_15_24[i],diag_rate_m_15_24[i]]), [0.09, 0.25])
-    prev_m_15_24[i] = dyn_fun(inc_m_15_24[i]*p_asymp_m[i], sc_m[i] + scr_m_15_24[i]*p_true_pos_m[i], inc_m_15_24[i]*(1-p_asymp_m[i]), sc_m[i] + att_symp_m[i]*p_true_pos_m[i])
+    prev_m_15_24[i] = dyn_fun(inc_m_15_24[i]*p_asymp_m[i], sc_m[i] + scr_m_15_24[i]*p_true_pos_m[i], inc_m_15_24[i]*(1-p_asymp_m[i]), sc_m[i] + scr_m_15_24[i]*p_true_pos_m[i] + att_symp_m[i]*p_true_pos_m[i])
     
 # ... then women
 prev_f_15_24 = zeros(n_sample)
@@ -312,4 +312,4 @@ for i in xrange(n_sample):
                             p_true_pos_f[i], 
                             p_false_pos_f[i]
                         ])])) - array([test_rate_f_15_24[i],diag_rate_f_15_24[i]]), [0.03, 0.44])
-    prev_f_15_24[i] = dyn_fun(inc_f_15_24[i]*p_asymp_f[i], sc_f[i] + scr_f_15_24[i]*p_true_pos_f[i], inc_f_15_24[i]*(1-p_asymp_f[i]), sc_f[i] + att_symp_f[i]*p_true_pos_f[i])
+    prev_f_15_24[i] = dyn_fun(inc_f_15_24[i]*p_asymp_f[i], sc_f[i] + scr_f_15_24[i]*p_true_pos_f[i], inc_f_15_24[i]*(1-p_asymp_f[i]), sc_f[i] + scr_f_15_24[i]*p_true_pos_f[i] + att_symp_f[i]*p_true_pos_f[i])

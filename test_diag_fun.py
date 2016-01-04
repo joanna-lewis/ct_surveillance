@@ -50,8 +50,8 @@ def test_diag_fun(parms):
     true_pos = parms[5]
     false_pos = parms[6]
     
-    A = A_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + test_sym*true_pos)
-    S = S_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + test_sym*true_pos)
+    A = A_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
+    S = S_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
     return [test_fun(A, S, scr, test_sym, true_pos, false_pos), diag_fun(A, S, scr, test_sym, true_pos, false_pos)]
     
 ##############################
@@ -81,6 +81,6 @@ def test_diag_sym_asym_fun(parms):
     true_pos = parms[5]
     false_pos = parms[6]
     
-    A = A_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + test_sym*true_pos)
-    S = S_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + test_sym*true_pos)
+    A = A_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
+    S = S_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
     return [test_sa_fun(A, S, scr, test_sym), diags_fun(A, S, scr, test_sym, true_pos), diaga_fun(A, S, scr, true_pos, false_pos)]
