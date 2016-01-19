@@ -35,6 +35,9 @@ n_sample = 10000
 ######################
 # sexually-active population:
 ######################
+
+random.seed = 12345
+
 # Population, testing and diagnosis data is from http://www.chlamydiascreening.nhs.uk/ps/data.asp (downloaded 17 April 2015).
 p_active_m_16_24 = random.beta(alpha_m_16_24, beta_m_16_24, size=n_sample) # 16-24 yo only
 pop_active_m_15_24 = random.binomial(3519015, p_active_m_16_24, size=n_sample)
