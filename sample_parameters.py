@@ -131,6 +131,7 @@ new = 0.04 # starting sample value
 
 # proportion expected in each time window
 tps = array([0., 7., 14., 28., 42., Inf])
+simp_old = exp(-old*tps[:5]) - exp(-old*tps[1:])
 simp_new = exp(-new*tps[:5]) - exp(-new*tps[1:])
 
 acc=0.
