@@ -7,12 +7,14 @@
 # input prior distributions for various things
 ###################################
 
+import numpy as np
 from numpy import *
 from scipy.stats import beta
 from scipy.stats import gamma
 from numpy.random import normal
 from scipy.optimize import fsolve
 
+rs = random.RandomState(12345)
 n_sample = 10000
 
 ######################
@@ -36,37 +38,35 @@ n_sample = 10000
 # sexually-active population:
 ######################
 
-random.seed = 12345
-
 # Population, testing and diagnosis data is from http://www.chlamydiascreening.nhs.uk/ps/data.asp (downloaded 17 April 2015).
-p_active_m_16_24 = random.beta(alpha_m_16_24, beta_m_16_24, size=n_sample) # 16-24 yo only
-pop_active_m_15_24 = random.binomial(3519015, p_active_m_16_24, size=n_sample)
-p_active_f_16_24 = random.beta(alpha_f_16_24, beta_f_16_24, size=n_sample) # 16-24 yo only
-pop_active_f_15_24 = random.binomial(3388842, p_active_f_16_24, size=n_sample)
+p_active_m_16_24 = rs.beta(alpha_m_16_24, beta_m_16_24, size=n_sample) # 16-24 yo only
+pop_active_m_15_24 = rs.binomial(3519015, p_active_m_16_24, size=n_sample)
+p_active_f_16_24 = rs.beta(alpha_f_16_24, beta_f_16_24, size=n_sample) # 16-24 yo only
+pop_active_f_15_24 = rs.binomial(3388842, p_active_f_16_24, size=n_sample)
 
 ######################
 # testing and diagnosis rates, per person per year:
 ######################
 # Population, testing and diagnosis data is from http://www.chlamydiascreening.nhs.uk/ps/data.asp (downloaded 17 April 2015).
-test_rate_m_15_24 = random.gamma(566908, 1, size=n_sample)/pop_active_m_15_24
-diag_rate_m_15_24 = random.gamma(48387, 1, size=n_sample)/pop_active_m_15_24
-test_rate_f_15_24 = random.gamma(1205896, 1, size=n_sample)/pop_active_f_15_24
-diag_rate_f_15_24 = random.gamma(88101, 1, size=n_sample)/pop_active_f_15_24
+test_rate_m_15_24 = rs.gamma(566908, 1, size=n_sample)/pop_active_m_15_24
+diag_rate_m_15_24 = rs.gamma(48387, 1, size=n_sample)/pop_active_m_15_24
+test_rate_f_15_24 = rs.gamma(1205896, 1, size=n_sample)/pop_active_f_15_24
+diag_rate_f_15_24 = rs.gamma(88101, 1, size=n_sample)/pop_active_f_15_24
 
 
 # Proportion of incident infections asymptomatic is not known, so we use estimates of the 
 # proportion of _prevalent_ infections asymptomatic. Note that these provide an upper bound
 # because treatment seeking in symptomatic cases will deplete the symptomatic pool.
-p_asymp_m = random.beta(69 + 1, 78 - 69 + 1, size=n_sample) # McKay et al. Lancet (2003) 88% 
-p_asymp_f = random.beta(135 + 1, 26 + 1, size=n_sample) # Kahn et al. Sex Transm Dis (2003) 84% NB numbers taken from text, p656
+p_asymp_m = rs.beta(69 + 1, 78 - 69 + 1, size=n_sample) # McKay et al. Lancet (2003) 88% 
+p_asymp_f = rs.beta(135 + 1, 26 + 1, size=n_sample) # Kahn et al. Sex Transm Dis (2003) 84% NB numbers taken from text, p656
 
 ######################
 # test performance
 ######################
-p_true_pos_m = random.beta(32+1, 0+1, size=n_sample) # Horner J. Clin. Microbiol (2005): 32 of 32 infected samples tested +ve
-p_false_pos_m = random.beta(2+1, 950+1, size=n_sample) # Horner J. Clin. Microbiol (2005): 2 of 952 uninfected samples tested +ve
-p_true_pos_f = random.beta(129+1, 12+1, size=n_sample) # Low Health Technol Assess (2007): 129 of 141 infected samples tested +ve
-p_false_pos_f = random.beta(4+1, 2323+1, size=n_sample) # Low Health Technol Assess (2007): 4 of 2327 uninfected samples tested +ve
+p_true_pos_m = rs.beta(32+1, 0+1, size=n_sample) # Horner J. Clin. Microbiol (2005): 32 of 32 infected samples tested +ve
+p_false_pos_m = rs.beta(2+1, 950+1, size=n_sample) # Horner J. Clin. Microbiol (2005): 2 of 952 uninfected samples tested +ve
+p_true_pos_f = rs.beta(129+1, 12+1, size=n_sample) # Low Health Technol Assess (2007): 129 of 141 infected samples tested +ve
+p_false_pos_f = rs.beta(4+1, 2323+1, size=n_sample) # Low Health Technol Assess (2007): 4 of 2327 uninfected samples tested +ve
 
 ###################################
 # Rate of treatment seeking by symptomatic cases
@@ -137,7 +137,7 @@ simp_new = exp(-new*tps[:5]) - exp(-new*tps[1:])
 acc=0.
 while i < n_sample+1000: # to do samples for p_test_symp
     
-    new = random.normal(old, 0.05) # generate a sample from normal distribution
+    new = rs.normal(old, 0.05) # generate a sample from normal distribution
     
     if new < 0:
         att_symp[i] = old # reject
@@ -153,7 +153,7 @@ while i < n_sample+1000: # to do samples for p_test_symp
             # simulate probabilities corresponding to the data
             log_ratio = sum(beta.logpdf(simp_new, a, b, loc=0, scale=1)) - sum(beta.logpdf(simp_old, a, b, loc=0, scale=1))
     
-            if log(random.uniform(0,1)) <  log_ratio:
+            if log(rs.uniform(0,1)) <  log_ratio:
                 att_symp[i] = new # accept
                 ll[i] = sum(beta.logpdf(simp_new, a, b, loc=0, scale=1))
                 old = new
@@ -192,7 +192,7 @@ old = 0.1 # starting sample value
 acc=0.
 while i < n_sample: # to do samples for p_test_symp
     
-    new = random.normal(old, 5) # generate a sample from normal distribution
+    new = rs.normal(old, 5) # generate a sample from normal distribution
     
     if new < 0:
         sc_m[i] = old # reject
@@ -208,7 +208,7 @@ while i < n_sample: # to do samples for p_test_symp
             # simulate probabilities 
             log_ratio = sum(binom.logpmf([3,2,1,0,1], [15,9,4,4,4], simp_new)) - sum(binom.logpmf([3,2,1,0,1], [15,9,4,4,4], simp_old))            
             
-            if log(random.uniform(0,1)) <  log_ratio: 
+            if log(rs.uniform(0,1)) <  log_ratio: 
                 sc_m[i] = new # accept
                 ll_m[i] = sum(binom.logpmf([3,2,1,0,1], [15,9,4,4,4], simp_new))
                 old = new
@@ -233,7 +233,7 @@ old = 0.1 # starting sample value
 acc=0.
 while i < n_sample: # to do samples for p_test_symp
     
-    new = random.normal(old, 5) # generate a sample from normal distribution
+    new = rs.normal(old, 5) # generate a sample from normal distribution
     
     if new < 0:
         sc_f[i] = old # reject
@@ -247,7 +247,7 @@ while i < n_sample: # to do samples for p_test_symp
             # simulate probabilities 
             log_ratio = sum(binom.logpmf([2,7,1,0,3], [12,28,4,8,6], simp_new)) - sum(binom.logpmf([2,7,1,0,3], [12,28,4,8,6], simp_old))
             
-            if log(random.uniform(0,1)) <  log_ratio: 
+            if log(rs.uniform(0,1)) <  log_ratio: 
                 sc_f[i] = new # accept
                 old = new
                 acc = acc+1
