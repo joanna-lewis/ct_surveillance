@@ -1,5 +1,4 @@
-# lewis_white_supplementary_information
-Notebooks for analysing chlamydia surveillance data for England.
+# Notebooks for analysing chlamydia surveillance data for England.
 
 For the reader's convenience, the notebooks have been downloaded as html files, and the code and Figures can be viewed using a web browser.
 To run or edit the code and generate figures, the necessary software to run iPython and Jupyter notebooks must be installed (see http://ipython.org/install.html and http://jupyter.org/). 
