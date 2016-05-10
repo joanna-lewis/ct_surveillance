@@ -1,0 +1,1448 @@
+plot(theta,chlamydia_dat$r/chlamydia_dat$n)
+matrix(c(theta, chlamydia_dat$r/chlamydia_dat$n), ncol=2)
+#####################
+# some tests on behaviour with initial parameters#
+#####################
+#
+psi = 0.9#
+lambda_slow = 0.7#
+p1 = 0.2#
+#
+theta <- numeric(length=chlamydia_dat$Nobs)#
+lambda <- c(120, lambda_slow)#
+#
+  for (i in 1:4) { # should find a way of using input data to state study categories#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+      for(k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + ( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k) ) * p1^k * (1-p1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k) *  ((k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j])) * (1 - exp(-lambda[1] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) + (1 - (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]))) * (1 - exp(-lambda[2] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])));#
+        }#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0))));#
+        print(paste(i, j, theta[chlamydia_dat$cumobs[i]+j]))#
+      }#
+     }
+theta
+w1 <- (p1 / lambda[1]) / (p1 / lambda[1] + (1 - p1) / lambda[2]);#
+  for (i in 5:7) { # should find a way of using input data to state study categories#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+      for(k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + ( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k) *  ((k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j])) * (1 - exp(-lambda[1] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) + (1 - (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]))) * (1 - exp(-lambda[2] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])));#
+        }#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0))));#
+      }#
+    }
+theta
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+theta
+plot(theta,chlamydia_dat$r/chlamydia_dat$n)
+abline(0,1)
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+theta
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+#          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+theta
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+          print( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k)#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+          print( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) )#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+         print(matrix(c( #
+         	choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ),#
+         	w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k)#
+         	), ncol=2#
+         	)#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+         print(matrix(c( #
+         	choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ),#
+         	w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ), ncol=2#
+         	))#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+         print(matrix(c( #
+         		choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ,#
+         		w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ), ncol=2#
+         	))#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+         print(matrix(c( #
+         		choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ,#
+         		w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ), ncol=2#
+         	))#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+        print(theta)#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+         print(matrix(c( #
+         		theta[chlamydia_dat$cumobs[i]+j],#
+         		choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ,#
+         		w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ), ncol=3#
+         	))#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j]*( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k);  # multiply by the probability of this k#
+          }#
+        print(theta)#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          pk <- ( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k); # temporary variable, containing probability of this k#
+#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk*(k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk*(1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+         print(matrix(c( #
+         		theta[chlamydia_dat$cumobs[i]+j],#
+         		choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ,#
+         		w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ), ncol=3#
+         	))#
+          }#
+        print(theta)#
+#      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+theta
+plot(theta,chlamydia_dat$r/chlamydia_dat$n)
+abline(0,1)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+c(0,cumsum(c(4,5,1,1,3,1,1,5)))
+chlamydia_dat <- list(#
+	studnum = 9,#
+	studobs = c(4,5,1,1,3,1,1,5,4),#
+	cumobs = c(0,cumsum(c(4,5,1,1,3,1,1,5))),#
+	Nobs = sum(4,5,1,1,3,1,1,5,4),#
+	r = c(10,7,6,6, #
+		2,7,1,0,3, #
+		23,#
+		3, #
+		17,0,0,#
+		8, #
+		3, #
+		2,2,4,0,2,#
+		44,23,7,2),#
+	n = c(#
+		23,14,14,8,#
+		12,28,4,8,6, #
+		129, #
+		15, #
+		93,1,1, #
+		13, #
+		7, #
+		20,5,15,1,13, #
+		82,37,14,6), #
+	t = c(#
+		0.038,0.058,0.077,0.125, #
+		0.012,0.03,0.049,0.088,0.274,  #
+		0.045, #
+		0.083, #
+		0.25,0.5,0.75,#
+		1,#
+		1.375, #
+		0.083,0.5,0.417,0.917,0.5, #
+		1,1,1,1), #
+	seind = c(#
+		1,1,1,1, #
+		0,0,0,0,0, #
+		0,#
+		1, #
+		1,1,1,#
+		0, #
+		1, #
+		0,0,0,0,0,#
+		0,0,0,0), #
+	T = c( #
+		0,0,0,0, #
+		0,0,0,0,0, #
+		0,#
+		0, #
+		0,0,0,#
+		0, #
+		0, #
+		0,0,0.083,0.083,0.5, #
+		0,1,2,3#
+		)#
+	)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# some tests on behaviour with initial parameters#
+#####################
+#
+psi = 0.9#
+lambda_slow = 0.7#
+p1 = 0.2#
+#
+theta <- numeric(length=chlamydia_dat$Nobs)#
+lambda <- c(120, lambda_slow)#
+#
+  for (i in 1:4) { # should find a way of using input data to state study categories#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+      for(k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + ( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k) ) * p1^k * (1-p1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k) *  ((k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j])) * (1 - exp(-lambda[1] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) + (1 - (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]))) * (1 - exp(-lambda[2] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])));#
+        }#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0))));#
+        print(paste(i, j, theta[chlamydia_dat$cumobs[i]+j]))#
+      }#
+     }#
+  w1 <- (p1 / lambda[1]) / (p1 / lambda[1] + (1 - p1) / lambda[2]);#
+  for (i in 5:7) { # should find a way of using input data to state study categories#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+      for(k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + ( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k) *  ((k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j])) * (1 - exp(-lambda[1] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) + (1 - (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]))) * (1 - exp(-lambda[2] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])));#
+        }#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0))));#
+      }#
+    }#
+  for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]){#
+          pk <- ( choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) ) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k); # temporary variable, containing probability of this k#
+#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk*(k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk*(1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+         print(matrix(c( #
+         		theta[chlamydia_dat$cumobs[i]+j],#
+         		choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ,#
+         		w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]-k) ), ncol=3#
+         	))#
+          }#
+        print(theta)#
+     theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+chlamydia_dat <- list(#
+	studnum = 9,#
+	studobs = c(4,5,1,1,3,1,1,5,4),#
+	cumobs = c(0,cumsum(c(4,5,1,1,3,1,1,5))),#
+	Nobs = sum(4,5,1,1,3,1,1,5,4),#
+	r = c(10,7,6,6, #
+		2,7,1,0,3, #
+		23,#
+		3, #
+		17,0,0,#
+		8, #
+		3, #
+		2,2,4,0,2,#
+		44,23,7,2),#
+	n = c(#
+		23,14,14,8,#
+		12,28,4,8,6, #
+		129, #
+		15, #
+		93,1,1, #
+		13, #
+		7, #
+		20,5,15,1,13, #
+		82,37,14,6), #
+	t = c(#
+		0.038,0.058,0.077,0.125, #
+		0.012,0.03,0.049,0.088,0.274,  #
+		0.045, #
+		0.083, #
+		0.25,0.5,0.75,#
+		1,#
+		1.375, #
+		0.083,0.5,0.417,0.917,0.5, #
+		1,1,1,1), #
+	seind = c(#
+		1,1,1,1, #
+		0,0,0,0,0, #
+		0,#
+		1, #
+		1,1,1,#
+		0, #
+		1, #
+		0,0,0,0,0,#
+		0,0,0,0), #
+	T = c( #
+		999,999,999,999, #
+		999,999,999,999,999, #
+		999,#
+		999, #
+		999,999,999,#
+		999, #
+		999, #
+		0,0,0.083,0.083,0.5, #
+		0,1,2,3#
+		)#
+	)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+theta <- numeric(length=chlamydia_dat$Nobs)#
+lambda <- c(120, lambda_slow)#
+#
+  for (i in 1:4) { // should find a way of using input data to state study categories#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <-  0;#
+      for(k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k)  * p1^k * (1-p1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k) *  ((k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j])) * (1 - exp(-lambda[1] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) + (1 - (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]))) * (1 - exp(-lambda[2] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])));#
+        }#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0))));#
+      }#
+    }
+for (i in 1:4) { # should find a way of using input data to state study categories#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <-  0;#
+      for(k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k)  * p1^k * (1-p1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k) *  ((k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j])) * (1 - exp(-lambda[1] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) + (1 - (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]))) * (1 - exp(-lambda[2] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])));#
+        }#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0))));#
+      }#
+    }
+theta
+theta <- numeric(length=chlamydia_dat$Nobs)#
+lambda <- c(120, lambda_slow)#
+#
+  for (i in 1:4) { # should find a way of using input data to state study categories#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <-  0;#
+      for(k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k)  * p1^k * (1-p1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k) *  ((k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j])) * (1 - exp(-lambda[1] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) + (1 - (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]))) * (1 - exp(-lambda[2] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])));#
+        }#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0))));#
+      }#
+    }
+theta
+w1 <- (p1 / lambda[1]) / (p1 / lambda[1] + (1 - p1) / lambda[2]);#
+  for (i in 5:7) { # should find a way of using input data to state study categories#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+      theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+      for(k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k) *  ((k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j])) * (1 - exp(-lambda[1] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) + (1 - (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]))) * (1 - exp(-lambda[2] * chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])));#
+        }#
+        theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0))));#
+      }#
+    }
+theta
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+        theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+          pk <- choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k); # temporary variable, containing probability of this k#
+#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk * (chlamydia_dat$k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk * (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+          }#
+      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+i
+j
+theta[chlamydia_dat$cumobs[i]+j] <- 0;
+k
+pk <- choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k); # temporary variable, containing probability of this k
+pk
+theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk * (chlamydia_dat$k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category
+theta[chlamydia_dat$cumobs[i]+j] + pk * (chlamydia_dat$k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) )
+theta[chlamydia_dat$cumobs[i]+j]
+pk
+(chlamydia_dat$k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]))
+(k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1]))
+theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk * (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category
+theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk * (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category
+for (i in 8:9) {#
+    for (j in 1:chlamydia_dat$studobs[i]) {#
+        theta[chlamydia_dat$cumobs[i]+j] <- 0;#
+        for (k in 0:chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]){#
+          pk <- choose(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j],k) * w1^k * (1-w1)^(chlamydia_dat$n[chlamydia_dat$cumobs[i]+j]-k); # temporary variable, containing probability of this k#
+#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk * (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[1]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) );   # fast category#
+          theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] + pk * (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) * (1 - exp(-lambda[2]*chlamydia_dat$t[chlamydia_dat$cumobs[i]+j])) / ( (k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[1]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) + (1 - k / (1.0*chlamydia_dat$n[chlamydia_dat$cumobs[i]+1])) * exp(-lambda[2]*chlamydia_dat$T[chlamydia_dat$cumobs[i]+j]) ) ;  # slow category#
+          }#
+      theta[chlamydia_dat$cumobs[i]+j] <- theta[chlamydia_dat$cumobs[i]+j] / (psi / (1 - ((1-psi) * (chlamydia_dat$seind[chlamydia_dat$cumobs[i]+j] == 0)))); # apply correction for culture tests#
+      }#
+    }
+theta
+max(theta)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+op <- extract(fit)
+ls(op)
+plot(op$lp__, type='l')
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 1000, init=list(init0), chains = 1, seed=12345)
+ls(op)
+op <- extract(fit)
+plot(op$lp__, type='l')
+pairs(op)
+pairs(~lp__+lambda+p1+psi,data=op)
+pairs(~lp__+lambda_slow+p1+psi,data=op)
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))
+quantile(op$p1, p=c(0.025, 0.5, 0.975))
+mean(op$lambda_slow)
+mean(op$p1)
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 250000, warmup = 50000, init=list(init0), chains = 1, seed=12345)
+#####################
+# plots#
+#####################
+#
+op <- extract(fit)
+plot(op$lp__, type='l')
+plot(op$lp__, type='l', col=rgb(0,0,0,0.5))
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))
+pairs(~lp__+lambda_slow+p1+psi,data=op)
+pairs(~lp__+lambda_slow+p1+psi,data=op, col=rgb(0,0,0,0.1), pch=16, cex=0.1)
+mean(op$lambda_slow)#
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))#
+mean(op$p1)#
+quantile(op$p1, p=c(0.025, 0.5, 0.975))
+hist(op$lambda_slow)
+hist(op$p1)
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=200000, ncol=3)#
+for(i in 1:200000){#
+	centiles[i,] <- quantile(lambda_slow[1:i], p=c(0.025, 0.5, 0.975))#
+}
+table(is.na(lambda_slow[1:i]))
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=200000, ncol=3)#
+for(i in 1:200000){#
+	centiles[i,] <- quantile(lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+}
+plot(centiles[,1])
+plot(centiles[,1], type='l')
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=100, ncol=3)#
+for(i in 1:100){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+}
+plot(centiles[,1], type='l')
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=1000, ncol=3)#
+for(i in 1:1000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+}
+plot(centiles[,1], type='l')
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=10000, ncol=3)#
+for(i in 1:10000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l')
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=100000, ncol=3)#
+for(i in 1:100000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l')
+lines(centiles[,2], type='l')
+max(centiles[,2])
+min(centiles[,2])
+min(centiles[,3])
+max(centiles[,3])
+plot(centiles[,1], type='l', ylim=c(0.6, 1))
+lines(centiles[,2], type='l')
+lines(centiles[,3], type='l')
+abline(h=0.61);
+abline(h=0.74);
+abline(h=0.89);
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2], type='l')#
+lines(centiles[,3], type='l')#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+mean <- matrix(100000, ncol=1)
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=100000, ncol=3)#
+mean <- matrix(100000, ncol=1)#
+for(i in 1:100000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2], type='l')#
+lines(centiles[,3], type='l')#
+lines(mean, type='l')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='r')
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='r')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+####################################
+# Run STAN model chlamydia_two_exponentials.stan using the R interface#
+####################################
+#
+library(rstan)#
+#
+#####################
+# data#
+#####################
+# duration#
+# study order#
+# 1 Johhanisson#
+# 2 Joyner#
+# 3 Geisler#
+# 4 Paavonen	#
+# 5 Rahm#
+# 6 Sorensen#
+# 7 McCormack	#
+# 8 Morre	#
+# 9 Mollano#
+#
+chlamydia_dat <- list(#
+	studnum = 4,#
+	studobs = c(4,5,1,1),#
+	cumobs = c(0,cumsum(c(4,5,1))),#
+	Nobs = sum(4,5,1,1),#
+	r = c(10,7,6,6, #
+		2,7,1,0,3, #
+		23,#
+		3),#
+	n = c(#
+		23,14,14,8,#
+		12,28,4,8,6, #
+		129, #
+		15), #
+	t = c(#
+		0.038,0.058,0.077,0.125, #
+		0.012,0.03,0.049,0.088,0.274,  #
+		0.045, #
+		0.083), #
+	seind = c(#
+		1,1,1,1, #
+		0,0,0,0,0, #
+		0,#
+		1), #
+	T = c( #
+		999,999,999,999, #
+		999,999,999,999,999, #
+		999,#
+		999)#
+	)
+#####################
+# initial values#
+#####################
+#
+# Initial values - 0#
+init0 <- list(psi = 7/77, lambda_slow = 0.74, p1 = 0.23)#
+#
+# Initial values - 1#
+init1 <- list(psi = 0.9, lambda_slow = 0.7, p1 = 0.2)#
+#
+# Initial values - 2#
+init2 <- list(psi = 0.6, lambda_slow = 0.1, p1 = 0.5)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials_studytype1.stan', data = chlamydia_dat, #
+            iter = 100000, warmup = 50000, init=list(init0), chains = 1, seed=12345)
+fit <- stan(file = 'chlamydia_two_exponentials_studtype1.stan', data = chlamydia_dat,
+iter = 100000, warmup = 50000, init=list(init0), chains = 1, seed=12345)
+iter = 100000, warmup = 50000, init=list(init0), chains = 1, seed=12345)
+fit <- stan(file = 'chlamydia_two_exponentials_studtype1.stan', data = chlamydia_dat,
+iter = 100000, warmup = 50000, init=list(init0), chains = 1, seed=12345)
+fit <- stan(file = 'chlamydia_two_exponentials_studtype1.stan', data = chlamydia_dat,
+iter = 100000, warmup = 50000, init=list(init0), chains = 1, seed=12345)
+iter = 100000, warmup = 50000, init=list(init0), chains = 1, seed=12345)
+fit <- stan(file = 'chlamydia_two_exponentials_studtype1.stan', data = chlamydia_dat,
+iter = 100000, warmup = 50000, init=list(init0), chains = 1, seed=12345)
+#####################
+# plots#
+#####################
+#
+op <- extract(fit)#
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))#
+pairs(~lp__+lambda_slow+p1+psi,data=op, col=rgb(0,0,0,0.1), pch=16, cex=0.1)#
+hist(op$lambda_slow)#
+hist(op$p1)
+mean(op$lambda_slow)#
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))#
+mean(op$p1)#
+quantile(op$p1, p=c(0.025, 0.5, 0.975))
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=100000, ncol=3)#
+mean <- matrix(100000, ncol=1)#
+for(i in 1:100000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+plot(centiles[,1], type='l', ylim=c(0, 10))
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+7/77
+####################################
+# Run STAN model chlamydia_two_exponentials.stan using the R interface#
+####################################
+#
+library(rstan)#
+#
+#####################
+# data#
+#####################
+# duration#
+# study order#
+# 1 Johhanisson#
+# 2 Joyner#
+# 3 Geisler#
+# 4 Paavonen	#
+# 5 Rahm#
+# 6 Sorensen#
+# 7 McCormack	#
+# 8 Morre	#
+# 9 Mollano#
+#
+chlamydia_dat <- list(#
+	studnum = 9,#
+	studnum_bytype = c(4,3,2),#
+	studobs = c(4,5,1,1,3,1,1,5,4),#
+	cumobs = c(0,cumsum(c(4,5,1,1,3,1,1,5))),#
+	Nobs = sum(4,5,1,1,3,1,1,5,4),#
+	r = c(10,7,6,6, #
+		2,7,1,0,3, #
+		23,#
+		3, #
+		17,0,0,#
+		8, #
+		3, #
+		2,2,4,0,2,#
+		44,23,7,2),#
+	n = c(#
+		23,14,14,8,#
+		12,28,4,8,6, #
+		129, #
+		15, #
+		93,1,1, #
+		13, #
+		7, #
+		20,5,15,1,13, #
+		82,37,14,6), #
+	t = c(#
+		0.038,0.058,0.077,0.125, #
+		0.012,0.03,0.049,0.088,0.274,  #
+		0.045, #
+		0.083, #
+		0.25,0.5,0.75,#
+		1,#
+		1.375, #
+		0.083,0.5,0.417,0.917,0.5, #
+		1,1,1,1), #
+	seind = c(#
+		1,1,1,1, #
+		0,0,0,0,0, #
+		0,#
+		1, #
+		1,1,1,#
+		0, #
+		1, #
+		0,0,0,0,0,#
+		0,0,0,0), #
+	T = c( #
+		999,999,999,999, #
+		999,999,999,999,999, #
+		999,#
+		999, #
+		999,999,999,#
+		999, #
+		999, #
+		0,0,0.083,0.083,0.5, #
+		0,1,2,3#
+		)#
+	)#
+#####################
+# initial values#
+#####################
+#
+# Initial values - 0#
+init0 <- list(psi = 7/77, lambda_slow = 0.74, p1 = 0.23)#
+#
+# Initial values - 1#
+init1 <- list(psi = 0.9, lambda_slow = 0.7, p1 = 0.2)#
+#
+# Initial values - 2#
+init2 <- list(psi = 0.6, lambda_slow = 0.1, p1 = 0.5)#
+#
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 150000, warmup = 50000, init=list(init0), chains = 1, seed=12345,#
+            sample_file = 'chlamydia_two_exponentials_init0_280416')
+plot(seq(0,1,0.01), dbeta(seq(0,1,0.01),78,8), type='l')
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 2000, warmup = 1000, init=list(init0), chains = 1, seed=12345,#
+            sample_file = 'chlamydia_two_exponentials_init0_280416')
+#####################
+# plots#
+#####################
+#
+op <- extract(fit)#
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))#
+pairs(~lp__+lambda_slow+p1+psi,data=op, col=rgb(0,0,0,0.1), pch=16, cex=0.1)#
+hist(op$lambda_slow)#
+hist(op$p1)#
+#
+mean(op$lambda_slow)#
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))#
+mean(op$p1)#
+quantile(op$p1, p=c(0.025, 0.5, 0.975))#
+#
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=100000, ncol=3)#
+mean <- matrix(100000, ncol=1)#
+for(i in 1:100000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 2000, warmup = 1000, init=list(init0), chains = 1, seed=12345,#
+            sample_file = 'chlamydia_two_exponentials_init0_280416')
+#####################
+# plots#
+#####################
+#
+op <- extract(fit)#
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))#
+pairs(~lp__+lambda_slow+p1+psi,data=op, col=rgb(0,0,0,0.1), pch=16, cex=0.1)#
+hist(op$lambda_slow)#
+hist(op$p1)#
+#
+mean(op$lambda_slow)#
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))#
+mean(op$p1)#
+quantile(op$p1, p=c(0.025, 0.5, 0.975))#
+#
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=100000, ncol=3)#
+mean <- matrix(100000, ncol=1)#
+for(i in 1:100000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+op <- extract(fit)#
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))#
+pairs(~lp__+lambda_slow+p1+psi,data=op, col=rgb(0,0,0,0.1), pch=16, cex=0.1)#
+hist(op$lambda_slow)#
+hist(op$p1)#
+#
+mean(op$lambda_slow)#
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))#
+mean(op$p1)#
+quantile(op$p1, p=c(0.025, 0.5, 0.975))#
+#
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=1000, ncol=3)#
+mean <- matrix(1000, ncol=1)#
+for(i in 1:1000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 3000, warmup = 1000, init=list(init0), chains = 1, seed=12345,#
+            sample_file = 'chlamydia_two_exponentials_init0_280416')
+#####################
+# plots#
+#####################
+#
+op <- extract(fit)#
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))#
+pairs(~lp__+lambda_slow+p1+psi,data=op, col=rgb(0,0,0,0.1), pch=16, cex=0.1)#
+hist(op$lambda_slow)#
+hist(op$p1)#
+#
+mean(op$lambda_slow)#
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))#
+mean(op$p1)#
+quantile(op$p1, p=c(0.025, 0.5, 0.975))#
+#
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=2000, ncol=3)#
+mean <- matrix(2000, ncol=1)#
+for(i in 1:2000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+length*op$lambda_slow
+length(op$lambda_slow)
+#####################
+# run the model#
+#####################
+#
+fit <- stan(file = 'chlamydia_two_exponentials.stan', data = chlamydia_dat, #
+            iter = 22000, warmup = 2000, init=list(init0), chains = 1, seed=12345,#
+            sample_file = 'chlamydia_two_exponentials_init0_280416')
+#####################
+# plots#
+#####################
+#
+op <- extract(fit)#
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))#
+pairs(~lp__+lambda_slow+p1+psi,data=op, col=rgb(0,0,0,0.1), pch=16, cex=0.1)#
+hist(op$lambda_slow)#
+hist(op$p1)#
+#
+mean(op$lambda_slow)#
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))#
+mean(op$p1)#
+quantile(op$p1, p=c(0.025, 0.5, 0.975))#
+#
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=2000, ncol=3)#
+mean <- matrix(2000, ncol=1)#
+for(i in 1:2000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+#####################
+# plots#
+#####################
+#
+op <- extract(fit)#
+plot(op$lp__, type='l', col=rgb(0,0,0,0.1))#
+pairs(~lp__+lambda_slow+p1+psi,data=op, col=rgb(0,0,0,0.1), pch=16, cex=0.1)#
+hist(op$lambda_slow)#
+hist(op$p1)#
+#
+mean(op$lambda_slow)#
+quantile(op$lambda_slow, p=c(0.025, 0.5, 0.975))#
+mean(op$p1)#
+quantile(op$p1, p=c(0.025, 0.5, 0.975))#
+#
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=2000, ncol=3)#
+mean <- matrix(2000, ncol=1)#
+for(i in 1:2000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+length(op$lp__)
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+# how do estimates of mean and centiles change with increasing number of samples?#
+centiles <- matrix(nrow=20000, ncol=3)#
+mean <- matrix(20000, ncol=1)#
+for(i in 1:20000){#
+	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)#
+	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)#
+}#
+plot(centiles[,1], type='l', ylim=c(0.6, 1))#
+lines(centiles[,2])#
+lines(centiles[,3])#
+lines(mean, col='red')#
+#
+abline(h=0.61, lty=2) #
+abline(h=0.74, lty=2)#
+abline(h=0.89, lty=2)
+write.csv(op$lambda_slow[10001:20000])
+write.csv(op$lambda_slow[10001:20000], file='chlamydia_two_exponentials_init0_280416.csv')
+write.csv(op$lambda_slow[10001:20000], file='chlamydia_two_exponentials_init0_280416.csv', row.names=FALSE, header=FALSE)
+write.csv(op$lambda_slow[10001:20000], file='chlamydia_two_exponentials_init0_280416.csv', row.names=FALSE)
+qnorm(0.5)
+qbeta(0.025, 69 + 1, 78 - 69 + 1)
+qbeta(0.5, 69 + 1, 78 - 69 + 1)
+qbeta(0.975, 69 + 1, 78 - 69 + 1)
+qbeta(0.025, 135 + 1, 26 + 1)
+qbeta(0.5, 135 + 1, 26 + 1)
+qbeta(0.975, 135 + 1, 26 + 1)
+##################################
+# reported chlamydia testing and diagnoses in natsal3#
+##################################
+#
+rm(list=ls())#
+#
+library(readstata13)#
+library(survey)#
+#
+##############################################
+# data section#
+##############################################
+#
+# full natsal dataset from ukda: 15162 rows#
+natsal3 <- read.dta13("~/Documents/data/natsal-3/UKDA-7799-stata11/stata11/eul_natsal_2010_for_archive.dta") #
+#
+# offered a chlamydia test in the last year?#
+natsal3$ct_offer <- NA#
+natsal3$ct_offer[natsal3$whnchlam == 1] <- 'Yes'#
+natsal3$ct_offer[natsal3$chlmtest == 1] <- 'Yes'#
+natsal3$ct_offer[natsal3$chlofref == 1] <- 'Yes'#
+# set up survey design#
+udesign <- svydesign(#
+  id = ~ psu_scrm,#
+  strata = ~ strata,#
+  data = natsal3,#
+  weight = ~ total_wt#
+)
+##############################################
+# how likely are people to get tested at least once during the year, and why?#
+##############################################
+#
+# proportion tested in the last year#
+tmp <- svyby(~ct_t == 3, by=~ dage + ct_t_elig, design=udesign_td1644, svymean)#
+tmp <- tmp[tmp$ct_t_elig,]#
+plot(tmp$dage, tmp$'ct_t == 3TRUE', xlab = 'age/years', ylab = 'Proportion of those eligible', ylim=c(0,0.7))#
+arrows(tmp$dage, y0=tmp$'ct_t == 3TRUE'-tmp$'se.ct_t == 3TRUE', y1=tmp$'ct_t == 3TRUE'+tmp$'se.ct_t == 3TRUE', angle=90, code=3, length=0.05)#
+#
+# proportion offered a test in the last year#
+tmp <- svyby(~ct_t_off, by=~ dage + ct_t_elig, design=udesign_td1644, svymean)#
+tmp <- tmp[tmp$ct_t_elig,]#
+points(tmp$dage, tmp$ct_t_offTRUE, col=2)#
+arrows(tmp$dage, y0=tmp$ct_t_offTRUE - tmp$se.ct_t_offTRUE, y1=tmp$ct_t_offTRUE + tmp$se.ct_t_offTRUE, angle=90, code=3, length=0.05, col=2)#
+#
+abline(v=17); text(x=17, y=0, 'Left compulsary education, last year', srt=90, adj=c(0,1))#
+abline(v=19); text(x=19, y=0, 'Left 16-18 education, last year', srt=90, adj=c(0,1))#
+abline(v=25); text(x=25, y=0, 'Left NCSP, last year', srt=90, adj=c(0,1))#
+legend(37, 0.65, c('Test offered','Test taken'), pch=1, col=c(2,1))#
+#
+# proportion taking a test for different reasons, last year#
+plot(c(15,45), c(0,0.25), xlab = 'age/years', ylab = 'Proportion of those eligible who were tested', pch='')#
+abline(v=17)#
+abline(v=19)#
+abline(v=25)#
+for(i in levels(natsal3$chltstwy)[-1]){ # don't do the 'Not applicable's#
+	rstr <- paste(3, as.character(i)) # string for reason#
+	tmp <- svyby(~ct_reason==rstr, by=~ dage + ct_t_elig, design=udesign_td1644, svymean)#
+	tmp <- tmp[tmp$ct_t_elig,]#
+	points(tmp$dage, tmp$'ct_reason == rstrTRUE', col=which(i==levels(natsal3$chltstwy)[-1]), pch=16, cex=0.5)#
+	lines(tmp$dage, tmp$'ct_reason == rstrTRUE', col=which(i==levels(natsal3$chltstwy)[-1]))#
+	arrows(x0=tmp$dage, #
+		y0 = tmp$'ct_reason == rstrTRUE' - tmp$'se.ct_reason == rstrTRUE', #
+		y1 = tmp$'ct_reason == rstrTRUE' + tmp$'se.ct_reason == rstrTRUE',#
+		col=which(i==levels(natsal3$chltstwy)[-1]),#
+		length=0.05, angle=90, code=3)#
+	}#
+legend(x='topright', legend=levels(natsal3$chltstwy)[-1], pch=1, col=1:length(levels(natsal3$chltstwy)[-1]), cex=0.75)
+##################################
+# reported chlamydia testing and diagnoses in natsal3#
+##################################
+#
+rm(list=ls())#
+#
+library(readstata13)#
+library(survey)#
+#
+##############################################
+# data section#
+##############################################
+#
+# full natsal dataset from ukda: 15162 rows#
+natsal3 <- read.dta13("~/Documents/data/natsal-3/UKDA-7799-stata11/stata11/eul_natsal_2010_for_archive.dta") #
+#
+# offered a chlamydia test in the last year?#
+natsal3$ct_offer <- NA#
+natsal3$ct_offer[natsal3$whnchlam == 1] <- 'Yes'#
+natsal3$ct_offer[natsal3$chlmtest == 1] <- 'Yes'#
+natsal3$ct_offer[natsal3$chlofref == 1] <- 'Yes'#
+# set up survey design#
+udesign <- svydesign(#
+  id = ~ psu_scrm,#
+  strata = ~ strata,#
+  data = natsal3,#
+  weight = ~ total_wt#
+) #
+#
+##############################################
+# plot answers to questions, by age#
+##############################################
+#
+quartz(width=14, height=14)#
+par(mfrow=c(2,2))#
+#
+chlamydia_tab <- svyby(~ chlamydia, by=~dage, design=udesign, svymean)#
+plot(chlamydia_tab$dage, chlamydia_tab[,2], type='l', col=1, xlim=c(16,40), xlab='Age/years', ylab='Proportion ever diagnosed with chlamydia')#
+lines(chlamydia_tab$dage, chlamydia_tab[,3], col=2)#
+lines(chlamydia_tab$dage, chlamydia_tab[,4], col=3)#
+lines(chlamydia_tab$dage, chlamydia_tab[,5], col=4)#
+lines(chlamydia_tab$dage, chlamydia_tab[,6], col=5)#
+legend(30, 0.14, legend=levels(natsal3$chlamydia), lty=rep(1,5), col=1:5, cex=0.8)#
+write.csv(chlamydia_tab, 'chlamydia_tab.csv', row.names=FALSE)#
+#
+whnchlam_tab <- svyby(~ whnchlam, by=~dage, design=udesign, svymean)#
+plot(whnchlam_tab$dage, whnchlam_tab[,2], type='l', col=1, xlim=c(16,40), ylim=c(0,0.08), xlab='Age/years', ylab='When last diagnosed with chlamydia')#
+lines(whnchlam_tab$dage, whnchlam_tab[,3], col=2)#
+lines(whnchlam_tab$dage, whnchlam_tab[,4], col=3)#
+lines(whnchlam_tab$dage, whnchlam_tab[,5], col=4)#
+lines(whnchlam_tab$dage, whnchlam_tab[,6], col=5)#
+lines(whnchlam_tab$dage, whnchlam_tab[,7], col=6)#
+legend(30, 0.08, legend=levels(natsal3$whnchlam), lty=rep(1,6), col=1:6, cex=0.8)#
+write.csv(whnchlam_tab, 'whnchlam_tab.csv', row.names=FALSE)#
+#
+chlmtest_tab <- svyby(~ chlmtest, by=~dage, design=udesign, svymean)#
+plot(chlmtest_tab$dage, chlmtest_tab[,2], type='l', col=1, xlim=c(16,40), ylim=c(0,1), xlab='Age/years', ylab='Chlamydia test in last year')#
+lines(chlmtest_tab$dage, chlmtest_tab[,3], col=2)#
+lines(chlmtest_tab$dage, chlmtest_tab[,4], col=3)#
+lines(chlmtest_tab$dage, chlmtest_tab[,5], col=4)#
+legend(16, 1, legend=levels(natsal3$chlmtest), lty=rep(1,5), col=1:5, cex=0.8)#
+write.csv(whnchlam_tab, 'whnchlam_tab.csv', row.names=FALSE)#
+#
+chlofref_tab <- svyby(~ chlofref, by=~dage, design=udesign, svymean)#
+plot(chlofref_tab$dage, chlofref_tab[,2], type='l', col=1, xlim=c(16,40), ylim=c(0,1), xlab='Age/years', ylab='Offered and refused test in last year')#
+lines(chlofref_tab$dage, chlofref_tab[,3], col=2)#
+lines(chlofref_tab$dage, chlofref_tab[,4], col=3)#
+lines(chlofref_tab$dage, chlofref_tab[,5], col=4)#
+legend(16, 1, legend=levels(natsal3$chlofref), lty=rep(1,5), col=1:5, cex=0.8)#
+write.csv(whnchlam_tab, 'whnchlam_tab.csv', row.names=FALSE)#
+#
+##############################################
+# flow of participants through questionnaire#
+##############################################
+#
+# diagnosis#
+natsal3$ct_d <- 0 # all participants (remains if not eligible for self-completion questionnaire)#
+natsal3$ct_d[natsal3$scelign3=='Yes'] <- 1 # eligible for scq (remains if never diagnosed with ct)#
+natsal3$ct_d[natsal3$ct_d==1 & !(natsal3$chlamydia %in% c('Not applicable', 'No'))] <- 2 # may have been diagnosed with ct, ever (remains if diagnosed >1 year ago, or unknown time)#
+natsal3$ct_d[natsal3$ct_d==2 & natsal3$whnchlam=='Less than 1 year ago'] <- 3#
+natsal3$ct_d <- factor(natsal3$ct_d)#
+#
+# testing#
+natsal3$ct_t <- 0 # all participants (remains if not eligible for self-completion questionnaire)#
+natsal3$ct_t[natsal3$scelign3=='Yes'] <- 1 # eligible for scq (remains if over 44)#
+natsal3$ct_t[natsal3$ct_t==1 & natsal3$dage<=44] <- 2 # aged under 44 (remains if had no partners, ever)#
+natsal3$ct_t[natsal3$ct_t==2 & natsal3$totlife !=0] <- 3 # aged under 44 and had at least one partner ever (remains if tested in last year, or didn't answer)#
+natsal3$ct_t[natsal3$ct_t==3 & natsal3$chlmtest %in% c('No','Not answered')] <- 4 # not tested in the last year (remains if offered test but refused)#
+natsal3$ct_t[natsal3$ct_t==4 & natsal3$chlofref %in% c('No','Not answered')] <- 5 # had not been offered a test, or didn't answer#
+natsal3$ct_t <- factor(natsal3$ct_t)#
+natsal3$ct_t_elig <- natsal3$ct_t %in% c(3,4,5)#
+natsal3$ct_t_off <- natsal3$ct_t %in% c(3,4)#
+natsal3$ct_reason <- natsal3$chltstwy#
+natsal3$ct_reason[natsal3$ct_reason == 'Not applicable'] <- natsal3$chtstwy1[natsal3$ct_reason == 'Not applicable']#
+natsal3$ct_reason <- factor(paste(natsal3$ct_t, natsal3$ct_reason))#
+#
+natsal3$ct_t_2 <- as.numeric(as.character(natsal3$ct_t))#
+natsal3$ct_t_2[natsal3$ct_reason == '3 I had symptoms'] <- 3.1#
+natsal3$ct_t_2[natsal3$ct_reason %in% c('3 I was notified because a partner was diagnosed with Chlamydia', '3 My partner had symptoms')] <- 3.2#
+natsal3$ct_t_2[natsal3$ct_reason %in% c('3 I had no symptoms but I was worried about the risk of Chlamydia', '3 I wanted a general sexual health check-up', '3 I was offered a routine test')] <- 3.3#
+udesign_td1644 <- svydesign(#
+  id = ~ psu_scrm,#
+  strata = ~ stratagrp,#
+  data =  natsal3[natsal3$dage <=44,],#
+  weight = ~ total_wt#
+)
+##############################################
+# how likely are people to get diagnosed at least once during the year?#
+##############################################
+#
+# proportion diagnosed in the last year, of those eligible for testing#
+tmp <- svyby(~ct_d == 3, by=~ dage + ct_t_elig, design=udesign_td1644, svymean)#
+tmp <- tmp[tmp$ct_t_elig,]#
+plot(tmp$dage, tmp$'ct_d == 3TRUE', xlab = 'age/years', ylab = 'Proportion diagnosed', ylim=c(0,0.15))#
+#lines(tmp$dage, tmp$'ct_d == 3TRUE')#
+arrows(tmp$dage, y0=tmp$'ct_d == 3TRUE'-tmp$'se.ct_d == 3TRUE', y1=tmp$'ct_d == 3TRUE'+tmp$'se.ct_d == 3TRUE', angle=90, code=3, length=0.05)#
+#
+# proportion diagnosed in the last year, of those tested#
+tmp <- svyby(~ct_d==3, by=~ dage + (ct_t==3), design=udesign_td1644, svymean)#
+tmp <- tmp[tmp$'ct_t == 3',]#
+points(tmp$dage, tmp$'ct_d == 3TRUE', col=2)#
+#lines(tmp$dage, tmp$'ct_d == 3TRUE', col=2)#
+arrows(tmp$dage, y0=tmp$'ct_d == 3TRUE' - tmp$'se.ct_d == 3TRUE', y1=tmp$'ct_d == 3TRUE' + tmp$'se.ct_d == 3TRUE', angle=90, code=3, length=0.05, col=2)#
+abline(v=17); text(x=17, y=0.15, 'Left compulsary education, last year', srt=90, adj=c(1,1))#
+abline(v=19); text(x=19, y=0.15, 'Left 16-18 education, last year', srt=90, adj=c(1,1))#
+abline(v=25); text(x=25, y=0.15, 'Left NCSP, last year', srt=90, adj=c(1,1))#
+legend(28, 0.14, c('Of all eligible','Of those tested'), pch=1, col=c(1,2))#
+#
+# proportion diagnosed, given tested for different reasons, last year#
+quartz(width=15, height=7)#
+plot(c(15,45), c(0,1), xlab = 'age/years', ylab = 'Proportion of those tested who were diagnosed', pch='')#
+for(i in levels(natsal3$chltstwy)[-1]){ # don't do the 'Not applicable's#
+	rstr <- paste(3, as.character(i)) # string for reason#
+	tmp <- svyby(~ct_d==3, by=~ dage + (ct_reason==rstr), design=udesign_td1644, svymean)#
+	tmp <- tmp[tmp$'ct_reason == rstr',]#
+	points(tmp$dage, tmp$'ct_d == 3TRUE', col=which(i==levels(natsal3$chltstwy)[-1]), pch=16, cex=0.5)#
+	lines(tmp$dage, tmp$'ct_d == 3TRUE', col=which(i==levels(natsal3$chltstwy)[-1]))#
+	# arrows(x0=tmp$dage, #
+		# y0 = tmp$'ct_d == 3TRUE' - tmp$'se.ct_d == 3TRUE', #
+		# y1 = tmp$'ct_d == 3TRUE' + tmp$'se.ct_d == 3TRUE',#
+		# col=which(i==levels(natsal3$chltstwy)[-1]),#
+		# length=0.05, angle=90, code=3)#
+	}#
+legend(25, 1, legend=levels(natsal3$chltstwy)[-1], pch=1, col=1:length(levels(natsal3$chltstwy)[-1]), cex=0.75)
+1436.4189 - 187.15^2
+1436.4189/25 - (187.15/25)^2
+1436.4189 - 187.15^2/25
+6.52+6.96+7.37+6.85+7.89
+35.59^2+44.15^2+31.44^2+31.88^2+44.09^2
+/5
+7164.607/5
+1436.4189-1432.921
+35.414-3.4979
+3.4979/4
+31.9161/20
+35.414/24
+8.21+5.64+6.52+8.80+6.18
+8.55+9.12+5.97+6.63+6.96
+6.06+7.37+8.58+6.11+8.95
+6.34+8.82+6.70+6.85+8.87
+8.21+8.55+6.06+6.34+7.89
+5.64+9.12+7.37+8.82+6.84
+6.52+5.97+8.58+6.70+9.03
+8.80+6.63+6.11+6.85+9.31
+6.18+6.96+8.95+8.87+6.85
+0.2*(35.35^2+37.23^2+37.07^2+37.58^2) - (187.15^2)/25
+6.18+6.96+8.95+8.87+6.85
+0.2*(35.35^2+37.23^2+37.07^2+37.58^2+37.81^2) - (187.15^2)/25
+7.89+6.84+9.03+9.31+6.85
+0.2*(35.35^2+37.23^2+37.07^2+37.58^2+39.92^2) - (187.15^2)/25
+0.2*(37.05^2+37.79^2+36.80^2+37.70^2+37.81^2) - (187.15^2)/25
+0.2*(35.59^2+44.15^2+31.44^2+31.88^2+44.09^2) - (187.15^2)/25
+35.414-(0.17764+2.14372+31.91644)
+0.17764/4
+2.14372/4
+31.91644/4
+1.1762/12
+0.04441/0.09801667
+0.53593/0.09801667
+7.97911/0.09801667
+31.88-44.09
+12.21/5
+2*sqrt(0.09801667)/5
+2.44 + 2.179*0.1252305
+2.44 - 2.179*0.1252305
+sqrt(2*0.09801667/5)
+2.44 + 2.179*0.1980067
+2.44 - 2.179*0.1980067
+34+26+27
+39+37+24
+44+41+41
+38+35+48
+34=39+44+38
+34+39+44+38
+26+37+41+35
+27+24+41+48
+155+139+140
+8202-(434^2/24)
+(155^2+139^2+140^2)/8 - (434^2/24)
+(87^2+100^2+126^2+121^2)/6 - (434^2/24)
+(34^2+26^2+27^2+39^2+37^2+24^2+44^2+41^2+4162+38^2+35^2+48^2)/6 - (434^2/24)
+(34^2+26^2+27^2+39^2+37^2+24^2+44^2+41^2+4162+38^2+35^2+48^2)/2 - (434^2/24)
+(34^2+26^2+27^2+39^2+37^2+24^2+44^2+41^2+41^2+38^2+35^2+48^2)/2 - (434^2/24)
+300.8333-166.1667-20.08333
+166.1667/3
+20.08333/2
+114.5833/6
+53/12
+55.3889/4.416667
+10.04167/4.416667
+19.09722/4.416667

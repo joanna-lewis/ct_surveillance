@@ -84,3 +84,21 @@ def test_diag_sym_asym_fun(parms):
     A = A_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
     U = U_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
     return [test_sa_fun(A, U, scr, test_sym), diags_fun(A, U, scr, test_sym, true_pos), diaga_fun(A, U, scr, true_pos, false_pos)]
+    
+##############################
+# use information on symptoms in _prevalent_ (as opposed to incident) infections
+##############################
+
+def test_diag_prev_symp_fun(parms):
+    # parms = (incidence, screening rate, proportion symptomatic, self-cure rate, testing rate in symptomatics, true positive rate, false positive rate, ...)
+    inc = parms[0]
+    scr = parms[1]
+    p_symp = parms[2]
+    self_cure = parms[3]
+    test_sym = parms[4]
+    true_pos = parms[5]
+    false_pos = parms[6]
+    
+    A = A_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
+    U = U_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
+    return [test_fun(A, U, scr, test_sym, true_pos, false_pos), diag_fun(A, U, scr, test_sym, true_pos, false_pos), (1 - A - U)/(1 - U)]
