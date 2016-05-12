@@ -31,7 +31,7 @@ dyn_fun = lambdify((alpha_UA, alpha_AU, alpha_US, alpha_SU), sol_dyn[A] + sol_dy
 tsym, dsym, ssym, test_sym, true_pos, false_pos = symbols("tsym dsym ssym test_sym true_pos false_pos")
 
 model_test_diag = [
-    tsym - ( (A + U)*ssym + (1 - A - U)*test_sym ),
+    tsym - ( ssym + (1 - A - U)*test_sym ),
     dsym - ( A*ssym*true_pos + U*ssym*false_pos + (1 - A - U)*test_sym*true_pos )
     ]
 
