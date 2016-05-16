@@ -129,7 +129,11 @@ abline(h=0.61, lty=2)
 abline(h=0.74, lty=2)
 abline(h=0.89, lty=2) 
 
-write.csv(op$lambda_slow[10001:20000], file='chlamydia_two_exponentials_init0_280416.csv', row.names=FALSE)
+write.csv(
+	data.frame(lambda_slow = op$lambda_slow[10001:20000], 
+		p_fast = op$p1[10001:20000]
+		),
+	file='chlamydia_two_exponentials_init0_130516.csv', row.names=FALSE)
 
 # ####################
 # # some tests on behaviour with initial parameters
