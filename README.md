@@ -11,6 +11,8 @@ To run or edit the code and generate figures, the necessary software to run iPyt
 
 Also included is an R script which is used to derive prior distributions for the proportions of men and women in different age groups who are sexually active, using data from the National Study of Sexual Attitudes and Lifestyles, Natsal-3.
 
+The folder named 'stan' contains STAN model files to obtain samples for natural clearance rates of chlamydia infection in men and women, based on the work of Price _et al._ presented in _Stat Med_ **32**:1547-1560 (2013).
+
 Natsal-3 data is available from the UK Data Archive:
 http://www.data-archive.ac.uk/
 

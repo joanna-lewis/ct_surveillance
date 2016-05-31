@@ -1,6 +1,6 @@
 ###################################
-# Run STAN model chlamydia_two_exponentials_women.stan using the R interface
-# Based on Supplementary Web Appendix 1 to:
+# Run STAN model chlamydia_two_exponentials_men.stan using the R interface
+# Model based on:
 # Malcolm J. Price, A. E. Ades, Daniela De Angelis, Nicky J. Welton, John Macleod, Kate Soldan, Katy Turner, Ian Simms and Paddy J. Horner
 # Mixture-of-exponentials models to explain heterogeneity in studies of the duration of Chlamydia trachomatis infection.
 # Statistics in Medicine 32:1547–1560 (2013)
@@ -15,72 +15,62 @@ library(rstan)
 ####################
 # duration
 # study order
-# 1 Johhanisson
-# 2 Joyner
-# 3 Geisler
-# 4 Paavonen	
-# 5 Rahm
-# 6 Sorensen
-# 7 McCormack	
-# 8 Morre	
-# 9 Mollano
+# 1 Handsfield 1976
+# 2 Prentice 1976
+# 3 Johannisson 1979
+# 4 Paavonen 1980
+# 5 Joyner 2002
+# 6 Geisler 2008
+# 7 Stamm 1986
+# 8 van den Brule 2002	
 
 chlamydia_dat <- list(
-	studnum = 9,
-	studnum_bytype = c(4,3,2),
-	studobs = c(4,5,1,1,3,1,1,5,4),
-	cumobs = c(0,cumsum(c(4,5,1,1,3,1,1,5))),
-	Nobs = sum(4,5,1,1,3,1,1,5,4),
-	r = c(10,7,6,6, 
-		2,7,1,0,3, 
-		23,
-		3, 
-		17,0,0,
-		8, 
-		3, 
-		2,2,4,0,2,
-		44,23,7,2),
-	n = c(
-		23,14,14,8,
-		12,28,4,8,6, 
-		129, 
-		15, 
-		93,1,1, 
-		13, 
-		7, 
-		20,5,15,1,13, 
-		82,37,14,6), 
-	t = c(
-		0.038,0.058,0.077,0.125, 
-		0.012,0.03,0.049,0.088,0.274,  
-		0.045, 
-		0.083, 
-		0.25,0.5,0.75,
-		1,
-		1.375, 
-		0.083,0.5,0.417,0.917,0.5, 
-		1,1,1,1), 
-	seind = c(
-		1,1,1,1, 
-		0,0,0,0,0, 
+	studnum = 8,
+	studnum_bytype = c(6,2,0),
+	studobs = c(1,1,4,1,5,1,1,4),
+	cumobs = c(0,cumsum(c(1,1,4,1,5,1,1))),
+	Nobs = sum(c(1,1,4,1,5,1,1,4)),
+	r = c( # number who cleared infection at each time point
 		0,
-		1, 
-		1,1,1,
-		0, 
-		1, 
+		4, 
+		3,13,3,2,
+		7,
+		3,2,1,0,1,
+		5,
+		1,0,0,0,
+		1
+		),
+	n = c( # number tested at each time point
+		10,
+		13,
+		17,27,6,2,
+		21,
+		15, 9, 4, 4, 4,
+		14,
+		5, 2, 2, 1,
+		9
+		), 
+	t = c(
+		0.019,
+		0.023, 
+		0.019, 0.038, 0.058, 0.077, 
+		0.077,
+		0.012, 0.030, 0.049, 0.088, 0.190,
+		0.045,
+		0.019, 0.038, 0.058, 0.077,
+		0.5
+		), 
+	seind = c( # did the study use culture as opposed to NAATs?
+		1,
+		1,
+		1, 1, 1, 1,
+		1,
 		0,0,0,0,0,
-		0,0,0,0), 
-	T = c( 
-		999,999,999,999, 
-		999,999,999,999,999, 
-		999,
-		999, 
-		999,999,999,
-		999, 
-		999, 
-		0,0,0.083,0.083,0.5, 
-		0,1,2,3
-		)
+		0,
+		1,1,1,1,
+		0
+		), 
+	T = rep(999, times=sum(c(1,1,4,1,5,1,1,4)))
 	)
 	
 ####################
@@ -100,7 +90,7 @@ init2 <- list(psi = 0.6, lambda_slow = 0.1, p1 = 0.5)
 # run the model
 ####################
 
-fit <- stan(file = 'chlamydia_two_exponentials_women.stan', data = chlamydia_dat, 
+fit <- stan(file = 'chlamydia_two_exponentials_men.stan', data = chlamydia_dat, 
             iter = 22000, warmup = 2000, init=list(init0, init1, init2), chains = 3, seed=12345
             )
 
@@ -126,7 +116,7 @@ for(i in 1:20000){
 	centiles[i,] <- quantile(op$lambda_slow[1:i], p=c(0.025, 0.5, 0.975), na.rm=TRUE)
 	mean[i] <- mean(op$lambda_slow[1:i], na.rm=TRUE)
 }
-plot(centiles[,1], type='l', ylim=c(0.6, 1))
+plot(centiles[,1], type='l', ylim=c(0, 1.5))
 lines(centiles[,2])
 lines(centiles[,3])
 lines(mean, col='red')
@@ -134,6 +124,28 @@ lines(mean, col='red')
 abline(h=0.61, lty=2) 
 abline(h=0.74, lty=2)
 abline(h=0.89, lty=2) 
+
+# posterior predictive check
+c2.5 <- apply(op$r_sim,2,quantile,p=0.025)/chlamydia_dat$n
+c97.5 <- apply(op$r_sim,2,quantile,p=0.975)/chlamydia_dat$n
+study_names <- c("Handsfield 1976", "Prentice 1976", "Johannisson 1979", "Paavonen 1980", "Joyner 2002", "Geisler 2008", "Stamm 1986", "van den Brule 2002")
+plot(
+	chlamydia_dat$t, 
+	chlamydia_dat$r/chlamydia_dat$n, 
+	pch=16, 
+	col=rep(1:8, times = chlamydia_dat$studobs), 
+	log='x',
+	xlab = 'Mean follow-up time (years)', 
+	ylab= 'Proportion cleared infection'
+	)
+arrows(
+	chlamydia_dat$t, 
+	y0 = apply(op$r_sim,2,quantile,p=0.025)/chlamydia_dat$n, 
+	y1 = apply(op$r_sim,2,quantile,p=0.975)/chlamydia_dat$n, 
+	col = rep(1:8, times = chlamydia_dat$studobs), 
+	code=3, angle=90, length = 0.1
+	)
+legend('topleft', col=1:8, pch=16, legend=study_names)
 
 ####################
 # write to csv file (choose last 3333 or 3334 samples from each chain)
@@ -143,5 +155,5 @@ write.csv(
 	data.frame(lambda_slow = op$lambda_slow[c(16668:20000, 36668:40000, 56667:60000)], 
 		p_fast = op$p1[c(16668:20000, 36668:40000, 56667:60000)]
 		),
-	file='chlamydia_two_exponentials_women.csv', row.names=FALSE)
+	file='chlamydia_two_exponentials_men.csv', row.names=FALSE)
 
