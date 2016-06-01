@@ -50,35 +50,35 @@
 ((*- else -*))
     ((*- if cell.metadata.caption: -*))
         ((*- if cell.metadata.label: -*))
-            ((( draw_figure_with_caption(output.metadata.filenames['image/png'], cell.metadata.caption, cell.metadata.label) )))
+            ((( draw_figure_with_caption(output.metadata.filenames['image/png'], cell.metadata.caption, cell.metadata.label, cell.metadata.width) )))
         ((*- else -*))
-            ((( draw_figure_with_caption(output.metadata.filenames['image/png'], cell.metadata.caption, "") )))
+            ((( draw_figure_with_caption(output.metadata.filenames['image/png'], cell.metadata.caption, "", cell.metadata.width) )))
         ((*- endif *))
     ((*- else -*))
-        ((( draw_figure_with_caption(output.metadata.filenames['image/png'], "") )))
+        ((( draw_figure_with_caption(output.metadata.filenames['image/png'], "", cell.metadata.width) )))
     ((*- endif *))
 ((*- endif *))
 ((*- endblock -*))
 ((*- block data_jpg -*))
 ((*- if cell.metadata.caption: -*))
     ((*- if cell.metadata.label: -*))
-        ((( draw_figure_with_caption(output.metadata.filenames['image/jpeg'], cell.metadata.caption, cell.metadata.label) )))
+        ((( draw_figure_with_caption(output.metadata.filenames['image/jpeg'], cell.metadata.caption, cell.metadata.label, cell.metadata.width) )))
     ((*- else -*))
-        ((( draw_figure_with_caption(output.metadata.filenames['image/jpeg'], cell.metadata.caption, "") )))
+        ((( draw_figure_with_caption(output.metadata.filenames['image/jpeg'], cell.metadata.caption, "", cell.metadata.width) )))
     ((*- endif *))
 ((*- else -*))
-    ((( draw_figure_with_caption(output.metadata.filenames['image/jpeg'], "") )))
+    ((( draw_figure_with_caption(output.metadata.filenames['image/jpeg'], "", cell.metadata.width) )))
 ((*- endif *))
 ((*- endblock -*))
 ((*- block data_svg -*))
 ((*- if cell.metadata.caption: -*))
     ((*- if cell.metadata.label: -*))
-        ((( draw_figure_with_caption(output.metadata.filenames['image/svg+xml'], cell.metadata.caption, cell.metadata.label) )))
+        ((( draw_figure_with_caption(output.metadata.filenames['image/svg+xml'], cell.metadata.caption, cell.metadata.label, cell.metadata.width) )))
     ((*- else -*))
-        ((( draw_figure_with_caption(output.metadata.filenames['image/svg+xml'], cell.metadata.caption, "") )))
+        ((( draw_figure_with_caption(output.metadata.filenames['image/svg+xml'], cell.metadata.caption, "", cell.metadata.width) )))
     ((*- endif *))
 ((*- else -*))
-    ((( draw_figure_with_caption(output.metadata.filenames['image/svg+xml'], "") )))
+    ((( draw_figure_with_caption(output.metadata.filenames['image/svg+xml'], "", cell.metadata.width) )))
 ((*- endif *))
 ((*- endblock -*))
 ((*- block data_pdf -*))
@@ -87,12 +87,12 @@
 ((*- else -*))
     ((*- if cell.metadata.caption: -*))
         ((*- if cell.metadata.label: -*))
-            ((( draw_figure_with_caption(output.metadata.filenames['application/pdf'], cell.metadata.caption, cell.metadata.label) )))
+            ((( draw_figure_with_caption(output.metadata.filenames['application/pdf'], cell.metadata.caption, cell.metadata.label, cell.metadata.width) )))
         ((*- else -*))
-            ((( draw_figure_with_caption(output.metadata.filenames['application/pdf'], cell.metadata.caption, "") )))
+            ((( draw_figure_with_caption(output.metadata.filenames['application/pdf'], cell.metadata.caption, "", cell.metadata.width) )))
         ((*- endif *))
     ((*- else -*))
-        ((( draw_figure_with_caption(output.metadata.filenames['application/pdf'], "") )))
+        ((( draw_figure_with_caption(output.metadata.filenames['application/pdf'], "", cell.metadata.width) )))
     ((*- endif *))
 ((*- endif *))
 ((*- endblock -*))
@@ -130,14 +130,22 @@
 % Draw a figure using the graphicx package.
 %===============================================================================
 % Draw a figure using the graphicx package.
-((* macro draw_figure_with_caption(filename, caption, label) -*))
+((* macro draw_figure_with_caption(filename, caption, label, width) -*))
 ((* set filename = filename | posix_path *))
 ((*- block figure scoped -*))
+    ((*- if width: -*))
+    \begin{figure}
+        \begin{center}\includegraphics[width=((( width )))cm]{((( filename )))}\end{center}
+        \caption{((( caption )))}
+        \label{((( label )))}
+    \end{figure}
+    ((*- else -*))
     \begin{figure}
         \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{((( filename )))}\end{center}
         \caption{((( caption )))}
         \label{((( label )))}
     \end{figure}
+    ((*- endif -*))
 ((*- endblock figure -*))
 ((*- endmacro *))
 

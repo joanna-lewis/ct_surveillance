@@ -250,15 +250,15 @@ clearance or screening.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{k+kn}{from} \PY{n+nn}{IPython.display} \PY{k+kn}{import} \PY{n}{Image}
-         \PY{n}{Image}\PY{p}{(}\PY{n}{filename}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{figures/3\PYZus{}comp.png}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{IPython.display} \PY{k+kn}{import} \PY{n}{Image}
+        \PY{n}{Image}\PY{p}{(}\PY{n}{filename}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{figures/3\PYZus{}comp.png}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 \begin{footnotesize}
-		\texttt{\color{outcolor}Out[{\color{outcolor}18}]:}\texttt{\color{outcolor}Out[{\color{outcolor}18}]:}
+		\texttt{\color{outcolor}Out[{\color{outcolor}1}]:}\texttt{\color{outcolor}Out[{\color{outcolor}1}]:}
     
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{three_compartment_model_files/three_compartment_model_1_0.png}\end{center}
+        \begin{center}\includegraphics[width=10cm]{three_compartment_model_files/three_compartment_model_1_0.png}\end{center}
         \caption{A model of chlamydia infection, clearance, testing and treatment.}
         \label{fig:model}
     \end{figure}
@@ -271,37 +271,37 @@ transition rates \(\alpha_{UA}\), \(\alpha_{AU}\), \(\alpha_{US}\) and
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{k+kn}{import} \PY{n+nn}{sympy} \PY{k+kn}{as} \PY{n+nn}{sym}
-         \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k+kn}{import} \PY{o}{*}
-         \PY{n}{A}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{S} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{A U S}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}  \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{alpha\PYZus{}UA alpha\PYZus{}AU alpha\PYZus{}US alpha\PYZus{}SU}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         
-         \PY{n}{model\PYZus{}dyn} \PY{o}{=} \PY{p}{[}
-             \PY{n}{alpha\PYZus{}UA}\PY{o}{*}\PY{n}{U} \PY{o}{\PYZhy{}} \PY{n}{alpha\PYZus{}AU}\PY{o}{*}\PY{n}{A}\PY{p}{,}
-             \PY{n}{alpha\PYZus{}AU}\PY{o}{*}\PY{n}{A} \PY{o}{+} \PY{n}{alpha\PYZus{}SU}\PY{o}{*}\PY{n}{S} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{alpha\PYZus{}UA} \PY{o}{+} \PY{n}{alpha\PYZus{}US}\PY{p}{)}\PY{o}{*}\PY{n}{U}\PY{p}{,}
-             \PY{n}{alpha\PYZus{}US}\PY{o}{*}\PY{n}{U} \PY{o}{\PYZhy{}} \PY{n}{alpha\PYZus{}SU}\PY{o}{*}\PY{n}{S}\PY{p}{,}
-             \PY{n}{A} \PY{o}{+} \PY{n}{U} \PY{o}{+} \PY{n}{S} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1} \PY{c}{\PYZsh{} this equation sets the total population size to 1}
-             \PY{p}{]}
-         
-         \PY{c}{\PYZsh{} steady\PYZhy{}state solution}
-         \PY{n}{sol\PYZus{}dyn} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{model\PYZus{}dyn}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{S}\PY{p}{)}
-         
-         \PY{c}{\PYZsh{} functions for calculating the proportion of the population in each compartment at }
-         \PY{c}{\PYZsh{} steady state, given transition rates between compartments}
-         \PY{n}{dyn\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{A}\PY{p}{]} \PY{o}{+} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{S}\PY{p}{]}\PY{p}{)}
-         \PY{n}{U\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{U}\PY{p}{]}\PY{p}{)}
-         \PY{n}{A\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{A}\PY{p}{]}\PY{p}{)}
-         \PY{n}{S\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{S}\PY{p}{]}\PY{p}{)}
-         
-         \PY{n}{sol\PYZus{}dyn}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{import} \PY{n+nn}{sympy} \PY{k+kn}{as} \PY{n+nn}{sym}
+        \PY{k+kn}{from} \PY{n+nn}{sympy} \PY{k+kn}{import} \PY{o}{*}
+        \PY{n}{A}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{S} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{A U S}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}  \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{alpha\PYZus{}UA alpha\PYZus{}AU alpha\PYZus{}US alpha\PYZus{}SU}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{model\PYZus{}dyn} \PY{o}{=} \PY{p}{[}
+            \PY{n}{alpha\PYZus{}UA}\PY{o}{*}\PY{n}{U} \PY{o}{\PYZhy{}} \PY{n}{alpha\PYZus{}AU}\PY{o}{*}\PY{n}{A}\PY{p}{,}
+            \PY{n}{alpha\PYZus{}AU}\PY{o}{*}\PY{n}{A} \PY{o}{+} \PY{n}{alpha\PYZus{}SU}\PY{o}{*}\PY{n}{S} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{alpha\PYZus{}UA} \PY{o}{+} \PY{n}{alpha\PYZus{}US}\PY{p}{)}\PY{o}{*}\PY{n}{U}\PY{p}{,}
+            \PY{n}{alpha\PYZus{}US}\PY{o}{*}\PY{n}{U} \PY{o}{\PYZhy{}} \PY{n}{alpha\PYZus{}SU}\PY{o}{*}\PY{n}{S}\PY{p}{,}
+            \PY{n}{A} \PY{o}{+} \PY{n}{U} \PY{o}{+} \PY{n}{S} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1} \PY{c}{\PYZsh{} this equation sets the total population size to 1}
+            \PY{p}{]}
+        
+        \PY{c}{\PYZsh{} steady\PYZhy{}state solution}
+        \PY{n}{sol\PYZus{}dyn} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{model\PYZus{}dyn}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{S}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} functions for calculating the proportion of the population in each compartment at }
+        \PY{c}{\PYZsh{} steady state, given transition rates between compartments}
+        \PY{n}{dyn\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{A}\PY{p}{]} \PY{o}{+} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{S}\PY{p}{]}\PY{p}{)}
+        \PY{n}{U\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{U}\PY{p}{]}\PY{p}{)}
+        \PY{n}{A\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{A}\PY{p}{]}\PY{p}{)}
+        \PY{n}{S\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{alpha\PYZus{}UA}\PY{p}{,} \PY{n}{alpha\PYZus{}AU}\PY{p}{,} \PY{n}{alpha\PYZus{}US}\PY{p}{,} \PY{n}{alpha\PYZus{}SU}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dyn}\PY{p}{[}\PY{n}{S}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{sol\PYZus{}dyn}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}11}]:} \{S: alpha\_AU*alpha\_US/(alpha\_AU*alpha\_US + alpha\_SU*(alpha\_AU + alpha\_UA)),
-          U: alpha\_AU*alpha\_SU/(alpha\_AU*alpha\_US + alpha\_SU*(alpha\_AU + alpha\_UA)),
-          A: alpha\_SU*alpha\_UA/(alpha\_AU*alpha\_US + alpha\_SU*(alpha\_AU + alpha\_UA))\}
+{\color{outcolor}Out[{\color{outcolor}2}]:} \{S: alpha\_AU*alpha\_US/(alpha\_AU*alpha\_US + alpha\_SU*(alpha\_AU + alpha\_UA)),
+         U: alpha\_AU*alpha\_SU/(alpha\_AU*alpha\_US + alpha\_SU*(alpha\_AU + alpha\_UA)),
+         A: alpha\_SU*alpha\_UA/(alpha\_AU*alpha\_US + alpha\_SU*(alpha\_AU + alpha\_UA))\}
 \end{Verbatim}
     \end{footnotesize}
         
@@ -337,10 +337,10 @@ Let's assume that:
 \begin{itemize}
 \tightlist
 \item
-  87.5\% of incident infections are asymptomatic.
+  51.0\% of incident infections are asymptomatic.
 \item
   Infections (whether symptomatic or not) clear spontaneously or through
-  background antibiotic use at a rate 4.74 per year.
+  background antibiotic use at a rate 0.396 per year.
 \item
   Symptomatic cases seek and obtain testing and treatment at a rate 14.2
   per year.
@@ -352,11 +352,11 @@ Let's assume that:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{p\PYZus{}asymp} \PY{o}{=} \PY{l+m+mf}{0.875}
-         \PY{n}{sc} \PY{o}{=} \PY{l+m+mf}{4.74}
-         \PY{n}{att\PYZus{}symp} \PY{o}{=} \PY{l+m+mf}{14.2}
-         \PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{=} \PY{l+m+mf}{0.971}
-         \PY{n}{p\PYZus{}false\PYZus{}pos} \PY{o}{=} \PY{l+m+mf}{0.00314}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{p\PYZus{}asymp} \PY{o}{=} \PY{l+m+mf}{0.510}
+        \PY{n}{sc} \PY{o}{=} \PY{l+m+mf}{0.396}
+        \PY{n}{att\PYZus{}symp} \PY{o}{=} \PY{l+m+mf}{14.2}
+        \PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{=} \PY{l+m+mf}{0.971}
+        \PY{n}{p\PYZus{}false\PYZus{}pos} \PY{o}{=} \PY{l+m+mf}{0.00314}
 \end{Verbatim}
     \end{footnotesize}
 
@@ -367,84 +367,84 @@ and the rates of new tests and diagnoses.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
-         \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k+kn}{import} \PY{o}{*}
-         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
-         
-         \PY{n}{inc} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)} \PY{c}{\PYZsh{} incidence}
-         \PY{n}{scr} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)} \PY{c}{\PYZsh{} screening}
-         \PY{n}{inc}\PY{p}{,}\PY{n}{scr} \PY{o}{=} \PY{n}{meshgrid}\PY{p}{(}\PY{n}{inc}\PY{p}{,} \PY{n}{scr}\PY{p}{)}
-         
-         \PY{c}{\PYZsh{} proportion of population in each compartment}
-         \PY{n}{ZU} \PY{o}{=} \PY{n}{U\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
-         \PY{n}{ZA} \PY{o}{=} \PY{n}{A\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
-         \PY{n}{ZS} \PY{o}{=} \PY{n}{S\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
-         
-         \PY{n}{Zprev} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{ZU}
-         \PY{n}{Ztest} \PY{o}{=} \PY{n}{scr} \PY{o}{+} \PY{n}{ZS}\PY{o}{*}\PY{n}{att\PYZus{}symp}
-         \PY{n}{Zdiag} \PY{o}{=} \PY{p}{(}\PY{n}{ZA}\PY{o}{+}\PY{n}{ZS}\PY{p}{)}\PY{o}{*}\PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{ZU}\PY{o}{*}\PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}false\PYZus{}pos} \PY{o}{+} \PY{n}{ZS}\PY{o}{*}\PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k+kn}{import} \PY{o}{*}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+        
+        \PY{n}{inc} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)} \PY{c}{\PYZsh{} incidence}
+        \PY{n}{scr} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)} \PY{c}{\PYZsh{} screening}
+        \PY{n}{inc}\PY{p}{,}\PY{n}{scr} \PY{o}{=} \PY{n}{meshgrid}\PY{p}{(}\PY{n}{inc}\PY{p}{,} \PY{n}{scr}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} proportion of population in each compartment}
+        \PY{n}{ZU} \PY{o}{=} \PY{n}{U\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
+        \PY{n}{ZA} \PY{o}{=} \PY{n}{A\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
+        \PY{n}{ZS} \PY{o}{=} \PY{n}{S\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
+        
+        \PY{n}{Zprev} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{ZU}
+        \PY{n}{Ztest} \PY{o}{=} \PY{n}{scr} \PY{o}{+} \PY{n}{ZS}\PY{o}{*}\PY{n}{att\PYZus{}symp}
+        \PY{n}{Zdiag} \PY{o}{=} \PY{p}{(}\PY{n}{ZA}\PY{o}{+}\PY{n}{ZS}\PY{p}{)}\PY{o}{*}\PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{ZU}\PY{o}{*}\PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}false\PYZus{}pos} \PY{o}{+} \PY{n}{ZS}\PY{o}{*}\PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
-         
-         \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{231}\PY{p}{)}
-         \PY{n}{p} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{)}
-         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{)}
-         \PY{c}{\PYZsh{}ax1.set\PYZus{}xlabel(\PYZsq{}Incidence\PYZsq{})}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Uninfected}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         
-         \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{232}\PY{p}{)}
-         \PY{n}{p} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZS}\PY{p}{)}
-         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{)}
-         \PY{n}{t} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Infected, Symptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         
-         \PY{n}{ax3} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{233}\PY{p}{)}
-         \PY{n}{p} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZA}\PY{p}{)}
-         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax3}\PY{p}{)}
-         \PY{n}{t} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Infected, Asymptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         
-         \PY{n}{ax4} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{234}\PY{p}{)}
-         \PY{n}{p} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zprev}\PY{p}{)}
-         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax4}\PY{p}{)}
-         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         
-         \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{235}\PY{p}{)}
-         \PY{n}{p} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Ztest}\PY{p}{)}
-         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
-         \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Testing Rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         
-         \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{236}\PY{p}{)}
-         \PY{n}{p} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zdiag}\PY{p}{)}
-         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
-         \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Diagnosis Rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
-         
-         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}   
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{231}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{)}
+        \PY{c}{\PYZsh{}ax1.set\PYZus{}xlabel(\PYZsq{}Incidence\PYZsq{})}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Uninfected}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        
+        \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{232}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZS}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Infected, Symptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        
+        \PY{n}{ax3} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{233}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZA}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax3}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Infected, Asymptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        
+        \PY{n}{ax4} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{234}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zprev}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax4}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        
+        \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{235}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Ztest}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+        \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Testing Rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        
+        \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{236}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zdiag}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
+        \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Diagnosis Rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}   
 \end{Verbatim}
     \end{footnotesize}
 
@@ -459,12 +459,6 @@ and diagnosis rates corresponds to a single point in the (incidence,
 screening rate) plane, which in turn corresponds to a particular
 prevalence. Note, however, that this mapping depends on the parameter
 values which have been assumed.
-
-    \begin{footnotesize}
-        \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
-\end{Verbatim}
-    \end{footnotesize}
 
 
     % Add a bibliography block to the postdoc
