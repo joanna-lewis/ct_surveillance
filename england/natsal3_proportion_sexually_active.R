@@ -1,4 +1,4 @@
-# This script extracts some relevant quantities for the ipython notebook example.ipynb
+# This script extracts some relevant quantities for the ipython notebook england.ipynb
 # from the Natsal-3 dataset.
 
 rm(list=ls())
@@ -7,6 +7,7 @@ library(foreign)
 library(questionr)
 library(survey)
 
+# edit this path to point to wherever the data is stored on your system
 natsal3 <- read.dta("~/Documents/data/natsal-3/UKDA-7799-stata11/stata11/eul_natsal_2010_for_archive.dta") # 15162 rows
 
 # make a variable for whether sexually active (same-sex or opposite-sex)
