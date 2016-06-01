@@ -673,7 +673,7 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x10fa5b690&gt;</pre>
+<pre>&lt;matplotlib.text.Text at 0x1087ee690&gt;</pre>
 </div>
 
 </div>
@@ -1143,9 +1143,8 @@ GGOMMcYYY44u/wfBrZXMQNeYjQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">sc_m</span> <span class="o">=</span> <span class="n">empty</span><span class="p">(</span><span class="n">n_sample</span><span class="p">)</span> <span class="c"># testing rate per person per year</span>
-
-<span class="kn">import</span> <span class="nn">csv</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="n">sc_m</span> <span class="o">=</span> <span class="n">empty</span><span class="p">(</span><span class="n">n_sample</span><span class="p">)</span> <span class="c"># clearance rate per person per year</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;stan/chlamydia_two_exponentials_men.csv&#39;</span><span class="p">,</span> <span class="s">&#39;rU&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">m</span><span class="p">:</span>
     <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
     <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
@@ -1154,7 +1153,7 @@ GGOMMcYYY44u/wfBrZXMQNeYjQAAAABJRU5ErkJggg==
         <span class="n">sc_m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
         
-<span class="n">sc_f</span> <span class="o">=</span> <span class="n">empty</span><span class="p">(</span><span class="n">n_sample</span><span class="p">)</span>
+<span class="n">sc_f</span> <span class="o">=</span> <span class="n">empty</span><span class="p">(</span><span class="n">n_sample</span><span class="p">)</span> <span class="c"># clearance rate per person per year</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;stan/chlamydia_two_exponentials_women.csv&#39;</span><span class="p">,</span> <span class="s">&#39;rU&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
@@ -1163,10 +1162,14 @@ GGOMMcYYY44u/wfBrZXMQNeYjQAAAABJRU5ErkJggg==
         <span class="n">sc_f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
 
-
 <span class="n">h</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sc_f</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">h</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sc_m</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Rate of spontaneous clearance (year$^{-1}$)&#39;</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s">&#39;Median (central 95</span><span class="si">% c</span><span class="s">redible interval) for spontaneous clearance rate in men: </span><span class="se">\n</span><span class="s"> </span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> \
+    <span class="n">percentile</span><span class="p">(</span><span class="n">sc_m</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">percentile</span><span class="p">(</span><span class="n">sc_m</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">97.5</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&#39;Median (central 95</span><span class="si">% c</span><span class="s">redible interval) for spontaneous clearance rate in women:</span><span class="se">\n</span><span class="s"> </span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> \
+    <span class="n">percentile</span><span class="p">(</span><span class="n">sc_f</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">percentile</span><span class="p">(</span><span class="n">sc_f</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">97.5</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -1177,13 +1180,14 @@ GGOMMcYYY44u/wfBrZXMQNeYjQAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x10cf9bd10&gt;</pre>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Median (central 95% credible interval) for spontaneous clearance rate in men: 
+ 	0.395824502635 [0.058796284132470837, 1.2738753854360512]
+Median (central 95% credible interval) for spontaneous clearance rate in women:
+ 	0.725636286054 [0.59114145020803666, 0.87428940522833309]
+</pre>
 </div>
-
 </div>
 
 <div class="output_area"><div class="prompt"></div>
@@ -1466,10 +1470,10 @@ ejourkniYh9JkiRJkiRJkiRJkiRJkiRJkiRJkiQl4n8BGMYrKr4iKjgAAAAASUVORK5CYII=
 <span class="n">h</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">p_asymp_m</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;step&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Proportion of incident infections which are asymptomatic&#39;</span><span class="p">)</span>
 
-<span class="k">print</span> <span class="s">&#39;Central 95</span><span class="si">% c</span><span class="s">redible interval for proportion asymptomatic in men: </span><span class="se">\n</span><span class="s"> </span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> \
-    <span class="n">percentile</span><span class="p">(</span><span class="n">p_asymp_m</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">97.5</span><span class="p">))</span>
-<span class="k">print</span> <span class="s">&#39;Central 95</span><span class="si">% c</span><span class="s">redible interval for proportion asymptomatic in women:</span><span class="se">\n</span><span class="s"> </span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> \
-    <span class="n">percentile</span><span class="p">(</span><span class="n">p_asymp_f</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">97.5</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&#39;Median (central 95</span><span class="si">% c</span><span class="s">redible interval) for proportion asymptomatic in men: </span><span class="se">\n</span><span class="s"> </span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> \
+    <span class="n">percentile</span><span class="p">(</span><span class="n">p_asymp_m</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">percentile</span><span class="p">(</span><span class="n">p_asymp_m</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">97.5</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&#39;Median (central 95</span><span class="si">% c</span><span class="s">redible interval) for proportion asymptomatic in women:</span><span class="se">\n</span><span class="s"> </span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> \
+    <span class="n">percentile</span><span class="p">(</span><span class="n">p_asymp_f</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">percentile</span><span class="p">(</span><span class="n">p_asymp_f</span><span class="p">,</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">97.5</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -1482,10 +1486,10 @@ ejourkniYh9JkiRJkiRJkiRJkiRJkiRJkiRJkiQl4n8BGMYrKr4iKjgAAAAASUVORK5CYII=
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Central 95% credible interval for proportion asymptomatic in men: 
- 	[0.26393408139570879, 0.75872661515902395]
-Central 95% credible interval for proportion asymptomatic in women:
- 	[0.46763845173602908, 0.75205517865264992]
+<pre>Median (central 95% credible interval) for proportion asymptomatic in men: 
+ 	0.509889142897 [0.26393408139570879, 0.75872661515902395]
+Median (central 95% credible interval) for proportion asymptomatic in women:
+ 	0.616465413009 [0.46763845173602908, 0.75205517865264992]
 </pre>
 </div>
 </div>
@@ -4267,7 +4271,7 @@ AAAAAElFTkSuQmCC
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x111d06050&gt;</pre>
+<pre>&lt;matplotlib.text.Text at 0x10a9ea490&gt;</pre>
 </div>
 
 </div>
