@@ -50,8 +50,8 @@ def test_diag_fun(parms):
     true_pos = parms[5]
     false_pos = parms[6]
     
-    A = A_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
-    U = U_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, self_cure + scr*true_pos + test_sym*true_pos)
+    A = A_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, scr*true_pos + test_sym*true_pos)
+    U = U_fun(inc*(1-p_symp), self_cure + scr*true_pos, inc*p_symp, scr*true_pos + test_sym*true_pos)
     return [test_fun(A, U, scr, test_sym, true_pos, false_pos), diag_fun(A, U, scr, test_sym, true_pos, false_pos)]
     
 ##############################
