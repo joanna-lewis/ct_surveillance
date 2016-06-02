@@ -1,17 +1,26 @@
-# Notebooks for analysing chlamydia surveillance data for England.
+# Analysing chlamydia surveillance data for England.
 
-For the reader's convenience, the notebooks have been downloaded as html files, and the code and Figures can be viewed using a web browser.
-To run or edit the code and generate figures, the necessary software to run iPython and Jupyter notebooks must be installed (see http://ipython.org/install.html and http://jupyter.org/). 
+This repository contains software for analysing chlamydia surveillance data, applied to data from England in 2012. Code consists of R scrips, STAN model files and Jupyter notebooks in the IPython language.
 
-`three_compartment_model.ipynb` introduces the model and its properties.
+For the reader's convenience, the Jupyter notebooks have been downloaded as both LaTeX/PDF and html files, and the code and Figures can be viewed using a PDF reader or web browser. To run or edit the notebooks and generate figures, the necessary software to run IPython and Jupyter notebooks must be installed (see http://ipython.org/install.html and http://jupyter.org/). The material
 
-`england.ipynb` illustrates the use of the model, using data from England in 2012.
+## Introducing the model
 
-`local_authorities.ipynb` uses the model to investigate local differences in chlamydia testing and diagnosis rates, incidence and prevalence.
+Files in the directory named **three_compartment_model** introduce the model and its properties.
 
-Also included is an R script which is used to derive prior distributions for the proportions of men and women in different age groups who are sexually active, using data from the National Study of Sexual Attitudes and Lifestyles, Natsal-3.
+## Example: chlamydia in England, 2012
 
-The folder named 'stan' contains STAN model files to obtain samples for natural clearance rates of chlamydia infection in men and women, based on the work of Price _et al._ presented in _Stat Med_ **32**:1547-1560 (2013).
+Files in the directory named **england** illustrate the use of the model, with data from England in 2012.
+
+As well as the IPython notebook, the directory contains an R script which is used to derive prior distributions for the proportions of men and women in different age groups who are sexually active, using data from the National Study of Sexual Attitudes and Lifestyles, Natsal-3.
+
+The subdirectory named 'stan' contains STAN model files and R scripts to run them and obtain samples for natural clearance rates of chlamydia infection in men and women, based on the work of Price _et al._ presented in _Stat Med_ **32**:1547-1560 (2013).
+
+## Local differences in chlamydia incidence, testing, diagnosis and prevalence
+
+Files in the directory named **local_authorities.ipynb** use the model to investigate local differences in chlamydia testing and diagnosis rates, incidence and prevalence.
+
+## Data
 
 Natsal-3 data is available from the UK Data Archive:
 http://www.data-archive.ac.uk/
