@@ -391,10 +391,12 @@ and the rates of new tests and diagnoses.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
          
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{231}\PY{p}{)}
          \PY{n}{p} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{)}
+         \PY{n}{c} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.6}\PY{p}{,}\PY{l+m+mf}{0.7}\PY{p}{,}\PY{l+m+mf}{0.8}\PY{p}{,}\PY{l+m+mf}{0.9}\PY{p}{]}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.35}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{)}
          \PY{c}{\PYZsh{}ax1.set\PYZus{}xlabel(\PYZsq{}Incidence\PYZsq{})}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
@@ -405,6 +407,8 @@ and the rates of new tests and diagnoses.
          
          \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{232}\PY{p}{)}
          \PY{n}{p} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZS}\PY{p}{)}
+         \PY{n}{c} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZS}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.003}\PY{p}{,}\PY{l+m+mf}{0.006}\PY{p}{,}\PY{l+m+mf}{0.009}\PY{p}{,}\PY{l+m+mf}{0.012}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{manual}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.35}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.35}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.35}\PY{p}{,}\PY{l+m+mf}{0.35}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.45}\PY{p}{,}\PY{l+m+mf}{0.35}\PY{p}{)}\PY{p}{]}\PY{p}{)}
          \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{)}
          \PY{n}{t} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Infected, Symptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
@@ -413,6 +417,8 @@ and the rates of new tests and diagnoses.
          
          \PY{n}{ax3} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{233}\PY{p}{)}
          \PY{n}{p} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZA}\PY{p}{)}
+         \PY{n}{c} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZA}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.3}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax3}\PY{p}{)}
          \PY{n}{t} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Infected, Asymptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
@@ -421,6 +427,8 @@ and the rates of new tests and diagnoses.
          
          \PY{n}{ax4} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{234}\PY{p}{)}
          \PY{n}{p} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zprev}\PY{p}{)}
+         \PY{n}{c} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zprev}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.3}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax4}\PY{p}{)}
          \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence  (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
@@ -431,6 +439,8 @@ and the rates of new tests and diagnoses.
          
          \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{235}\PY{p}{)}
          \PY{n}{p} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Ztest}\PY{p}{)}
+         \PY{n}{c} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Ztest}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{0.6}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.45}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.45}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.45}\PY{p}{,}\PY{l+m+mf}{0.45}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
          \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence  (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{t} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Proportion Tested}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
@@ -440,6 +450,8 @@ and the rates of new tests and diagnoses.
          
          \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{236}\PY{p}{)}
          \PY{n}{p} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zdiag}\PY{p}{)}
+         \PY{n}{c} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zdiag}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
          \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{t} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.412}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Annual Diagnoses}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{per Capita}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
