@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Local differences in chlamydia prevalence, proportion diagnosed and positivity}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Testing and diagnosis rates}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Positivity and prevalence}{3}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Local differences in prevalence}{8}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Prevalence and incidence}{17}{subsection.1.4}

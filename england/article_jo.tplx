@@ -41,6 +41,9 @@
 
 \date{\today}
 \maketitle
+
+\tableofcontents
+
 ((* endblock maketitle *))
 
 % New mechanism for rendering figures with captions

@@ -230,6 +230,9 @@
 \date{\today}
 \maketitle
 
+\tableofcontents
+
+
     
     
 
@@ -602,7 +605,7 @@ previously (Mercer \emph{et al.}, \emph{Sex. Transm. Infect.}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x10ccae690>
+{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x1087ee690>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -639,33 +642,33 @@ by Price \emph{et al.} in \emph{Stat. Med.} \textbf{32}:1547-1560.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k+kn}{import} \PY{n+nn}{csv}
-         \PY{n}{sc\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)} \PY{c}{\PYZsh{} clearance rate per person per year}
-         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{stan/chlamydia\PYZus{}two\PYZus{}exponentials\PYZus{}men.csv}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rU}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{m}\PY{p}{:}
-             \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{m}\PY{p}{)}
-             \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
-             \PY{n+nb}{next}\PY{p}{(}\PY{n}{reader}\PY{p}{)} \PY{c}{\PYZsh{} skip the header row}
-             \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
-                 \PY{n}{sc\PYZus{}m}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-                 \PY{n}{i} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
-                 
-         \PY{n}{sc\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)} \PY{c}{\PYZsh{} clearance rate per person per year}
-         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{stan/chlamydia\PYZus{}two\PYZus{}exponentials\PYZus{}women.csv}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rU}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
-             \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{f}\PY{p}{)}
-             \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
-             \PY{n+nb}{next}\PY{p}{(}\PY{n}{reader}\PY{p}{)} \PY{c}{\PYZsh{} skip the header row}
-             \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
-                 \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-                 \PY{n}{i} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
-         
-         \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Rate of spontaneous clearance (year\PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         
-         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Median (central 95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s}{redible interval) for spontaneous clearance rate in men: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PYZbs{}
-             \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{97.5}\PY{p}{)}\PY{p}{)}
-         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Median (central 95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s}{redible interval) for spontaneous clearance rate in women:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PYZbs{}
-             \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{97.5}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k+kn}{import} \PY{n+nn}{csv}
+        \PY{n}{sc\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)} \PY{c}{\PYZsh{} clearance rate per person per year}
+        \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{stan/chlamydia\PYZus{}two\PYZus{}exponentials\PYZus{}men.csv}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rU}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{m}\PY{p}{:}
+            \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{m}\PY{p}{)}
+            \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+            \PY{n+nb}{next}\PY{p}{(}\PY{n}{reader}\PY{p}{)} \PY{c}{\PYZsh{} skip the header row}
+            \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
+                \PY{n}{sc\PYZus{}m}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                \PY{n}{i} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+                
+        \PY{n}{sc\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)} \PY{c}{\PYZsh{} clearance rate per person per year}
+        \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{stan/chlamydia\PYZus{}two\PYZus{}exponentials\PYZus{}women.csv}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rU}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+            \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+            \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+            \PY{n+nb}{next}\PY{p}{(}\PY{n}{reader}\PY{p}{)} \PY{c}{\PYZsh{} skip the header row}
+            \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
+                \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                \PY{n}{i} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+        
+        \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Rate of spontaneous clearance (year\PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Median (central 95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s}{redible interval) for spontaneous clearance rate in men: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+            \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{97.5}\PY{p}{)}\PY{p}{)}
+        \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Median (central 95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s}{redible interval) for spontaneous clearance rate in women:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+            \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{97.5}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
@@ -788,7 +791,7 @@ and women.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{p\PYZus{}asymp\PYZus{}m}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Proportion of incident infections which are asymptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          
@@ -1207,7 +1210,7 @@ symptomatic.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:} <matplotlib.text.Text at 0x111d06050>
+{\color{outcolor}Out[{\color{outcolor}24}]:} <matplotlib.text.Text at 0x10a9ea490>
 \end{Verbatim}
     \end{footnotesize}
         
