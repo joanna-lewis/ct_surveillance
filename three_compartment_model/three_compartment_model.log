@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  3 JUN 2016 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  3 JUN 2016 17:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -581,11 +581,6 @@ Type  H <return>  for immediate help.
 l.320 \end{align}
                  
 ? 
-
-Overfull \hbox (34.46867pt too wide) detected at line 321
-[] []
- []
-
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
@@ -607,13 +602,13 @@ e (type png)
 Package pdftex.def Info: three_compartment_model_files/three_compartment_model_
 8_0.png used on input line 467.
 (pdftex.def)             Requested size: 730.72821pt x 445.66391pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 483.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 489.
  [4 <./three_compartment_model_files/three_compartment_model_8_0.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 483.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 489.
 
 (./three_compartment_model.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 483.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 483.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 489.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 489.
 Package rerunfilecheck Info: File `three_compartment_model.out' has not changed
 .
 (rerunfilecheck)             Checksum: 82F78945DA1DE9C3CF0C2822BD7A7051;74.
@@ -624,16 +619,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 483.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 489.
  ) 
 Here is how much of TeX's memory you used:
  8239 strings out of 493089
  122907 string characters out of 6134843
- 236134 words of memory out of 5000000
+ 236013 words of memory out of 5000000
  11557 multiletter control sequences out of 15000+600000
  11532 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,7n,35p,565b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,7n,35p,564b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb>
@@ -645,7 +640,7 @@ ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on three_compartment_model.pdf (4 pages, 264386 bytes).
+Output written on three_compartment_model.pdf (4 pages, 264817 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  63 compressed objects within 1 object stream

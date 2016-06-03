@@ -3,5 +3,6 @@
 \contentsline {subsection}{\numberline {1.2}Sampling natural history, behavioural and other parameters}{3}{subsection.1.2}
 \contentsline {subsubsection}{\numberline {1.2.1}Rate of treatment seeking by symptomatic cases}{3}{subsubsection.1.2.1}
 \contentsline {subsubsection}{\numberline {1.2.2}Rate of spontaneous clearance of infection}{6}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}Proportion of incident infections asymptomatic}{7}{subsubsection.1.2.3}
 \contentsline {subsection}{\numberline {1.3}Estimating national prevalence}{9}{subsection.1.3}
 \contentsline {subsection}{\numberline {1.4}Symptomatic and asymptomatic diagnoses}{11}{subsection.1.4}
