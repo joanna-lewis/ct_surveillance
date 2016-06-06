@@ -23,7 +23,7 @@ library(rstan)
 # 6 Sorensen
 # 7 McCormack	
 # 8 Morre	
-# 9 Mollano
+# 9 Molano
 
 chlamydia_dat <- list(
 	studnum = 9,
@@ -136,7 +136,7 @@ abline(h=0.74, lty=2)
 abline(h=0.89, lty=2) 
 
 ####################
-# write to csv file (choose last 3333 or 3334 samples from each chain)
+# write 10000 samples to csv file (choose last 3333 or 3334 samples from each chain)
 ####################
 
 write.csv(

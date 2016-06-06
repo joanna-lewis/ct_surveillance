@@ -276,7 +276,7 @@ rates}\label{sampling-for-testing-and-diagnosis-rates}
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
         \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k+kn}{import} \PY{o}{*}
         \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{beta}
         \PY{k+kn}{from} \PY{n+nn}{scipy.optimize} \PY{k+kn}{import} \PY{n}{fsolve}
@@ -332,7 +332,7 @@ diagnosis rates per person per year.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{gamma}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{gamma}
         \PY{k+kn}{from} \PY{n+nn}{numpy.random} \PY{k+kn}{import} \PY{n}{normal}
         \PY{n}{rs} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{RandomState}\PY{p}{(}\PY{l+m+mi}{12345}\PY{p}{)}
         
@@ -378,7 +378,7 @@ diagnosis rates per person per year.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{print} \PY{n}{percentile}\PY{p}{(}\PY{n}{test\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{print} \PY{n}{percentile}\PY{p}{(}\PY{n}{test\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
         \PY{k}{print} \PY{n}{percentile}\PY{p}{(}\PY{n}{diag\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
@@ -400,7 +400,7 @@ seeking by symptomatic cases will deplete the symptomatic pool.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{c}{\PYZsh{} test performance}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c}{\PYZsh{} test performance}
         
         \PY{c}{\PYZsh{} Horner J. Clin. Microbiol (2005): 32 of 32 infected samples tested +ve}
         \PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{beta}\PY{p}{(}\PY{l+m+mi}{32}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)} 
@@ -440,14 +440,14 @@ previously (Mercer \emph{et al.}, \emph{Sex. Transm. Infect.}
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{c}{\PYZsh{} function for calculating likelihood of multinomial data}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c}{\PYZsh{} function for calculating likelihood of multinomial data}
         \PY{o}{\PYZpc{}}\PY{k}{run} multinomial\PYZus{}pmf.py
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{c}{\PYZsh{} Find beta distributions corresponding to 95\PYZpc{} CIs reported in }
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c}{\PYZsh{} Find beta distributions corresponding to 95\PYZpc{} CIs reported in }
         \PY{c}{\PYZsh{} Mercer Sex. Transm. Infect. (2007) (see table above).}
         
         \PY{n}{a} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
@@ -492,7 +492,7 @@ previously (Mercer \emph{et al.}, \emph{Sex. Transm. Infect.}
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{c}{\PYZsh{} Metropolis\PYZhy{}Hastings to get a sample for rate of treatment}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c}{\PYZsh{} Metropolis\PYZhy{}Hastings to get a sample for rate of treatment}
         
         \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
         \PY{n}{att\PYZus{}symp} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{o}{+}\PY{l+m+mi}{1000}\PY{p}{)} \PY{c}{\PYZsh{} testing rate per person per year. Allow 1000 extra samples for burn\PYZhy{}in}
@@ -560,7 +560,8 @@ previously (Mercer \emph{et al.}, \emph{Sex. Transm. Infect.}
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{c}{\PYZsh{} diagnostics and posterior predictive checks}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c}{\PYZsh{} Figure 1}
+        \PY{c}{\PYZsh{} diagnostics and posterior predictive checks}
         
         \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
@@ -605,7 +606,7 @@ previously (Mercer \emph{et al.}, \emph{Sex. Transm. Infect.}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x1087ee690>
+{\color{outcolor}Out[{\color{outcolor}9}]:} <matplotlib.text.Text at 0x10423c6d0>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -642,33 +643,35 @@ by Price \emph{et al.} in \emph{Stat. Med.} \textbf{32}:1547-1560.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{k+kn}{import} \PY{n+nn}{csv}
-        \PY{n}{sc\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)} \PY{c}{\PYZsh{} clearance rate per person per year}
-        \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{stan/chlamydia\PYZus{}two\PYZus{}exponentials\PYZus{}men.csv}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rU}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{m}\PY{p}{:}
-            \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{m}\PY{p}{)}
-            \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
-            \PY{n+nb}{next}\PY{p}{(}\PY{n}{reader}\PY{p}{)} \PY{c}{\PYZsh{} skip the header row}
-            \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
-                \PY{n}{sc\PYZus{}m}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-                \PY{n}{i} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
-                
-        \PY{n}{sc\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)} \PY{c}{\PYZsh{} clearance rate per person per year}
-        \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{stan/chlamydia\PYZus{}two\PYZus{}exponentials\PYZus{}women.csv}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rU}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
-            \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{f}\PY{p}{)}
-            \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
-            \PY{n+nb}{next}\PY{p}{(}\PY{n}{reader}\PY{p}{)} \PY{c}{\PYZsh{} skip the header row}
-            \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
-                \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
-                \PY{n}{i} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
-        
-        \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Rate of spontaneous clearance (year\PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        
-        \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Median (central 95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s}{redible interval) for spontaneous clearance rate in men: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PYZbs{}
-            \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{97.5}\PY{p}{)}\PY{p}{)}
-        \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Median (central 95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s}{redible interval) for spontaneous clearance rate in women:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PYZbs{}
-            \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{97.5}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c}{\PYZsh{} Figure 2}
+         
+         \PY{k+kn}{import} \PY{n+nn}{csv}
+         \PY{n}{sc\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)} \PY{c}{\PYZsh{} clearance rate per person per year}
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{stan/chlamydia\PYZus{}two\PYZus{}exponentials\PYZus{}men.csv}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rU}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{m}\PY{p}{:}
+             \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{m}\PY{p}{)}
+             \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+             \PY{n+nb}{next}\PY{p}{(}\PY{n}{reader}\PY{p}{)} \PY{c}{\PYZsh{} skip the header row}
+             \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
+                 \PY{n}{sc\PYZus{}m}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{i} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+                 
+         \PY{n}{sc\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)} \PY{c}{\PYZsh{} clearance rate per person per year}
+         \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{stan/chlamydia\PYZus{}two\PYZus{}exponentials\PYZus{}women.csv}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rU}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+             \PY{n}{reader} \PY{o}{=} \PY{n}{csv}\PY{o}{.}\PY{n}{reader}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+             \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+             \PY{n+nb}{next}\PY{p}{(}\PY{n}{reader}\PY{p}{)} \PY{c}{\PYZsh{} skip the header row}
+             \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{reader}\PY{p}{:}
+                 \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{i} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+         
+         \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Rate of spontaneous clearance (year\PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Median (central 95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s}{redible interval) for spontaneous clearance rate in men: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+             \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}m}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{97.5}\PY{p}{)}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Median (central 95}\PY{l+s+si}{\PYZpc{} c}\PY{l+s}{redible interval) for spontaneous clearance rate in women:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+             \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{sc\PYZus{}f}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{2.5}\PY{p}{,}\PY{l+m+mf}{97.5}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
@@ -694,7 +697,7 @@ and women.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{beta}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.stats} \PY{k+kn}{import} \PY{n}{beta}
          
          \PY{p}{[}\PY{n}{alpha\PYZus{}prev\PYZus{}m}\PY{p}{,} \PY{n}{beta\PYZus{}prev\PYZus{}m}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
              \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{array}\PY{p}{(}\PY{n}{beta}\PY{o}{.}\PY{n}{interval}\PY{p}{(}\PY{l+m+mf}{0.95}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{scale}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
@@ -717,7 +720,7 @@ and women.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{c}{\PYZsh{} This script also contains the functions linking observed tests, symptomatic/asymptomatic/toal diagnoses, }
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c}{\PYZsh{} This script also contains the functions linking observed tests, symptomatic/asymptomatic/toal diagnoses, }
          \PY{c}{\PYZsh{} incidence, prevalence, screening and other model parameters}
          \PY{c}{\PYZsh{} Running it takes a little while because of all the symbolic algebra}
          \PY{o}{\PYZpc{}}\PY{k}{run} test\PYZus{}diag\PYZus{}fun.py
@@ -726,7 +729,7 @@ and women.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{c}{\PYZsh{} incidence, screening and proportion of incident infections asymptomatic in men}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c}{\PYZsh{} incidence, screening and proportion of incident infections asymptomatic in men}
          
          \PY{n}{inc\PYZus{}m} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{scr\PYZus{}m} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
@@ -760,7 +763,8 @@ and women.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{c}{\PYZsh{} incidence, screening and proportion of incident infections asymptomatic in women}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c}{\PYZsh{} Figure 3}
+         \PY{c}{\PYZsh{} incidence, screening and proportion of incident infections asymptomatic in women}
          
          \PY{n}{inc\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{scr\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
@@ -794,7 +798,7 @@ and women.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{h}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{p\PYZus{}asymp\PYZus{}m}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Proportion of incident infections which are asymptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          
@@ -826,13 +830,13 @@ women in different age groups.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.optimize} \PY{k+kn}{import} \PY{n}{fsolve}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.optimize} \PY{k+kn}{import} \PY{n}{fsolve}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{c}{\PYZsh{} men first...}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZsh{} men first...}
          \PY{n}{prev\PYZus{}m\PYZus{}15\PYZus{}19} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{inc\PYZus{}m\PYZus{}15\PYZus{}19} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{scr\PYZus{}m\PYZus{}15\PYZus{}19} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
@@ -857,7 +861,7 @@ women in different age groups.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{prev\PYZus{}m\PYZus{}20\PYZus{}24} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{prev\PYZus{}m\PYZus{}20\PYZus{}24} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{inc\PYZus{}m\PYZus{}20\PYZus{}24} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{scr\PYZus{}m\PYZus{}20\PYZus{}24} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          
@@ -881,7 +885,7 @@ women in different age groups.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{c}{\PYZsh{} ... then women}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c}{\PYZsh{} ... then women}
          \PY{n}{prev\PYZus{}f\PYZus{}15\PYZus{}19} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{inc\PYZus{}f\PYZus{}15\PYZus{}19} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{scr\PYZus{}f\PYZus{}15\PYZus{}19} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
@@ -906,7 +910,7 @@ women in different age groups.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{prev\PYZus{}f\PYZus{}20\PYZus{}24} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{prev\PYZus{}f\PYZus{}20\PYZus{}24} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{inc\PYZus{}f\PYZus{}20\PYZus{}24} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{scr\PYZus{}f\PYZus{}20\PYZus{}24} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          
@@ -930,7 +934,8 @@ women in different age groups.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{c}{\PYZsh{} ...and now plot sampled prevalence by age group}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c}{\PYZsh{} Figure 4}
+         \PY{c}{\PYZsh{} ...and now plot sampled prevalence by age group}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
          
@@ -1010,7 +1015,7 @@ inferences which would have followed in each case.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{c}{\PYZsh{} men first...}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c}{\PYZsh{} men first...}
          \PY{n}{prev\PYZus{}m} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{inc\PYZus{}m} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{scr\PYZus{}m} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
@@ -1048,7 +1053,7 @@ inferences which would have followed in each case.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{c}{\PYZsh{} ...then women}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c}{\PYZsh{} ...then women}
          \PY{n}{prev\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{inc\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
          \PY{n}{scr\PYZus{}f} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}
@@ -1086,7 +1091,9 @@ inferences which would have followed in each case.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c}{\PYZsh{} Figure 5}
+         
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
          \PY{n}{xtk\PYZus{}m} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{,} \PY{l+m+mi}{20000}\PY{p}{,} \PY{l+m+mi}{30000}\PY{p}{,} \PY{l+m+mi}{40000}\PY{p}{]} \PY{c}{\PYZsh{} x\PYZhy{}axis ticks for men}
          \PY{n}{xtk\PYZus{}f} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{20000}\PY{p}{,} \PY{l+m+mi}{40000}\PY{p}{,} \PY{l+m+mi}{60000}\PY{p}{,} \PY{l+m+mi}{80000}\PY{p}{]} \PY{c}{\PYZsh{} x\PYZhy{}axis ticks for women}
          
@@ -1163,7 +1170,7 @@ inferences which would have followed in each case.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}23}]:} (0, 1)
+{\color{outcolor}Out[{\color{outcolor}25}]:} (0, 1)
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1181,7 +1188,8 @@ symptomatic.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{c}{\PYZsh{} plot top pair only, for figure in paper}
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c}{\PYZsh{} Figure 6}
+         \PY{c}{\PYZsh{} plot top pair only, for figure in paper}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
          
@@ -1213,7 +1221,7 @@ symptomatic.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:} <matplotlib.text.Text at 0x10a9ea490>
+{\color{outcolor}Out[{\color{outcolor}26}]:} <matplotlib.text.Text at 0x105dd4d50>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1223,6 +1231,12 @@ symptomatic.
         \label{fig:prev_samples_byage}
     \end{figure}
     
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} 
+\end{Verbatim}
+    \end{footnotesize}
+
 
     % Add a bibliography block to the postdoc
     
