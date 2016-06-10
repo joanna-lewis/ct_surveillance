@@ -343,9 +343,9 @@ Let's assume that:
   51.0\% of incident infections are asymptomatic.
 \item
   Infections (whether symptomatic or not) clear spontaneously or through
-  background antibiotic use at a rate 0.396 per year.
+  background antibiotic use at a rate 0.47 per year.
 \item
-  Symptomatic cases seek and obtain testing and treatment at a rate 14.2
+  Symptomatic cases seek and obtain testing and treatment at a rate 14.4
   per year.
 \item
   97.1\% of tests in infected individuals return a positive result.
@@ -356,8 +356,8 @@ Let's assume that:
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}3}]:} \PY{n}{p\PYZus{}asymp} \PY{o}{=} \PY{l+m+mf}{0.510}
-        \PY{n}{sc} \PY{o}{=} \PY{l+m+mf}{0.396}
-        \PY{n}{att\PYZus{}symp} \PY{o}{=} \PY{l+m+mf}{14.2}
+        \PY{n}{sc} \PY{o}{=} \PY{l+m+mf}{0.47}
+        \PY{n}{att\PYZus{}symp} \PY{o}{=} \PY{l+m+mf}{14.4}
         \PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{=} \PY{l+m+mf}{0.971}
         \PY{n}{p\PYZus{}false\PYZus{}pos} \PY{o}{=} \PY{l+m+mf}{0.00314}
 \end{Verbatim}
@@ -396,7 +396,7 @@ and the rates of new tests and diagnoses.
         \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{231}\PY{p}{)}
         \PY{n}{p} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{)}
         \PY{n}{c} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.6}\PY{p}{,}\PY{l+m+mf}{0.7}\PY{p}{,}\PY{l+m+mf}{0.8}\PY{p}{,}\PY{l+m+mf}{0.9}\PY{p}{]}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-        \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.35}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{)}
         \PY{c}{\PYZsh{}ax1.set\PYZus{}xlabel(\PYZsq{}Incidence\PYZsq{})}
         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
@@ -474,12 +474,6 @@ and diagnosis rates corresponds to a single point in the (incidence,
 screening rate) plane, which in turn corresponds to a particular
 prevalence. Note, however, that this mapping depends on the parameter
 values which have been assumed.
-
-    \begin{footnotesize}
-        \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
-\end{Verbatim}
-    \end{footnotesize}
 
 
     % Add a bibliography block to the postdoc
