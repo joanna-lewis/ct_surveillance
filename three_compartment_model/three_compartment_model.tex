@@ -246,10 +246,9 @@ individuals (U) become infected with a constant incidence, and move to
 either the asymptomatic-infected (A) or symptomatic-infected (S) pool.
 Asymptomatic-infected individuals may leave A and return to U by
 spontaneous clearance of their infection or by detection and treatment
-under a screening programme. Symptomatic individuals too may clear their
-infection spontaneously or be screened, but will also seek treatment at
-a rate which is typically much higher than the rates of spontaneous
-clearance or screening.
+under a screening programme. Symptomatic individuals may similarly be
+screened, but will also seek treatment at a rate which is typically much
+higher than the rates of spontaneous clearance or screening.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
@@ -316,7 +315,7 @@ and the natural history of infection:
 \alpha_{UA} &= \mbox{incidence} \times (1 - p_{symptomatic}) \\
 \alpha_{AU} &= \mbox{rate of spontaneous clearance} + \mbox{rate of screening} \times p_{true positive} \\
 \alpha_{US} &= \mbox{incidence} \times p_{symptomatic} \\
-\alpha_{SU} &= \mbox{rate of screening} \times p_{true positive} + \mbox{rate of symptomatic testing} \times p_{true positive}
+\alpha_{SU} &= (\mbox{rate of screening} + \mbox{rate of symptomatic testing}) \times p_{true positive}
 \end{align}
 \]
 
@@ -443,7 +442,7 @@ and the rates of new tests and diagnoses.
         \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.45}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.45}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.45}\PY{p}{,}\PY{l+m+mf}{0.45}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
         \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence  (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{t} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Proportion Tested}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Testing Rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
         \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
         \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
         \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
@@ -454,7 +453,7 @@ and the rates of new tests and diagnoses.
         \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.4}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
         \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
         \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{t} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.412}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Annual Diagnoses}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{per Capita}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Diagnosis Rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
         \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
         \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
         \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
@@ -474,6 +473,12 @@ and diagnosis rates corresponds to a single point in the (incidence,
 screening rate) plane, which in turn corresponds to a particular
 prevalence. Note, however, that this mapping depends on the parameter
 values which have been assumed.
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} 
+\end{Verbatim}
+    \end{footnotesize}
 
 
     % Add a bibliography block to the postdoc

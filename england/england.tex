@@ -391,12 +391,10 @@ diagnosis rates per person per year.
     \subsection{Sampling natural history, behavioural and other
 parameters}\label{sampling-natural-history-behavioural-and-other-parameters}
 
-Priors for the proportion of incident infections which are asymptomatic
-and the test performance were taken directly from published studies. The
-proportion of incident infections which are asymptomatic is not known,
-so we use estimates of the proportion of \emph{prevalent} infections
-asymptomatic. Note that these provide an upper bound because treatment
-seeking by symptomatic cases will deplete the symptomatic pool.
+\subsubsection{Test performance}\label{test-performance}
+
+Priors for the test performance parameters are beta distributions
+parameterised directly from literature studies.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
@@ -606,7 +604,7 @@ previously (Mercer \emph{et al.}, \emph{Sex. Transm. Infect.}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x1051b6690>
+{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x1137c0690>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1106,79 +1104,80 @@ inferences which would have followed in each case.
          \PY{n}{xtk\PYZus{}f} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{20000}\PY{p}{,} \PY{l+m+mi}{40000}\PY{p}{,} \PY{l+m+mi}{60000}\PY{p}{,} \PY{l+m+mi}{80000}\PY{p}{]} \PY{c}{\PYZsh{} x\PYZhy{}axis ticks for women}
          
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{421}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{,} \PY{n}{prev\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{)}\PY{p}{,} \PY{n}{prev\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{50000}\PY{p}{]}\PY{p}{,} \PY{l+m+mf}{0.015}\PY{p}{,} \PY{l+m+mf}{0.034}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{60}\PY{p}{,}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{80}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{40}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Sexually active men, 15\PYZhy{}24 years}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          
          \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{422}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{,} \PY{n}{prev\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{)}\PY{p}{,} \PY{n}{prev\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
          \PY{n}{ax2}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100000}\PY{p}{]}\PY{p}{,} \PY{l+m+mf}{0.022}\PY{p}{,} \PY{l+m+mf}{0.043}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{45}\PY{p}{,}\PY{l+m+mi}{45}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,}\PY{l+m+mi}{70}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{55}\PY{p}{,}\PY{l+m+mi}{55}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Sexually active women, 15\PYZhy{}24 years}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          
          \PY{n}{ax3} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{423}\PY{p}{)}
-         \PY{n}{ax3}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{,} \PY{n}{inc\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
-         \PY{n}{ax3}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{60}\PY{p}{,}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax3}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{80}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{)}\PY{p}{,} \PY{n}{inc\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{40}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Incidence}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          
          \PY{n}{ax4} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{424}\PY{p}{)}
-         \PY{n}{ax4}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{,} \PY{n}{inc\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
-         \PY{n}{ax4}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{45}\PY{p}{,}\PY{l+m+mi}{45}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax4}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,}\PY{l+m+mi}{70}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{)}\PY{p}{,} \PY{n}{inc\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{55}\PY{p}{,}\PY{l+m+mi}{55}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{]}\PY{p}{)}
          
          \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{425}\PY{p}{)}
-         \PY{n}{ax5}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{,} \PY{n}{scr\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
-         \PY{n}{ax5}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{60}\PY{p}{,}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax5}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{80}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax5}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{)}\PY{p}{,} \PY{n}{scr\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax5}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{40}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax5}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Screening}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          
          \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{426}\PY{p}{)}
-         \PY{n}{ax6}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{,} \PY{n}{scr\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
-         \PY{n}{ax6}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{45}\PY{p}{,}\PY{l+m+mi}{45}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax6}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,}\PY{l+m+mi}{70}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax6}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{)}\PY{p}{,} \PY{n}{scr\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax6}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{55}\PY{p}{,}\PY{l+m+mi}{55}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax6}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{]}\PY{p}{)}
          
          \PY{n}{ax7} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{427}\PY{p}{)}
-         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{,} \PY{n}{p\PYZus{}symp\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
-         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{60}\PY{p}{,}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{80}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.24}\PY{p}{,}\PY{l+m+mf}{0.24}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.74}\PY{p}{,}\PY{l+m+mf}{0.74}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{p\PYZus{}symp\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{40}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.76}\PY{p}{,}\PY{l+m+mf}{0.76}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax7}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.26}\PY{p}{,}\PY{l+m+mf}{0.26}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax7}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax7}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
-         \PY{n}{ax7}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Proportion of diagnoses symptomatic (}\PY{l+s}{\PYZpc{}}\PY{l+s}{)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax7}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Proportion of incident infections symptomatic}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax7}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Proportion of diagnoses asymptomatic (}\PY{l+s}{\PYZpc{}}\PY{l+s}{)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax7}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Proportion of incident infections asymptomatic}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          
          \PY{n}{ax8} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{428}\PY{p}{)}
-         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{,} \PY{n}{p\PYZus{}symp\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
-         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{45}\PY{p}{,}\PY{l+m+mi}{45}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,}\PY{l+m+mi}{70}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.25}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.53}\PY{p}{,}\PY{l+m+mf}{0.53}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{p\PYZus{}symp\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{.r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{55}\PY{p}{,}\PY{l+m+mi}{55}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.75}\PY{p}{,}\PY{l+m+mf}{0.75}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax8}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.47}\PY{p}{,}\PY{l+m+mf}{0.47}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{ax8}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax8}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{ax8}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Proportion of diagnoses asymptomatic (}\PY{l+s}{\PYZpc{}}\PY{l+s}{)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}23}]:} (0, 1)
+{\color{outcolor}Out[{\color{outcolor}23}]:} <matplotlib.text.Text at 0x115497850>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1205,31 +1204,31 @@ symptomatic.
          \PY{n}{xtk\PYZus{}f} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{20000}\PY{p}{,} \PY{l+m+mi}{40000}\PY{p}{,} \PY{l+m+mi}{60000}\PY{p}{,} \PY{l+m+mi}{80000}\PY{p}{]} \PY{c}{\PYZsh{} x\PYZhy{}axis ticks for women}
          
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{,} \PY{n}{prev\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}m}\PY{o}{/}\PY{l+m+mi}{48387}\PY{p}{)}\PY{p}{,} \PY{n}{prev\PYZus{}m}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{50000}\PY{p}{]}\PY{p}{,} \PY{l+m+mf}{0.015}\PY{p}{,} \PY{l+m+mf}{0.034}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{60}\PY{p}{,}\PY{l+m+mi}{60}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{80}\PY{p}{,}\PY{l+m+mi}{80}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{40}\PY{p}{,}\PY{l+m+mi}{40}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{]}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Proportion of diagnoses symptomatic (}\PY{l+s}{\PYZpc{}}\PY{l+s}{)}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Proportion of diagnoses asymptomatic (}\PY{l+s}{\PYZpc{}}\PY{l+s}{)}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Sexually active men, 15\PYZhy{}24 years}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          
          \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{,} \PY{n}{prev\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.r}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{sample\PYZus{}symp\PYZus{}f}\PY{o}{/}\PY{l+m+mi}{88101}\PY{p}{)}\PY{p}{,} \PY{n}{prev\PYZus{}f}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.r}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
          \PY{n}{ax2}\PY{o}{.}\PY{n}{fill\PYZus{}between}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100000}\PY{p}{]}\PY{p}{,} \PY{l+m+mf}{0.022}\PY{p}{,} \PY{l+m+mf}{0.043}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{45}\PY{p}{,}\PY{l+m+mi}{45}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{70}\PY{p}{,}\PY{l+m+mi}{70}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{55}\PY{p}{,}\PY{l+m+mi}{55}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{30}\PY{p}{,}\PY{l+m+mi}{30}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}\PYZhy{}r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
          \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{]}\PY{p}{)}
-         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Proportion of diagnoses symptomatic (}\PY{l+s}{\PYZpc{}}\PY{l+s}{)}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Proportion of diagnoses asymptomatic (}\PY{l+s}{\PYZpc{}}\PY{l+s}{)}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Sexually active women, 15\PYZhy{}24 years}\PY{l+s}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:} <matplotlib.text.Text at 0x1073b6490>
+{\color{outcolor}Out[{\color{outcolor}24}]:} <matplotlib.text.Text at 0x1159bc590>
 \end{Verbatim}
     \end{footnotesize}
         
