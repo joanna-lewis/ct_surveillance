@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  16 JUN 2016 12:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  20 JUN 2016 10:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -425,7 +425,50 @@ Package color Info: Redefining color lightgray on input line 61.
 Package hyperref Info: Option `breaklinks' set `true' on input line 218.
 Package hyperref Info: Option `colorlinks' set `true' on input line 218.
 
-(./local_authorities.aux)
+(./local_authorities.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+)
 \openout1 = `local_authorities.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 225.
@@ -442,8 +485,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 225.
 LaTeX Font Info:    ... okay on input line 225.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 225.
 LaTeX Font Info:    ... okay on input line 225.
-
-(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+ (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count129
 \scratchdimen=\dimen150
@@ -650,68 +692,67 @@ Package pdftex.def Info: local_authorities_files/local_authorities_27_1.png use
 d on input line 1255.
 (pdftex.def)             Requested size: 608.27103pt x 261.9781pt.
  [17 <./local_authorities_files/local_authorities_27_1.png>]
-<local_authorities_files/local_authorities_30_1.png, id=141, 484.81125pt x 462.
-72874pt>
+<local_authorities_files/local_authorities_30_1.png, id=141, 344.18588pt x 320.
+69812pt>
 File: local_authorities_files/local_authorities_30_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_30_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_30_1.png use
-d on input line 1310.
-(pdftex.def)             Requested size: 213.39566pt x 203.67894pt.
+d on input line 1312.
+(pdftex.def)             Requested size: 213.39566pt x 198.84056pt.
 
-<local_authorities_files/local_authorities_32_1.png, id=142, 621.32124pt x 608.
-2725pt>
+<local_authorities_files/local_authorities_32_1.png, id=142, 620.61862pt x 606.
+16463pt>
 File: local_authorities_files/local_authorities_32_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_32_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_32_1.png use
-d on input line 1359.
-(pdftex.def)             Requested size: 621.31973pt x 608.27103pt.
+d on input line 1361.
+(pdftex.def)             Requested size: 620.61711pt x 606.16315pt.
  [18 <./local_authorities_files/local_authorities_30_1.png>] [19 <./local_autho
 rities_files/local_authorities_32_1.png>]
-<local_authorities_files/local_authorities_33_1.png, id=156, 400.49625pt x 272.
-01625pt>
+<local_authorities_files/local_authorities_33_1.png, id=156, 400.19513pt x 270.
+10913pt>
 File: local_authorities_files/local_authorities_33_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_33_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_33_1.png use
-d on input line 1391.
-(pdftex.def)             Requested size: 284.52756pt x 193.26155pt.
-
-<local_authorities_files/local_authorities_35_1.png, id=157, 621.32124pt x 608.
-2725pt>
+d on input line 1393.
+(pdftex.def)             Requested size: 284.52756pt x 192.04259pt.
+ [20 <./local_authorities_files/local_authorities_33_1.png>]
+<local_authorities_files/local_authorities_35_1.png, id=163, 620.61862pt x 606.
+16463pt>
 File: local_authorities_files/local_authorities_35_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_35_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_35_1.png use
-d on input line 1437.
-(pdftex.def)             Requested size: 621.31973pt x 608.27103pt.
- [20 <./local_authorities_files/local_authorities_33_1.png>] [21 <./local_autho
-rities_files/local_authorities_35_1.png>]
-<local_authorities_files/local_authorities_36_1.png, id=170, 400.49625pt x 272.
-01625pt>
+d on input line 1439.
+(pdftex.def)             Requested size: 620.61711pt x 606.16315pt.
+
+<local_authorities_files/local_authorities_36_1.png, id=164, 400.19513pt x 270.
+10913pt>
 File: local_authorities_files/local_authorities_36_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_36_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_36_1.png use
-d on input line 1467.
-(pdftex.def)             Requested size: 284.52756pt x 193.26155pt.
-
-<local_authorities_files/local_authorities_38_1.png, id=171, 621.32124pt x 328.
-22626pt>
+d on input line 1469.
+(pdftex.def)             Requested size: 284.52756pt x 192.04259pt.
+ [21 <./local_authorities_files/local_authorities_35_1.png>]
+<local_authorities_files/local_authorities_38_1.png, id=171, 620.61862pt x 325.
+215pt>
 File: local_authorities_files/local_authorities_38_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_38_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_38_1.png use
-d on input line 1508.
-(pdftex.def)             Requested size: 621.31973pt x 328.22545pt.
- [22 <./local_authorities_files/local_authorities_36_1.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1529.
- [23 <./local_authorities_files/local_authorities_38_1.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1529.
+d on input line 1510.
+(pdftex.def)             Requested size: 620.61711pt x 325.2142pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1531.
+ [22 <./local_authorities_files/local_authorities_36_1.png>] [23 <./local_autho
+rities_files/local_authorities_38_1.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1531.
  (./local_authorities.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1529.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1529.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1531.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1531.
 
 Package rerunfilecheck Info: File `local_authorities.out' has not changed.
 (rerunfilecheck)             Checksum: 74F48D5C788F425FCC23FE7E2AFFB2FE;416.
@@ -720,14 +761,14 @@ Package rerunfilecheck Info: File `local_authorities.out' has not changed.
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1529.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1531.
  ) 
 Here is how much of TeX's memory you used:
  8818 strings out of 493089
  131041 string characters out of 6134843
- 234839 words of memory out of 5000000
+ 234877 words of memory out of 5000000
  12098 multiletter control sequences out of 15000+600000
  12353 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -744,7 +785,7 @@ cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on local_authorities.pdf (23 pages, 729795 bytes).
+Output written on local_authorities.pdf (23 pages, 786425 bytes).
 PDF statistics:
  237 PDF objects out of 1000 (max. 8388607)
  168 compressed objects within 2 object streams
