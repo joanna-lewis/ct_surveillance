@@ -474,11 +474,573 @@ screening rate) plane, which in turn corresponds to a particular
 prevalence. Note, however, that this mapping depends on the parameter
 values which have been assumed.
 
+We also produce the same plot, focussing on the lower part of the
+incidence range:
+
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{inc} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)} \PY{c}{\PYZsh{} incidence \PYZhy{} different range}
+        \PY{n}{scr} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)} \PY{c}{\PYZsh{} screening}
+        \PY{n}{inc}\PY{p}{,}\PY{n}{scr} \PY{o}{=} \PY{n}{meshgrid}\PY{p}{(}\PY{n}{inc}\PY{p}{,} \PY{n}{scr}\PY{p}{)}
+        
+        \PY{c}{\PYZsh{} proportion of population in each compartment}
+        \PY{n}{ZU} \PY{o}{=} \PY{n}{U\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
+        \PY{n}{ZA} \PY{o}{=} \PY{n}{A\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
+        \PY{n}{ZS} \PY{o}{=} \PY{n}{S\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
+        
+        \PY{n}{Zprev} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{ZU}
+        \PY{n}{Ztest} \PY{o}{=} \PY{n}{scr} \PY{o}{+} \PY{n}{ZS}\PY{o}{*}\PY{n}{att\PYZus{}symp}
+        \PY{n}{Zdiag} \PY{o}{=} \PY{p}{(}\PY{n}{ZA}\PY{o}{+}\PY{n}{ZS}\PY{p}{)}\PY{o}{*}\PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{ZU}\PY{o}{*}\PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}false\PYZus{}pos} \PY{o}{+} \PY{n}{ZS}\PY{o}{*}\PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
 \end{Verbatim}
     \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{231}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{)}
+        \PY{n}{c} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.92}\PY{p}{,}\PY{l+m+mf}{0.94}\PY{p}{,}\PY{l+m+mf}{0.96}\PY{p}{,}\PY{l+m+mf}{0.98}\PY{p}{]}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.02}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.07}\PY{p}{,}\PY{l+m+mf}{0.15}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.09}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax1}\PY{p}{)}
+        \PY{c}{\PYZsh{}ax1.set\PYZus{}xlabel(\PYZsq{}Incidence\PYZsq{})}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Uninfected}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+        
+        \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{232}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZS}\PY{p}{)}
+        \PY{n}{c} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZS}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.001}\PY{p}{,}\PY{l+m+mf}{0.002}\PY{p}{,}\PY{l+m+mf}{0.003}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{manual}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.03}\PY{p}{,}\PY{l+m+mf}{0.15}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.06}\PY{p}{,}\PY{l+m+mf}{0.15}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.09}\PY{p}{,}\PY{l+m+mf}{0.15}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.3f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax2}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Infected, Symptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+        
+        \PY{n}{ax3} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{233}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZA}\PY{p}{)}
+        \PY{n}{c} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZA}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.02}\PY{p}{,}\PY{l+m+mf}{0.04}\PY{p}{,}\PY{l+m+mf}{0.06}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.02}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.07}\PY{p}{,}\PY{l+m+mf}{0.15}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.09}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax3}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax3}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Infected, Asymptomatic}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax3}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+        
+        \PY{n}{ax4} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{234}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zprev}\PY{p}{)}
+        \PY{n}{c} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zprev}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.02}\PY{p}{,}\PY{l+m+mf}{0.04}\PY{p}{,}\PY{l+m+mf}{0.06}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.02}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.07}\PY{p}{,}\PY{l+m+mf}{0.15}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax4}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence  (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Screening Rate (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax4}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax4}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+        
+        \PY{n}{ax5} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{235}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Ztest}\PY{p}{)}
+        \PY{n}{c} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Ztest}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{l+m+mf}{0.4}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.045}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.045}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.1f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax5}\PY{p}{)}
+        \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence  (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax5}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Testing Rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax5}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+        
+        \PY{n}{ax6} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{236}\PY{p}{)}
+        \PY{n}{p} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zdiag}\PY{p}{)}
+        \PY{n}{c} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{contour}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{Zdiag}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.02}\PY{p}{,}\PY{l+m+mf}{0.04}\PY{p}{,}\PY{l+m+mf}{0.06}\PY{p}{)}\PY{p}{,} \PY{n}{colors}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{clabel}\PY{p}{(}\PY{n}{c}\PY{p}{,} \PY{n}{manual} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mf}{0.04}\PY{p}{,}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.06}\PY{p}{,}\PY{l+m+mf}{0.4}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mf}{0.09}\PY{p}{,}\PY{l+m+mf}{0.35}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}1.2f}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{cb} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax6}\PY{p}{)}
+        \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Incidence (years \PYZdl{}\PYZca{}\PYZob{}\PYZhy{}1\PYZcb{}\PYZdl{})}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t} \PY{o}{=} \PY{n}{ax6}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.45}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Diagnosis Rate}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{large}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{t}\PY{o}{.}\PY{n}{set\PYZus{}bbox}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{white}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+        
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}   
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{three_compartment_model_files/three_compartment_model_11_0.png}\end{center}
+        \caption{Upper row: the effects of incidence and screening rate on the proportion of individuals who are uninfected, infected-symptomatic and infected-asymptomatic in the model at steady state. Lower row: prevalence, testing and diagnosis rates corresponding to each combination of incidence and screening rate.}
+        \label{fig:model_zoomed}
+    \end{figure}
+    
+    \subsection{Steady-state assumption}\label{steady-state-assumption}
+
+In using the model to interpret testing and diagnosis data, we assume
+the system is at steady state. We investigate to what extent this
+assumption is valid by perturbing the system and observing the return to
+equilibrium.
+
+First, we use the national coverage and diagnoses per capita in men in
+the years 2012 - 2015. The analysis proceeds as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Begin by estimating the steady state in 2012, using 2012 data.
+\item
+  Assuming a (potentially different) steady state in 2013, estimate
+  incidence and screening rate in 2013.
+\item
+  Starting at the 2012 steady state, simulate the evolution of the
+  system for one year with 2013 incidence and screening figures.
+\item
+  Repeat steps 2 and 3 for 2014 and 2015, each time starting the system
+  in the state it had reached at the end of the previous one-year
+  period.
+\end{enumerate}
+
+The results of the simulations are then plotted.
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k+kn}{from} \PY{n+nn}{scipy.optimize} \PY{k+kn}{import} \PY{n}{fsolve}
+        
+        \PY{n}{tsym}\PY{p}{,} \PY{n}{dsym}\PY{p}{,} \PY{n}{ssym}\PY{p}{,} \PY{n}{test\PYZus{}sym} \PY{o}{=} \PY{n}{symbols}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{tsym dsym ssym test\PYZus{}sym}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{model\PYZus{}test\PYZus{}diag} \PY{o}{=} \PY{p}{[}
+            \PY{n}{tsym} \PY{o}{\PYZhy{}} \PY{p}{(} \PY{n}{ssym} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{A} \PY{o}{\PYZhy{}} \PY{n}{U}\PY{p}{)}\PY{o}{*}\PY{n}{test\PYZus{}sym} \PY{p}{)}\PY{p}{,}
+            \PY{n}{dsym} \PY{o}{\PYZhy{}} \PY{p}{(} \PY{n}{A}\PY{o}{*}\PY{n}{ssym}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{U}\PY{o}{*}\PY{n}{ssym}\PY{o}{*}\PY{n}{p\PYZus{}false\PYZus{}pos} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{A} \PY{o}{\PYZhy{}} \PY{n}{U}\PY{p}{)}\PY{o}{*}\PY{n}{test\PYZus{}sym}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{p}{)}
+            \PY{p}{]}
+        
+        \PY{n}{sol\PYZus{}test\PYZus{}diag} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{model\PYZus{}test\PYZus{}diag}\PY{p}{,} \PY{n}{tsym}\PY{p}{,} \PY{n}{dsym}\PY{p}{)}
+        \PY{n}{test\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{ssym}\PY{p}{,} \PY{n}{test\PYZus{}sym}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}test\PYZus{}diag}\PY{p}{[}\PY{n}{tsym}\PY{p}{]}\PY{p}{)}
+        \PY{n}{diag\PYZus{}fun} \PY{o}{=} \PY{n}{lambdify}\PY{p}{(}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{ssym}\PY{p}{,} \PY{n}{test\PYZus{}sym}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}test\PYZus{}diag}\PY{p}{[}\PY{n}{dsym}\PY{p}{]}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{parms}\PY{p}{)}\PY{p}{:}
+            \PY{c}{\PYZsh{} parms = (incidence, screening rate)}
+            \PY{n}{inc} \PY{o}{=} \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{scr} \PY{o}{=} \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            
+            \PY{n}{A} \PY{o}{=} \PY{n}{A\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
+            \PY{n}{U} \PY{o}{=} \PY{n}{U\PYZus{}fun}\PY{p}{(}\PY{n}{inc}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{inc}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scr}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{)}
+            \PY{k}{return} \PY{p}{[}\PY{n}{test\PYZus{}fun}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{scr}\PY{p}{,} \PY{n}{att\PYZus{}symp}\PY{p}{)}\PY{p}{,} \PY{n}{diag\PYZus{}fun}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{U}\PY{p}{,} \PY{n}{scr}\PY{p}{,} \PY{n}{att\PYZus{}symp}\PY{p}{)}\PY{p}{]}
+        
+        
+        \PY{c}{\PYZsh{} set up a function to simulate system dynamics when perturbed from steady state}
+        \PY{k+kn}{from} \PY{n+nn}{scipy.integrate} \PY{k+kn}{import} \PY{n}{odeint}
+        
+        \PY{k}{def} \PY{n+nf}{dydt}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{parms}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return}\PY{p}{(}\PY{p}{[}
+            \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+            \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+            \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{parms}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+            \PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c}{\PYZsh{} find steady state based on 2012 data}
+        
+        \PY{n}{cov\PYZus{}2012} \PY{o}{=} \PY{l+m+mf}{566908.} \PY{o}{/} \PY{l+m+mf}{3519015.}
+        \PY{n}{adpc\PYZus{}2012} \PY{o}{=} \PY{l+m+mf}{48387.} \PY{o}{/} \PY{l+m+mf}{3519015.}
+        \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+            \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2012}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2012}\PY{p}{]}\PY{p}{,} 
+            \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+            \PY{p}{)}
+        
+        \PY{n}{U\PYZus{}2012} \PY{o}{=} \PY{n}{U\PYZus{}fun}\PY{p}{(}
+            \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+            \PY{p}{)}
+        \PY{n}{A\PYZus{}2012} \PY{o}{=} \PY{n}{A\PYZus{}fun}\PY{p}{(}
+            \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+            \PY{p}{)}
+        \PY{n}{S\PYZus{}2012} \PY{o}{=} \PY{n}{S\PYZus{}fun}\PY{p}{(}
+            \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+            \PY{p}{)}
+        
+        
+        \PY{c}{\PYZsh{} find incidence and screening based on 2013 data}
+        \PY{n}{cov\PYZus{}2013} \PY{o}{=} \PY{l+m+mf}{531428.} \PY{o}{/} \PY{l+m+mf}{3519015.}
+        \PY{n}{adpc\PYZus{}2013} \PY{o}{=} \PY{l+m+mf}{48825.} \PY{o}{/} \PY{l+m+mf}{3519015.}
+        \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+            \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2013}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2013}\PY{p}{]}\PY{p}{,} 
+            \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+            \PY{p}{)}
+        
+        \PY{c}{\PYZsh{} solve, 2012\PYZhy{}2013}
+        \PY{n}{inc} \PY{o}{=} \PY{n}{incsol}
+        \PY{n}{scr} \PY{o}{=} \PY{n}{scrsol}
+        \PY{n}{parms} \PY{o}{=} \PYZbs{}
+            \PY{p}{[}\PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{]}
+        
+        \PY{n}{sol\PYZus{}12\PYZus{}13} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dydt}\PY{p}{,} 
+               \PY{p}{[}\PY{n}{U\PYZus{}2012}\PY{p}{,}\PY{n}{A\PYZus{}2012}\PY{p}{,}\PY{n}{S\PYZus{}2012}\PY{p}{]}\PY{p}{,} 
+               \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} 
+               \PY{n}{args} \PY{o}{=} \PY{p}{(}\PY{n}{parms}\PY{p}{,}\PY{p}{)}
+              \PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c}{\PYZsh{} incidence and screening based on 2014 data}
+         \PY{n}{cov\PYZus{}2014} \PY{o}{=} \PY{l+m+mf}{493327.} \PY{o}{/} \PY{l+m+mf}{3500026.}
+         \PY{n}{adpc\PYZus{}2014} \PY{o}{=} \PY{l+m+mf}{47437.} \PY{o}{/} \PY{l+m+mf}{3500026.}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2014}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2014}\PY{p}{]}\PY{p}{,} 
+             \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+             \PY{p}{)}
+         \PY{n}{inc} \PY{o}{=} \PY{n}{incsol}
+         \PY{n}{scr} \PY{o}{=} \PY{n}{scrsol}
+         \PY{n}{parms} \PY{o}{=} \PYZbs{}
+             \PY{p}{[}\PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} solve, 2013\PYZhy{}2014}
+         \PY{n}{sol\PYZus{}13\PYZus{}14} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dydt}\PY{p}{,} 
+                \PY{n}{sol\PYZus{}12\PYZus{}13}\PY{p}{[}\PY{l+m+mi}{999}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} 
+                \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} 
+                \PY{n}{args} \PY{o}{=} \PY{p}{(}\PY{n}{parms}\PY{p}{,}\PY{p}{)}
+               \PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c}{\PYZsh{} incidence and screening based on 2015 data}
+         \PY{n}{cov\PYZus{}2015} \PY{o}{=} \PY{l+m+mf}{446279.} \PY{o}{/} \PY{l+m+mf}{3496125.}
+         \PY{n}{adpc\PYZus{}2015} \PY{o}{=} \PY{l+m+mf}{44609.} \PY{o}{/} \PY{l+m+mf}{3496125.}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2015}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2015}\PY{p}{]}\PY{p}{,} 
+             \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+             \PY{p}{)}
+         \PY{n}{inc} \PY{o}{=} \PY{n}{incsol}
+         \PY{n}{scr} \PY{o}{=} \PY{n}{scrsol}
+         \PY{n}{parms} \PY{o}{=} \PYZbs{}
+             \PY{p}{[}\PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} solve, 2013\PYZhy{}2014}
+         \PY{n}{sol\PYZus{}14\PYZus{}15} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dydt}\PY{p}{,} 
+                \PY{n}{sol\PYZus{}13\PYZus{}14}\PY{p}{[}\PY{l+m+mi}{999}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} 
+                \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} 
+                \PY{n}{args} \PY{o}{=} \PY{p}{(}\PY{n}{parms}\PY{p}{,}\PY{p}{)}
+               \PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c}{\PYZsh{} plot solutions}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{2012}\PY{p}{,}\PY{l+m+mi}{2013}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}12\PYZus{}13}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{sol\PYZus{}12\PYZus{}13}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{2012\PYZhy{}2013}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{2013}\PY{p}{,}\PY{l+m+mi}{2014}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}13\PYZus{}14}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{sol\PYZus{}13\PYZus{}14}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{2013\PYZhy{}2014}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{2014}\PY{p}{,}\PY{l+m+mi}{2015}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}14\PYZus{}15}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{sol\PYZus{}14\PYZus{}15}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{2014\PYZhy{}2015}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.025}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2012}\PY{p}{,}\PY{l+m+mi}{2013}\PY{p}{,}\PY{l+m+mi}{2014}\PY{p}{,}\PY{l+m+mi}{2015}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{2012}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{2013}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{2014}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{2015}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.legend.Legend at 0x107567a50>
+\end{Verbatim}
+    \end{footnotesize}
+        
+    \begin{figure}
+        \begin{center}\includegraphics[width=10cm]{three_compartment_model_files/three_compartment_model_17_1.png}\end{center}
+        \caption{Simulated dynamics of national prevalence in 15-24-year-old men, 2012-2015.}
+        \label{}
+    \end{figure}
+    
+    The plot shows that although there were inevitably some perturbations to
+the steady state, they were small compared to the uncertainty in
+prevalence estimates illustrated in Figures in the main text.
+
+To investigate the validity of the steady state assumption at a local
+level, we identified the local authorities with the largest changes in
+prevalence between 2012 and 2013 (analysis not shown):
+
+\begin{longtable}[c]{@{}lllllll@{}}
+\toprule
+& Test rate & (year\(^{-1}\)) & Diagnosis rate & (year\(^{-1}\)) &
+Prevalence &\tabularnewline
+\midrule
+\endhead
+Year & 2012 & 2013 & 2012 & 2013 & 2012 & 2013\tabularnewline
+North Lincolnshire & 0.101 & 0.173 & 0.022 & 0.011 & 2.1\% &
+3.9\%\tabularnewline
+Haringey & 0.267 & 0.191 & 0.035 & 0.018 & 4.2\% & 2.7\%\tabularnewline
+Dudley & 0.075 & 0.239 & 0.020 & 0.006 & 1.1\% & 2.4\%\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c}{\PYZsh{} North Lincolnshire}
+         \PY{c}{\PYZsh{} find steady state based on 2012 data}
+         
+         \PY{n}{cov\PYZus{}2012} \PY{o}{=} \PY{l+m+mf}{0.100807801953}
+         \PY{n}{adpc\PYZus{}2012} \PY{o}{=} \PY{l+m+mf}{0.0111652211547}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2012}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2012}\PY{p}{]}\PY{p}{,} 
+             \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+             \PY{p}{)}
+         
+         \PY{n}{U\PYZus{}2012} \PY{o}{=} \PY{n}{U\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         \PY{n}{A\PYZus{}2012} \PY{o}{=} \PY{n}{A\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         \PY{n}{S\PYZus{}2012} \PY{o}{=} \PY{n}{S\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         
+         
+         \PY{c}{\PYZsh{} find incidence and screening based on 2013 data}
+         \PY{n}{cov\PYZus{}2013} \PY{o}{=} \PY{l+m+mf}{0.173269822929}
+         \PY{n}{adpc\PYZus{}2013} \PY{o}{=} \PY{l+m+mf}{0.0216211803756}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2013}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2013}\PY{p}{]}\PY{p}{,} 
+             \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+             \PY{p}{)}
+         
+         \PY{c}{\PYZsh{} solve, 2012\PYZhy{}2013}
+         \PY{n}{inc} \PY{o}{=} \PY{n}{incsol}
+         \PY{n}{scr} \PY{o}{=} \PY{n}{scrsol}
+         \PY{n}{parms} \PY{o}{=} \PYZbs{}
+             \PY{p}{[}\PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{]}
+         
+         \PY{n}{sol\PYZus{}n\PYZus{}lincs} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dydt}\PY{p}{,} 
+                \PY{p}{[}\PY{n}{U\PYZus{}2012}\PY{p}{,}\PY{n}{A\PYZus{}2012}\PY{p}{,}\PY{n}{S\PYZus{}2012}\PY{p}{]}\PY{p}{,} 
+                \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} 
+                \PY{n}{args} \PY{o}{=} \PY{p}{(}\PY{n}{parms}\PY{p}{,}\PY{p}{)}
+               \PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c}{\PYZsh{} Haringey}
+         \PY{c}{\PYZsh{} find steady state based on 2012 data}
+         
+         \PY{n}{cov\PYZus{}2012} \PY{o}{=} \PY{l+m+mf}{0.267007002375}
+         \PY{n}{adpc\PYZus{}2012} \PY{o}{=} \PY{l+m+mf}{0.0346976493046}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2012}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2012}\PY{p}{]}\PY{p}{,} 
+             \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+             \PY{p}{)}
+         
+         \PY{n}{U\PYZus{}2012} \PY{o}{=} \PY{n}{U\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         \PY{n}{A\PYZus{}2012} \PY{o}{=} \PY{n}{A\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         \PY{n}{S\PYZus{}2012} \PY{o}{=} \PY{n}{S\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         
+         
+         \PY{c}{\PYZsh{} find incidence and screening based on 2013 data}
+         \PY{n}{cov\PYZus{}2013} \PY{o}{=} \PY{l+m+mf}{0.190544970144}
+         \PY{n}{adpc\PYZus{}2013} \PY{o}{=} \PY{l+m+mf}{0.0184872060681}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2013}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2013}\PY{p}{]}\PY{p}{,} 
+             \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+             \PY{p}{)}
+         
+         \PY{c}{\PYZsh{} solve, 2012\PYZhy{}2013}
+         \PY{n}{inc} \PY{o}{=} \PY{n}{incsol}
+         \PY{n}{scr} \PY{o}{=} \PY{n}{scrsol}
+         \PY{n}{parms} \PY{o}{=} \PYZbs{}
+             \PY{p}{[}\PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{]}
+         
+         \PY{n}{sol\PYZus{}haringey} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dydt}\PY{p}{,} 
+                \PY{p}{[}\PY{n}{U\PYZus{}2012}\PY{p}{,}\PY{n}{A\PYZus{}2012}\PY{p}{,}\PY{n}{S\PYZus{}2012}\PY{p}{]}\PY{p}{,} 
+                \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} 
+                \PY{n}{args} \PY{o}{=} \PY{p}{(}\PY{n}{parms}\PY{p}{,}\PY{p}{)}
+               \PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c}{\PYZsh{} Dudley}
+         \PY{c}{\PYZsh{} find steady state based on 2012 data}
+         
+         \PY{n}{cov\PYZus{}2012} \PY{o}{=} \PY{l+m+mf}{0.0750667240187}
+         \PY{n}{adpc\PYZus{}2012} \PY{o}{=} \PY{l+m+mf}{0.0057129570304}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2012}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2012}\PY{p}{]}\PY{p}{,} 
+             \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+             \PY{p}{)}
+         
+         \PY{n}{U\PYZus{}2012} \PY{o}{=} \PY{n}{U\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         \PY{n}{A\PYZus{}2012} \PY{o}{=} \PY{n}{A\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         \PY{n}{S\PYZus{}2012} \PY{o}{=} \PY{n}{S\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         
+         
+         \PY{c}{\PYZsh{} find incidence and screening based on 2013 data}
+         \PY{n}{cov\PYZus{}2013} \PY{o}{=} \PY{l+m+mf}{0.238873910562}
+         \PY{n}{adpc\PYZus{}2013} \PY{o}{=} \PY{l+m+mf}{0.0199612670162}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov\PYZus{}2013}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc\PYZus{}2013}\PY{p}{]}\PY{p}{,} 
+             \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+             \PY{p}{)}
+         
+         \PY{c}{\PYZsh{} solve, 2012\PYZhy{}2013}
+         \PY{n}{inc} \PY{o}{=} \PY{n}{incsol}
+         \PY{n}{scr} \PY{o}{=} \PY{n}{scrsol}
+         \PY{n}{parms} \PY{o}{=} \PYZbs{}
+             \PY{p}{[}\PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{]}
+         
+         \PY{n}{sol\PYZus{}dudley} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{dydt}\PY{p}{,} 
+                \PY{p}{[}\PY{n}{U\PYZus{}2012}\PY{p}{,}\PY{n}{A\PYZus{}2012}\PY{p}{,}\PY{n}{S\PYZus{}2012}\PY{p}{]}\PY{p}{,} 
+                \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} 
+                \PY{n}{args} \PY{o}{=} \PY{p}{(}\PY{n}{parms}\PY{p}{,}\PY{p}{)}
+               \PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c}{\PYZsh{} plot solutions}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{2012}\PY{p}{,}\PY{l+m+mi}{2013}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}n\PYZus{}lincs}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{sol\PYZus{}n\PYZus{}lincs}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{N. Lincs}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{2012}\PY{p}{,}\PY{l+m+mi}{2013}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}haringey}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{sol\PYZus{}haringey}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{Haringey}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{2012}\PY{p}{,}\PY{l+m+mi}{2013}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{,} \PY{n}{sol\PYZus{}dudley}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{sol\PYZus{}dudley}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{Dudley}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.05}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{2012}\PY{p}{,}\PY{l+m+mi}{2013}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2012}\PY{p}{,}\PY{l+m+mi}{2013}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{2012}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{2013}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} <matplotlib.legend.Legend at 0x1075f7c90>
+\end{Verbatim}
+    \end{footnotesize}
+        
+    \begin{figure}
+        \begin{center}\includegraphics[width=10cm]{three_compartment_model_files/three_compartment_model_22_1.png}\end{center}
+        \caption{Simulated dynamics of national prevalence in 15-24-year-old men, 2012-2015.}
+        \label{}
+    \end{figure}
+    
+    At local level there can be more pronounced temporal changes, but even
+the largest changes in prevalence have time to reach steady state over
+the course of a year.
+
+\subsection{Different testing rates in different
+populations}\label{different-testing-rates-in-different-populations}
+
+We also investigate the sensitivity of the model to different testing
+rates in subpoulations with different prevalences. This analysis makes
+use of results reported in Woodhall \emph{Sex. Transm. Infect.}
+\textbf{92}:21-227 for the proportion of 16-24-year-old men in Natsal-3
+reporting different risk behaviours and chlamydia testing and diagnosis
+in the last year.
+
+Taking each risk factor in turn, we estimate prevalence for each risk
+level and take the weighted average as an estimate of population
+prevalence. We also estimate prevalence from the proportion tested and
+and diagnosed in the whole population, for comparison.
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZsh{} analysis by identified risk factors for prevalent infection: }
+         \PY{c}{\PYZsh{} age group, deprivation index and lifetime number of sexual partners}
+         \PY{n}{factors} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Age group}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Deprivation}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Lifetime sexual partners}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} proportion of those surveyed reporting each risk factor level}
+         \PY{n}{n3\PYZus{}props} \PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mf}{0.373}\PY{p}{,} \PY{l+m+mf}{0.627}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.369}\PY{p}{,}\PY{l+m+mf}{0.182}\PY{p}{,}\PY{l+m+mf}{0.449}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.527}\PY{p}{,} \PY{l+m+mf}{0.224}\PY{p}{,} \PY{l+m+mf}{0.249}\PY{p}{]}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} proportion reporting testing in the last year, by risk factor level}
+         \PY{n}{n3\PYZus{}test} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mf}{0.404}\PY{p}{,} \PY{l+m+mf}{0.311}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.345}\PY{p}{,} \PY{l+m+mf}{0.333}\PY{p}{,} \PY{l+m+mf}{0.352}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.253}\PY{p}{,}\PY{l+m+mf}{0.396}\PY{p}{,}\PY{l+m+mf}{0.492}\PY{p}{]}\PY{p}{]} 
+         
+         \PY{c}{\PYZsh{} proportion reporting diagnosis in the last year, by risk factor level}
+         \PY{n}{n3\PYZus{}diag} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mf}{0.404}\PY{o}{*}\PY{l+m+mf}{0.047}\PY{p}{,} \PY{l+m+mf}{0.311}\PY{o}{*}\PY{l+m+mf}{0.067}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.345}\PY{o}{*}\PY{l+m+mf}{0.052}\PY{p}{,} \PY{l+m+mf}{0.333}\PY{o}{*}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.352}\PY{o}{*}\PY{l+m+mf}{0.065}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.253}\PY{o}{*}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{l+m+mf}{0.396}\PY{o}{*}\PY{l+m+mf}{0.038}\PY{p}{,}\PY{l+m+mf}{0.492}\PY{o}{*}\PY{l+m+mf}{0.123}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{n3\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{wav} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{wav\PYZus{}pos} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{n3\PYZus{}test}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{cov} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{n3\PYZus{}test}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{adpc} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{n3\PYZus{}diag}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                 \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+                     \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+                 \PY{p}{)}
+                 \PY{n}{prev} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{U\PYZus{}fun}\PY{p}{(}\PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} 
+                                  \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} 
+                                  \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} 
+                                  \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+                                 \PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{prev}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{wav} \PY{o}{=} \PY{n}{wav} \PY{o}{+} \PY{n}{n3\PYZus{}props}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{prev}
+                 \PY{n}{wav\PYZus{}pos} \PY{o}{=} \PY{n}{wav\PYZus{}pos} \PY{o}{+} \PY{n}{n3\PYZus{}props}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{adpc}\PY{o}{/}\PY{n}{cov}
+                 
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{wav}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ob}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{factors}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} overall}
+         \PY{n}{cov} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.346}\PY{p}{)}
+         \PY{n}{adpc} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.02}\PY{p}{)}
+         \PY{p}{[}\PY{n}{incsol}\PY{p}{,} \PY{n}{scrsol}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}
+             \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{[}\PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{cov}\PY{p}{,} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{adpc}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]} 
+         \PY{p}{)}
+         \PY{n}{prev} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{U\PYZus{}fun}\PY{p}{(}
+             \PY{n}{incsol}\PY{o}{*}\PY{n}{p\PYZus{}asymp}\PY{p}{,} \PY{n}{sc} \PY{o}{+} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}\PY{p}{,} \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
+             \PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{prev}\PY{p}{,}\PY{n}{prev}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{cur\PYZus{}axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+         \PY{n}{cur\PYZus{}axes}\PY{o}{.}\PY{n}{axes}\PY{o}{.}\PY{n}{get\PYZus{}yaxis}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{set\PYZus{}ticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.09}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Estimated Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x1067bef10>
+\end{Verbatim}
+    \end{footnotesize}
+        
+    \begin{figure}
+        \begin{center}\includegraphics[width=10cm]{three_compartment_model_files/three_compartment_model_25_1.png}\end{center}
+        \caption{Sensitivity of prevalence estimates in 16-24-year-old men to risk-dependent differences in testing. Small markers: risk-level-specific estimates. Large markers: weighted mean of level-specific estimates. Vertical line: estimate using aggregated proportions tested and diagnosed.}
+        \label{}
+    \end{figure}
+    
+    In the figure above, small markers show risk-level-specific prevalence
+estimates and large markers show the weighted average of the
+level-specific estimates. The solid line shows prevalence estimated from
+aggregated testing and diagnosis (ie. not stratified by risk).
+
+Although aggregating across the population does affect prevalence
+estimates, the differences are small compared with the 1-2\% uncertainty
+which we found in our analyses of the surveillance data.
 
 
     % Add a bibliography block to the postdoc

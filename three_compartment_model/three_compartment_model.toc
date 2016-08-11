@@ -1,1 +1,3 @@
 \contentsline {section}{\numberline {1}A model for chlamydia surveillance data}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Steady-state assumption}{6}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Different testing rates in different populations}{11}{subsection.1.2}
