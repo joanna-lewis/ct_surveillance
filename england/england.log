@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  20 JUN 2016 10:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  11 AUG 2016 15:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -425,14 +425,7 @@ Package color Info: Redefining color lightgray on input line 61.
 Package hyperref Info: Option `breaklinks' set `true' on input line 218.
 Package hyperref Info: Option `colorlinks' set `true' on input line 218.
 
-(./england.aux
-
-LaTeX Warning: Label `fig:prev_samples_byage' multiply defined.
-
-
-LaTeX Warning: Label `fig:prev_samples_byage' multiply defined.
-
-)
+(./england.aux)
 \openout1 = `england.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 225.
@@ -449,7 +442,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 225.
 LaTeX Font Info:    ... okay on input line 225.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 225.
 LaTeX Font Info:    ... okay on input line 225.
- (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count129
 \scratchdimen=\dimen150
@@ -629,14 +623,14 @@ Package rerunfilecheck Info: File `england.out' has not changed.
 (rerunfilecheck)             Checksum: 66004E96C3A3904CAFC265D6F0142DCD;818.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1252.
  ) 
 Here is how much of TeX's memory you used:
  8299 strings out of 493089
  123758 string characters out of 6134843
- 236772 words of memory out of 5000000
+ 236477 words of memory out of 5000000
  11591 multiletter control sequences out of 15000+600000
  12353 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -651,7 +645,7 @@ sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
 cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on england.pdf (16 pages, 329687 bytes).
+Output written on england.pdf (16 pages, 330210 bytes).
 PDF statistics:
  191 PDF objects out of 1000 (max. 8388607)
  149 compressed objects within 2 object streams
