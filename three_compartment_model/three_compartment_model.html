@@ -1246,7 +1246,7 @@ $$<p>And the number of diagnoses per unit time will be:</p>
 \mbox{rate of new diagnoses} = (A+S) \times (\mbox{rate of screening} \times p_{true positive}) \\
 + (U \times \mbox{rate of screening} \times p_{false positive}) \\
 + (S \times \mbox{rate of symptomatic testing} \times p_{truepositive})
-\end{multline*}<p>Let's assume that:</p>
+\end{multline*}<p>Let's assume (based on mean sampled values for men; see Table 2 of main text) that:</p>
 <ul>
 <li>51.0% of incident infections are asymptomatic.</li>
 <li>Infections (whether symptomatic or not) clear spontaneously or through background antibiotic use at a rate 0.47 per year.</li>
@@ -5252,7 +5252,7 @@ jUaj0Wg0Go1Go9FoNBqNRqPRaDQajUZTGvw/cbL5Uxc2mdQAAAAASUVORK5CYII=
 <ol>
 <li>Begin by estimating the steady state in 2012, using 2012 data.</li>
 <li>Assuming a (potentially different) steady state in 2013, estimate incidence and screening rate in 2013.</li>
-<li>Starting at the 2012 steady state, simulate the evolution of the system for one year with 2013 incidence and screening figures.</li>
+<li>Starting at the 2012 steady state, simulate the evolution of the system for one year with 2013 incidence and screening figures. Compare the prevalence after one year with the steady-state prevalence estimated for 2013 from that year's surveillance data, to see how closely they agree.</li>
 <li>Repeat steps 2 and 3 for 2014 and 2015, each time starting the system in the state it had reached at the end of the previous one-year period.</li>
 </ol>
 <p>The results of the simulations are then plotted.</p>
@@ -5442,7 +5442,7 @@ jUaj0Wg0Go1Go9FoNBqNRqPRaDQajUZTGvw/cbL5Uxc2mdQAAAAASUVORK5CYII=
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.legend.Legend at 0x107567a50&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x114c1a4d0&gt;</pre>
 </div>
 
 </div>
@@ -5609,8 +5609,8 @@ K9Sa4EsAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The plot shows that although there were inevitably some perturbations to the steady state, they were small compared to the uncertainty in prevalence estimates illustrated in Figures in the main text.</p>
-<p>To investigate the validity of the steady state assumption at a local level, we identified the local authorities with the largest changes in prevalence between 2012 and 2013 (analysis not shown):</p>
+<p>The plot shows that prevalence was very close to the steady state, with differences being very small compared to the uncertainty in prevalence estimates illustrated in the Figures in the main text.</p>
+<p>To investigate the validity of the steady state assumption at a local level, we identified the local authorities with the largest changes in prevalence between 2012 and 2013:</p>
 <table>
 <thead><tr>
 <th></th>
@@ -5849,7 +5849,7 @@ K9Sa4EsAAAAASUVORK5CYII=
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.legend.Legend at 0x1075f7c90&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x114ab0dd0&gt;</pre>
 </div>
 
 </div>
@@ -6070,8 +6070,8 @@ IiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi1fn//XdsiNNPttAAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>At local level there can be more pronounced temporal changes, but even the largest changes in prevalence have time to reach steady state over the course of a year.</p>
-<h2 id="Different-testing-rates-in-different-populations">Different testing rates in different populations<a class="anchor-link" href="#Different-testing-rates-in-different-populations">&#182;</a></h2><p>We also investigate the sensitivity of the model to different testing rates in subpoulations with different prevalences. This analysis makes use of results reported in Woodhall <em>Sex. Transm. Infect.</em> <strong>92</strong>:21-227 for the proportion of 16-24-year-old men in Natsal-3 reporting different risk behaviours and chlamydia testing and diagnosis in the last year.</p>
+<p>At local level changes in prevalence can be more pronounced than at national level, but even with the largest changes in prevalence the new steady state is reached after much less than a year.</p>
+<h2 id="Different-testing-rates-in-different-populations">Different testing rates in different populations<a class="anchor-link" href="#Different-testing-rates-in-different-populations">&#182;</a></h2><p>We also investigate the sensitivity of the model to different testing rates in subpoulations with different prevalences. This analysis makes use of results reported in Woodhall <em>Sex. Transm. Infect.</em> <strong>92</strong>:21-227 (2016) for the proportion of 16-24-year-old men in Natsal-3 reporting different risk behaviours and chlamydia testing and diagnosis in the last year.</p>
 <p>Taking each risk factor in turn, we estimate prevalence for each risk level and take the weighted average as an estimate of population prevalence. We also estimate prevalence from the proportion tested and and diagnosed in the whole population, for comparison.</p>
 
 </div>
@@ -6162,7 +6162,7 @@ IiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIi1fn//XdsiNNPttAAAAAASUVORK5CYII=
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x1067bef10&gt;</pre>
+<pre>&lt;matplotlib.text.Text at 0x113a0ce90&gt;</pre>
 </div>
 
 </div>
@@ -6322,11 +6322,24 @@ IiIiIiIiIiIiIiIiIiIiItKQ/X/wVEuIrsfrQQAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In the figure above, small markers show risk-level-specific prevalence estimates and large markers show the weighted average of the level-specific estimates. The solid line shows prevalence estimated from aggregated testing and diagnosis (ie. not stratified by risk).</p>
+<p>In this figure, small markers show risk-level-specific prevalence estimates and large markers show the weighted average of these level-specific estimates. The solid line shows prevalence estimated from aggregated testing and diagnosis (ie. not stratified by risk). It should be emphasised that due to limitations of the data, the analysis is intended as an illustration of the model's theoretical properties rather than an accurate estimate of prevalence in the different risk categories. The data from Natsal-3 is some of the best available, but nonetheless relies on participants' recall and accurate self-reporting. It was collected at a national level, and equivalent information is not available at a local level for incorporation into local-level prevalence estimates.</p>
 <p>Although aggregating across the population does affect prevalence estimates, the differences are small compared with the 1-2% uncertainty which we found in our analyses of the surveillance data.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
