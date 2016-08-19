@@ -542,7 +542,7 @@ between observed positivity and our estimated prevalence.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.text.Text at 0x112f59e50>
+{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.text.Text at 0x10e8c7d90>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -614,7 +614,7 @@ sample of model parameters, testing and diagnosis rates:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x10f47a150>
+{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x10f569690>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -629,94 +629,197 @@ sample of model parameters, testing and diagnosis rates:
 significant (\(p<0.05\)). However, the correlations - especially for
 women - were sometimes weak (see histograms).
 
-As a consistency check, we calculate weighted averages of the prevalence
-estimates by LA, and compare these to estimates made from the aggregated
-national numbers of tests and diagnoses.
+Next, we examine the relationship between local prevalence and observed
+diagnoses per capita (without allowing for the fact that not all
+15-24-year-olds have become sexually active).
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{c}{\PYZsh{} Figure 4}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c}{\PYZsh{} prevalence vs diagnosis rate}
         
-        \PY{n}{pop\PYZus{}active\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{]}\PY{p}{)}
-        \PY{n}{pop\PYZus{}active\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+        \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+        \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
         
-        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-            \PY{n}{pop\PYZus{}active\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{binomial}\PY{p}{(}\PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.male.15\PYZhy{}19}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PYZbs{}
-                                            \PY{o}{+} \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.male.20\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} 
-                                \PY{n}{p\PYZus{}active\PYZus{}m\PYZus{}16\PYZus{}24}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}
-            \PY{n}{pop\PYZus{}active\PYZus{}f}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{binomial}\PY{p}{(}\PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.female.15\PYZhy{}19}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PYZbs{}
-                                            \PY{o}{+} \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.female.20\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} 
-                                \PY{n}{p\PYZus{}active\PYZus{}f\PYZus{}16\PYZus{}24}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}
-            
-        \PY{c}{\PYZsh{} testing and diagnosis rates sampled as in england.ipynb}
-        \PY{n}{test\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{gamma}\PY{p}{(}\PY{l+m+mi}{566908}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{o}{/}\PY{n}{pop\PYZus{}active\PYZus{}m\PYZus{}15\PYZus{}24}
-        \PY{n}{diag\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{gamma}\PY{p}{(}\PY{l+m+mi}{48387}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{o}{/}\PY{n}{pop\PYZus{}active\PYZus{}m\PYZus{}15\PYZus{}24}
-        \PY{n}{test\PYZus{}rate\PYZus{}f\PYZus{}15\PYZus{}24} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{gamma}\PY{p}{(}\PY{l+m+mi}{1205896}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{o}{/}\PY{n}{pop\PYZus{}active\PYZus{}f\PYZus{}15\PYZus{}24}
-        \PY{n}{diag\PYZus{}rate\PYZus{}f\PYZus{}15\PYZus{}24} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{gamma}\PY{p}{(}\PY{l+m+mi}{88101}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{o}{/}\PY{n}{pop\PYZus{}active\PYZus{}f\PYZus{}15\PYZus{}24}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}
+            \PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} 
+            \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{positives.male.total}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.male.15\PYZhy{}19}\PY{l+s}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.male.20\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+            \PY{n}{xerr}\PY{o}{=}\PY{n}{squeeze}\PY{p}{(}
+                \PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{l+m+mf}{2.5}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{,} 
+                    \PY{p}{[}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{l+m+mf}{97.5}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+            \PY{n}{linestyle}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}
+            \PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} 
+            \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{positives.male.total}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.male.15\PYZhy{}19}\PY{l+s}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.male.20\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+            \PY{l+s}{\PYZsq{}}\PY{l+s}{.b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{errorbar}\PY{p}{(}
+            \PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} 
+            \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{positives.female.total}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.female.15\PYZhy{}19}\PY{l+s}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.female.20\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+            \PY{n}{xerr}\PY{o}{=}\PY{n}{squeeze}\PY{p}{(}
+                \PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{l+m+mf}{2.5}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{,} 
+                    \PY{p}{[}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{l+m+mf}{97.5}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+            \PY{n}{linestyle}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}
+            \PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} 
+            \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{positives.female.total}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{/}\PY{p}{(}\PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.female.15\PYZhy{}19}\PY{l+s}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.female.20\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+            \PY{l+s}{\PYZsq{}}\PY{l+s}{.r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
         
-        \PY{n}{inc\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} \PY{n}{scr\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} \PY{n}{prev\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} 
-        \PY{n}{inc\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} \PY{n}{scr\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} \PY{n}{prev\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} 
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in sexually active men 15\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{ADPC}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{c}{\PYZsh{}ax1.set\PYZus{}title(\PYZsq{}Sexually active men 15\PYZhy{}24\PYZsq{})}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in sexually active women 15\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{c}{\PYZsh{}ax2.set\PYZus{}ylabel(\PYZsq{}Positivity\PYZsq{})}
+        \PY{c}{\PYZsh{}ax2.set\PYZus{}title(\PYZsq{}Sexually active women 15\PYZhy{}24\PYZsq{})}
         
-        \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{:}
-            \PY{c}{\PYZsh{} local screening and incidence, given local testing and diagnoses}
-            \PY{p}{[}\PY{n}{inc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{scr\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{concatenate}\PY{p}{(}\PY{p}{[}
-                            \PY{n}{x}\PY{p}{,} \PY{n}{array}\PY{p}{(}\PY{p}{[}
-                                    \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{c}{\PYZsh{} proportion of incident infections which are symptomatic}
-                                    \PY{n}{sc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{c}{\PYZsh{} rate of self\PYZhy{}clear }
-                                    \PY{n}{att\PYZus{}symp}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,}
-                                    \PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
-                                    \PY{n}{p\PYZus{}false\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}
-                                \PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{test\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,}\PY{n}{diag\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]}\PY{p}{)}
-            \PY{c}{\PYZsh{} local prevalence, calculated from local screening and incidence}
-            \PY{n}{prev\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{dyn\PYZus{}fun}\PY{p}{(}
-                \PY{n}{inc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}asymp\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
-                \PY{n}{sc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{scr\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
-                \PY{n}{inc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
-                \PY{n}{scr\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}
-            \PY{p}{)}
-            \PY{c}{\PYZsh{} local screening and incidence, given local testing and diagnoses}
-            \PY{p}{[}\PY{n}{inc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{scr\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{concatenate}\PY{p}{(}\PY{p}{[}
-                            \PY{n}{x}\PY{p}{,} \PY{n}{array}\PY{p}{(}\PY{p}{[}
-                                    \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{c}{\PYZsh{} proportion of incident infections which are symptomatic}
-                                    \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{c}{\PYZsh{} rate of self\PYZhy{}clear }
-                                    \PY{n}{att\PYZus{}symp}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,}
-                                    \PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
-                                    \PY{n}{p\PYZus{}false\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}
-                                \PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{test\PYZus{}rate\PYZus{}f\PYZus{}15\PYZus{}24}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,}\PY{n}{diag\PYZus{}rate\PYZus{}f\PYZus{}15\PYZus{}24}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]}\PY{p}{)}
-            \PY{c}{\PYZsh{} local prevalence, calculated from local screening and incidence}
-            \PY{n}{prev\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{dyn\PYZus{}fun}\PY{p}{(}
-                \PY{n}{inc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
-                \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{scr\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
-                \PY{n}{inc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
-                \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{scr\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}
-            \PY{p}{)}
-        
-        \PY{n}{hm\PYZus{}las}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}
-            \PY{n+nb}{sum}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{o}{*}\PY{n}{pop\PYZus{}active\PYZus{}m}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{pop\PYZus{}active\PYZus{}m}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} 
-            \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{true}\PY{l+s}{\PYZsq{}}\PY{p}{,}
-            \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{men; by LA}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{hm\PYZus{}total}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{prev\PYZus{}m}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{dashed}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{true}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{,}
-            \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{men; national}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{hf\PYZus{}las}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}
-            \PY{n+nb}{sum}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{o}{*}\PY{n}{pop\PYZus{}active\PYZus{}f}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{pop\PYZus{}active\PYZus{}f}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} 
-            \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{true}\PY{l+s}{\PYZsq{}}\PY{p}{,}
-            \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{women; by LA}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{hf\PYZus{}total}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{prev\PYZus{}f}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{dashed}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{true}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,}
-            \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{women; national}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        
-        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+        \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}9}]:} <matplotlib.legend.Legend at 0x10e702cd0>
+{\color{outcolor}Out[{\color{outcolor}9}]:} [<matplotlib.lines.Line2D at 0x115486510>]
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\includegraphics[width=10cm]{local_authorities_files/local_authorities_16_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_16_1.png}\end{center}
+        \caption{Estimated chlamydia prevalence and observed positivity in 15-24-year-old men (left) and women (right) in English LAs.}
+        \label{}
+    \end{figure}
+    
+    Incorporating an estimate for the proportion of each age/sex group who
+are sexually active, the picture is similar: prevalence is again
+correlated with, but not equal to, diagnosis rate.
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+         \PY{n}{ax2} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} add to plot}
+         \PY{n}{plt\PYZus{}ppc}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{n}{diag\PYZus{}sample\PYZus{}m}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{diag\PYZus{}sample\PYZus{}m}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt\PYZus{}ppc}\PY{p}{(}\PY{n}{ax2}\PY{p}{,} \PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{n}{diag\PYZus{}sample\PYZus{}f}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{diag\PYZus{}sample\PYZus{}f}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.r}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in sexually active men 15\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Diagnosis rate}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax1.set\PYZus{}title(\PYZsq{}Sexually active men 15\PYZhy{}24\PYZsq{})}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in sexually active women 15\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{c}{\PYZsh{}ax2.set\PYZus{}ylabel(\PYZsq{}Positivity\PYZsq{})}
+         \PY{c}{\PYZsh{}ax2.set\PYZus{}title(\PYZsq{}Sexually active women 15\PYZhy{}24\PYZsq{})}
+         
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} [<matplotlib.lines.Line2D at 0x11578fc10>]
+\end{Verbatim}
+    \end{footnotesize}
+        
+    \begin{figure}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_18_1.png}\end{center}
+        \caption{}
+        \label{}
+    \end{figure}
+    
+    As a consistency check, we calculate weighted averages of the prevalence
+estimates by LA, and compare these to estimates made from the aggregated
+national numbers of tests and diagnoses.
+
+    \begin{footnotesize}
+        \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c}{\PYZsh{} Figure 4}
+         
+         \PY{n}{pop\PYZus{}active\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         \PY{n}{pop\PYZus{}active\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{pop\PYZus{}active\PYZus{}m}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{binomial}\PY{p}{(}\PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.male.15\PYZhy{}19}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PYZbs{}
+                                             \PY{o}{+} \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.male.20\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} 
+                                 \PY{n}{p\PYZus{}active\PYZus{}m\PYZus{}16\PYZus{}24}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}
+             \PY{n}{pop\PYZus{}active\PYZus{}f}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{binomial}\PY{p}{(}\PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.female.15\PYZhy{}19}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PYZbs{}
+                                             \PY{o}{+} \PY{n}{alldata}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{population.female.20\PYZhy{}24}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} 
+                                 \PY{n}{p\PYZus{}active\PYZus{}f\PYZus{}16\PYZus{}24}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}
+             
+         \PY{c}{\PYZsh{} testing and diagnosis rates sampled as in england.ipynb}
+         \PY{n}{test\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{gamma}\PY{p}{(}\PY{l+m+mi}{566908}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{o}{/}\PY{n}{pop\PYZus{}active\PYZus{}m\PYZus{}15\PYZus{}24}
+         \PY{n}{diag\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{gamma}\PY{p}{(}\PY{l+m+mi}{48387}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{o}{/}\PY{n}{pop\PYZus{}active\PYZus{}m\PYZus{}15\PYZus{}24}
+         \PY{n}{test\PYZus{}rate\PYZus{}f\PYZus{}15\PYZus{}24} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{gamma}\PY{p}{(}\PY{l+m+mi}{1205896}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{o}{/}\PY{n}{pop\PYZus{}active\PYZus{}f\PYZus{}15\PYZus{}24}
+         \PY{n}{diag\PYZus{}rate\PYZus{}f\PYZus{}15\PYZus{}24} \PY{o}{=} \PY{n}{rs}\PY{o}{.}\PY{n}{gamma}\PY{p}{(}\PY{l+m+mi}{88101}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{o}{/}\PY{n}{pop\PYZus{}active\PYZus{}f\PYZus{}15\PYZus{}24}
+         
+         \PY{n}{inc\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} \PY{n}{scr\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} \PY{n}{prev\PYZus{}m} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} 
+         \PY{n}{inc\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} \PY{n}{scr\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} \PY{n}{prev\PYZus{}f} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{;} 
+         
+         \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n}{n\PYZus{}sample}\PY{p}{)}\PY{p}{:}
+             \PY{c}{\PYZsh{} local screening and incidence, given local testing and diagnoses}
+             \PY{p}{[}\PY{n}{inc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{scr\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{concatenate}\PY{p}{(}\PY{p}{[}
+                             \PY{n}{x}\PY{p}{,} \PY{n}{array}\PY{p}{(}\PY{p}{[}
+                                     \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{c}{\PYZsh{} proportion of incident infections which are symptomatic}
+                                     \PY{n}{sc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{c}{\PYZsh{} rate of self\PYZhy{}clear }
+                                     \PY{n}{att\PYZus{}symp}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
+                                     \PY{n}{p\PYZus{}false\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                                 \PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{test\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,}\PY{n}{diag\PYZus{}rate\PYZus{}m\PYZus{}15\PYZus{}24}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]}\PY{p}{)}
+             \PY{c}{\PYZsh{} local prevalence, calculated from local screening and incidence}
+             \PY{n}{prev\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{dyn\PYZus{}fun}\PY{p}{(}
+                 \PY{n}{inc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}asymp\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
+                 \PY{n}{sc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{scr\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
+                 \PY{n}{inc\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
+                 \PY{n}{scr\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}m}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+             \PY{p}{)}
+             \PY{c}{\PYZsh{} local screening and incidence, given local testing and diagnoses}
+             \PY{p}{[}\PY{n}{inc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{scr\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{test\PYZus{}diag\PYZus{}fun}\PY{p}{(}\PY{n}{concatenate}\PY{p}{(}\PY{p}{[}
+                             \PY{n}{x}\PY{p}{,} \PY{n}{array}\PY{p}{(}\PY{p}{[}
+                                     \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{c}{\PYZsh{} proportion of incident infections which are symptomatic}
+                                     \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{c}{\PYZsh{} rate of self\PYZhy{}clear }
+                                     \PY{n}{att\PYZus{}symp}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,}
+                                     \PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
+                                     \PY{n}{p\PYZus{}false\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+                                 \PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{test\PYZus{}rate\PYZus{}f\PYZus{}15\PYZus{}24}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,}\PY{n}{diag\PYZus{}rate\PYZus{}f\PYZus{}15\PYZus{}24}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+m+mf}{0.09}\PY{p}{,} \PY{l+m+mf}{0.25}\PY{p}{]}\PY{p}{)}
+             \PY{c}{\PYZsh{} local prevalence, calculated from local screening and incidence}
+             \PY{n}{prev\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{dyn\PYZus{}fun}\PY{p}{(}
+                 \PY{n}{inc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
+                 \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{scr\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} 
+                 \PY{n}{inc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
+                 \PY{n}{sc\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{scr\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos\PYZus{}f}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+             \PY{p}{)}
+         
+         \PY{n}{hm\PYZus{}las}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}
+             \PY{n+nb}{sum}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{o}{*}\PY{n}{pop\PYZus{}active\PYZus{}m}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{pop\PYZus{}active\PYZus{}m}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} 
+             \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{true}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+             \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{men; by LA}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{hm\PYZus{}total}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{prev\PYZus{}m}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{dashed}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{true}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+             \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{men; national}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{hf\PYZus{}las}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}
+             \PY{n+nb}{sum}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{o}{*}\PY{n}{pop\PYZus{}active\PYZus{}f}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{pop\PYZus{}active\PYZus{}f}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} 
+             \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{true}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+             \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{women; by LA}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{hf\PYZus{}total}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{prev\PYZus{}f}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{dashed}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{step}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{normed}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{true}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{r}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+             \PY{n}{label} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{women; national}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+    \end{footnotesize}
+
+    \begin{footnotesize}
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.legend.Legend at 0x10f556550>
+\end{Verbatim}
+    \end{footnotesize}
+        
+    \begin{figure}
+        \begin{center}\includegraphics[width=10cm]{local_authorities_files/local_authorities_20_1.png}\end{center}
         \caption{Weighted average of sampled prevalences, by LA (solid lines), and sample based on national numbers of tests and diagnoses (dashed lines).}
         \label{}
     \end{figure}
@@ -731,19 +834,19 @@ We now use our samples to compare prevalence by local authority.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{shape}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{shape}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}10}]:} (10000, 151)
+{\color{outcolor}Out[{\color{outcolor}12}]:} (10000, 151)
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{c}{\PYZsh{} Figure 5}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c}{\PYZsh{} Figure 5}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
@@ -801,7 +904,7 @@ Highest prevalence in women (median sample): 0.0561422126184
     \end{Verbatim}
 
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_19_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_23_1.png}\end{center}
         \caption{Median and central 95\% credible intervals for chlamydia prevalence in the LAs with the five highest and five lowest estimated prevalences for men (left) and women (right).}
         \label{}
     \end{figure}
@@ -821,7 +924,7 @@ score from the English Indices of Deprivation 2010):
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{c}{\PYZsh{} Figure 6}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c}{\PYZsh{} Figure 6}
          
          \PY{c}{\PYZsh{} lookup table for local authority coding in NCSP vs deprivation data}
          \PY{c}{\PYZsh{} Contains National Statistics data © Crown copyright and database right 2016}
@@ -831,7 +934,10 @@ score from the English Indices of Deprivation 2010):
          \PY{c}{\PYZsh{} https://www.gov.uk/government/statistics/english\PYZhy{}indices\PYZhy{}of\PYZhy{}deprivation\PYZhy{}2010 1 December 2010}
          \PY{c}{\PYZsh{} Contains public sector information licensed under the Open Government Licence v3.0; }
          \PY{c}{\PYZsh{} http://www.nationalarchives.gov.uk/doc/open\PYZhy{}government\PYZhy{}licence/version/3/}
-         \PY{n}{code\PYZus{}key} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{code\PYZus{}equivalents.csv}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{c}{\PYZsh{} downloaded from https://data.gov.uk/dataset/local\PYZhy{}authority\PYZhy{}districts\PYZhy{}uk\PYZhy{}2012\PYZhy{}names\PYZhy{}and\PYZhy{}codes 4 January 2016}
+         
+         \PY{c}{\PYZsh{} code equivalents downloaded from }
+         \PY{c}{\PYZsh{} https://data.gov.uk/dataset/local\PYZhy{}authority\PYZhy{}districts\PYZhy{}uk\PYZhy{}2012\PYZhy{}names\PYZhy{}and\PYZhy{}codes 4 January 2016}
+         \PY{n}{code\PYZus{}key} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{code\PYZus{}equivalents.csv}\PY{l+s}{\PYZsq{}}\PY{p}{)} 
          \PY{n}{deprivation} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{deprivation\PYZus{}indices\PYZus{}2010.csv}\PY{l+s}{\PYZsq{}}\PY{p}{)} 
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
@@ -909,12 +1015,12 @@ no Isles of Scilly 00HF E06000053
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.text.Text at 0x116f709d0>
+{\color{outcolor}Out[{\color{outcolor}14}]:} <matplotlib.text.Text at 0x11761a510>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_21_2.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_25_2.png}\end{center}
         \caption{Estimated chlamydia prevalence with rank of average deprivation score (lowest rank is most deprived district), for men (left) and women (right) aged 15-24. Points and error bars give median and central 95\% credible interval sampled prevalence.}
         \label{}
     \end{figure}
@@ -928,7 +1034,7 @@ We can also show local prevalence on a map:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{c}{\PYZsh{} Figure 7}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c}{\PYZsh{} Figure 7}
          
          \PY{k+kn}{import} \PY{n+nn}{shapefile}
          \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
@@ -937,7 +1043,9 @@ We can also show local prevalence on a map:
          \PY{k+kn}{from} \PY{n+nn}{matplotlib.collections} \PY{k+kn}{import} \PY{n}{PatchCollection}
          \PY{k+kn}{from} \PY{n+nn}{mpl\PYZus{}toolkits.axes\PYZus{}grid1.inset\PYZus{}locator} \PY{k+kn}{import} \PY{n}{inset\PYZus{}axes}
          
-         \PY{n}{sf} \PY{o}{=} \PY{n}{shapefile}\PY{o}{.}\PY{n}{Reader}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{County\PYZus{}and\PYZus{}unitary\PYZus{}authorities\PYZus{}E+W\PYZus{}2013\PYZus{}Boundaries\PYZus{}Generalised\PYZus{}Clipped/CTYUA\PYZus{}DEC\PYZus{}2013\PYZus{}EW\PYZus{}BGC}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{sf} \PY{o}{=} \PY{n}{shapefile}\PY{o}{.}\PY{n}{Reader}\PY{p}{(}
+             \PY{l+s}{\PYZdq{}}\PY{l+s}{County\PYZus{}and\PYZus{}unitary\PYZus{}authorities\PYZus{}E+W\PYZus{}2013\PYZus{}Boundaries\PYZus{}Generalised\PYZus{}Clipped/CTYUA\PYZus{}DEC\PYZus{}2013\PYZus{}EW\PYZus{}BGC}\PY{l+s}{\PYZdq{}}
+             \PY{p}{)}
          \PY{n}{recs}    \PY{o}{=} \PY{n}{sf}\PY{o}{.}\PY{n}{records}\PY{p}{(}\PY{p}{)}
          \PY{n}{shapes}  \PY{o}{=} \PY{n}{sf}\PY{o}{.}\PY{n}{shapes}\PY{p}{(}\PY{p}{)}
          
@@ -1077,20 +1185,24 @@ We can also show local prevalence on a map:
          \PY{n}{p} \PY{o}{=} \PY{n}{PatchCollection}\PY{p}{(}\PY{n}{ptchs}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{reds}\PY{p}{)}
          
          \PY{c}{\PYZsh{} Crown Copyright statement required by ONS.}
-         \PY{n}{fig}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.9}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{l+s}{u\PYZsq{}}\PY{l+s}{Contains National Statistics data }\PY{l+s+se}{\PYZbs{}N\PYZob{}COPYRIGHT SIGN\PYZcb{}}\PY{l+s}{ Crown copyright and database right 2016}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{right}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{top}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.9}\PY{p}{,}\PY{l+m+mf}{0.1}\PY{p}{,}
+             \PY{l+s}{u\PYZsq{}}\PY{l+s}{Contains National Statistics data }\PY{l+s+se}{\PYZbs{}N\PYZob{}COPYRIGHT SIGN\PYZcb{}}\PY{l+s}{ Crown copyright and database right 2016}\PY{l+s}{\PYZsq{}}\PY{p}{,} 
+             \PY{n}{ha}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{right}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{top}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{c}{\PYZsh{} alternative, if plotting for men only}
-         \PY{c}{\PYZsh{}fig.text(0.48,0.1,u\PYZsq{}Contains National Statistics data \PYZbs{}n\PYZbs{}N\PYZob{}COPYRIGHT SIGN\PYZcb{} Crown copyright and database right 2016\PYZsq{}, ha=\PYZsq{}right\PYZsq{}, va=\PYZsq{}top\PYZsq{})}
+         \PY{c}{\PYZsh{}fig.text(0.48,0.1,}
+         \PY{c}{\PYZsh{}    u\PYZsq{}Contains National Statistics data \PYZbs{}n\PYZbs{}N\PYZob{}COPYRIGHT SIGN\PYZcb{} Crown copyright and database right 2016\PYZsq{}, }
+         \PY{c}{\PYZsh{}    ha=\PYZsq{}right\PYZsq{}, va=\PYZsq{}top\PYZsq{})}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}23}]:} <matplotlib.text.Text at 0x1210df190>
+{\color{outcolor}Out[{\color{outcolor}15}]:} <matplotlib.text.Text at 0x11ca87f90>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_23_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_27_1.png}\end{center}
         \caption{English local authorities, coloured by quintile for estimated chlamydia prevalence in men (left) and women (right). The inset panel shows the London boroughs.}
         \label{}
     \end{figure}
@@ -1103,7 +1215,7 @@ LA, at each sampled set of model parameters.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{c}{\PYZsh{} Figure 8}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c}{\PYZsh{} Figure 8}
          
          \PY{k+kn}{import} \PY{n+nn}{matplotlib.colors} \PY{k+kn}{as} \PY{n+nn}{colors}
          \PY{k+kn}{import} \PY{n+nn}{matplotlib.cm} \PY{k+kn}{as} \PY{n+nn}{cmx}
@@ -1140,12 +1252,12 @@ LA, at each sampled set of model parameters.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}14}]:} (0, 0.1)
+{\color{outcolor}Out[{\color{outcolor}16}]:} (0, 0.1)
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_25_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_29_1.png}\end{center}
         \caption{All prevalence samples, for all LA. Horizontal position indicates whether sampled parameter values generally estimated prevalence to be high or low. Vertical position gives the prevalence sampled. Colour (unique to each LA) corresponds to median sampled prevalence for that authority.}
         \label{}
     \end{figure}
@@ -1175,7 +1287,7 @@ Another approach to examing the same question is shown below:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{c}{\PYZsh{} Figure 9}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZsh{} Figure 9}
          
          \PY{n}{n\PYZus{}quantiles} \PY{o}{=} \PY{l+m+mi}{5} \PY{c}{\PYZsh{} choose how many bands you\PYZsq{}d like to plot}
          
@@ -1249,12 +1361,12 @@ Another approach to examing the same question is shown below:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} <matplotlib.text.Text at 0x11deb8e10>
+{\color{outcolor}Out[{\color{outcolor}17}]:} <matplotlib.text.Text at 0x121fc8990>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_27_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_31_1.png}\end{center}
         \caption{For each LA (horizontal axis), this plot shows how often samples placed the authority in the first, second, ..., fifth quintile for prevalence in men (left) and women (right).}
         \label{}
     \end{figure}
@@ -1279,7 +1391,7 @@ infections in women, and vice versa.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{c}{\PYZsh{} Figure 10}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c}{\PYZsh{} Figure 10}
          \PY{c}{\PYZsh{}plt.rc(\PYZdq{}savefig\PYZdq{}, dpi=2300) \PYZsh{} for high\PYZhy{}resolution version}
          \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{savefig}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{80}\PY{p}{)}
          
@@ -1292,6 +1404,10 @@ infections in women, and vice versa.
          \PY{n}{plt\PYZus{}ppc}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{n}{inc\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}F98400}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.15}\PY{p}{)}
          \PY{n}{plt\PYZus{}ppc}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{n}{inc\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}00A08A}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.15}\PY{p}{)}
          
+         \PY{n}{interest} \PY{o}{=} \PY{n}{where}\PY{p}{(}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{phec} \PY{o}{==} \PY{l+s}{\PYZsq{}}\PY{l+s}{London}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{inc\PYZus{}f\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{xk}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{inc\PYZus{}m\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{xk}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.17}\PY{p}{]}\PY{p}{)}
          
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in sexually active 15\PYZhy{}24\PYZhy{}year\PYZhy{}olds}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
@@ -1301,17 +1417,19 @@ infections in women, and vice versa.
          \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.16}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in men; incidence in women}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mf}{0.005}\PY{p}{,} \PY{l+m+mf}{0.15}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}00A08A}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.15}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in women; incidence in men}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{c}{\PYZsh{} ax1.plot(0.005, 0.14, \PYZsq{}x\PYZsq{}, c=\PYZsq{}k\PYZsq{}) \PYZsh{} this line can be used to add \PYZsq{}x\PYZsq{} markers for the London Boroughs}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.14}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{London boroughs}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:} <matplotlib.text.Text at 0x1210d6c50>
+{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x125ec3790>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\includegraphics[width=7.5cm]{local_authorities_files/local_authorities_30_1.png}\end{center}
+        \begin{center}\includegraphics[width=7.5cm]{local_authorities_files/local_authorities_34_1.png}\end{center}
         \caption{Sampled incidence in each sex against prevalence in the other. Markers and error bars indicate median samples and central 95\% credible intervals. }
         \label{}
     \end{figure}
@@ -1327,7 +1445,7 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZsh{} Figure 11}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c}{\PYZsh{} Figure 11}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
@@ -1355,19 +1473,19 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} <matplotlib.text.Text at 0x1231af690>
+{\color{outcolor}Out[{\color{outcolor}19}]:} <matplotlib.text.Text at 0x1277cff90>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_32_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_36_1.png}\end{center}
         \caption{Sampled incidence vs. screening rate. Markers and error bars indicate median samples and central 95\% credible intervals. Top-left: incidence in men vs. screening in men; top-right: incidence in men vs. screening in women; bottom-left: incidence in women vs. screening in men; bottom-right: incidence in women vs. screening in women.}
         \label{}
     \end{figure}
     
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{c}{\PYZsh{} Figure 12}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c}{\PYZsh{} Figure 12}
          
          \PY{c}{\PYZsh{} examine the Spearman correlation by sample}
          \PY{n}{spearman} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
@@ -1387,12 +1505,12 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x1235e7390>
+{\color{outcolor}Out[{\color{outcolor}20}]:} <matplotlib.text.Text at 0x12799dd10>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\includegraphics[width=10cm]{local_authorities_files/local_authorities_33_1.png}\end{center}
+        \begin{center}\includegraphics[width=10cm]{local_authorities_files/local_authorities_37_1.png}\end{center}
         \caption{Spearman correlations between screening and incidence, at each of 10000 samples. Blue: incidence in men vs. screening in men; green: incidence in men vs. screening in women; orange: incidence in women vs. screening in men; red: incidence in women vs. screening in women.}
         \label{}
     \end{figure}
@@ -1405,7 +1523,7 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{c}{\PYZsh{} Figure 13}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c}{\PYZsh{} Figure 13}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
@@ -1433,19 +1551,19 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}19}]:} <matplotlib.text.Text at 0x123b8a490>
+{\color{outcolor}Out[{\color{outcolor}21}]:} <matplotlib.text.Text at 0x127de4f90>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_35_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_39_1.png}\end{center}
         \caption{Sampled prevalence vs. screening rate. Markers and error bars indicate median samples and central 95\% credible intervals. Top-left: prevalence in men vs. screening in men; top-right: prevalence in men vs. screening in women; bottom-left: prevalence in women vs. screening in men; bottom-right: prevalence in women vs. screening in women.}
         \label{}
     \end{figure}
     
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{c}{\PYZsh{} Figure 14}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c}{\PYZsh{} Figure 14}
          \PY{c}{\PYZsh{} examine the Spearman correlation by sample}
          \PY{n}{spearman} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
          
@@ -1463,12 +1581,12 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}20}]:} <matplotlib.text.Text at 0x123d95bd0>
+{\color{outcolor}Out[{\color{outcolor}22}]:} <matplotlib.text.Text at 0x12800da90>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\includegraphics[width=10cm]{local_authorities_files/local_authorities_36_1.png}\end{center}
+        \begin{center}\includegraphics[width=10cm]{local_authorities_files/local_authorities_40_1.png}\end{center}
         \caption{Spearman correlations between screening and prevalence, at each of 10000 samples. Blue: prevalence in men vs. screening in men; green: prevalence in men vs. screening in women; orange: prevalence in women vs. screening in men; red: prevalence in women vs. screening in women.}
         \label{}
     \end{figure}
@@ -1480,7 +1598,7 @@ screening in men vs.~women?
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{c}{\PYZsh{} Figure 15}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c}{\PYZsh{} Figure 15}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
          
@@ -1504,12 +1622,12 @@ screening in men vs.~women?
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}21}]:} <matplotlib.text.Text at 0x12137c210>
+{\color{outcolor}Out[{\color{outcolor}23}]:} <matplotlib.text.Text at 0x125319190>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_38_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_42_1.png}\end{center}
         \caption{Correlation in local prevalence (left) and screening (right) in men vs. women. Markers and error bars indicate median samples and central 95\% credible intervals.}
         \label{}
     \end{figure}
