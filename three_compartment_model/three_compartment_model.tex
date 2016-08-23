@@ -749,7 +749,7 @@ The results of the simulations are then plotted.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.legend.Legend at 0x114c1a4d0>
+{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.legend.Legend at 0x10a9ae850>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -932,7 +932,7 @@ Dudley & 0.075 & 0.239 & 0.020 & 0.006 & 1.1\% & 2.4\%\tabularnewline
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:} <matplotlib.legend.Legend at 0x114ab0dd0>
+{\color{outcolor}Out[{\color{outcolor}16}]:} <matplotlib.legend.Legend at 0x10b738c90>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -965,28 +965,65 @@ and diagnosed in the whole population, for comparison.
         \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZsh{} analysis by identified risk factors for prevalent infection: }
          \PY{c}{\PYZsh{} age group, deprivation index and lifetime number of sexual partners}
-         \PY{n}{factors} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Age group}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Deprivation}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Lifetime sexual partners}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{factors} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Age group}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Deprivation}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Age left school}\PY{l+s}{\PYZsq{}}\PY{p}{,} 
+                    \PY{l+s}{\PYZsq{}}\PY{l+s}{Age at first heterosexual sex}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Sexual partners, last year}\PY{l+s}{\PYZsq{}}\PY{p}{,} 
+                   \PY{l+s}{\PYZsq{}}\PY{l+s}{New sexual parterns, last year}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Sexual partners without a condom, last year}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+                   \PY{l+s}{\PYZsq{}}\PY{l+s}{Lifetime sexual partners}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Condom use at most recent sex}\PY{l+s}{\PYZsq{}}\PY{p}{,} 
+                   \PY{l+s}{\PYZsq{}}\PY{l+s}{Concurrent partnerships, last year}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Binge drinking}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+                   \PY{l+s}{\PYZsq{}}\PY{l+s}{Same sex experience/contact, ever}\PY{l+s}{\PYZsq{}}\PY{p}{]}
          
          \PY{c}{\PYZsh{} proportion of those surveyed reporting each risk factor level}
-         \PY{n}{n3\PYZus{}props} \PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mf}{0.373}\PY{p}{,} \PY{l+m+mf}{0.627}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.369}\PY{p}{,}\PY{l+m+mf}{0.182}\PY{p}{,}\PY{l+m+mf}{0.449}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.527}\PY{p}{,} \PY{l+m+mf}{0.224}\PY{p}{,} \PY{l+m+mf}{0.249}\PY{p}{]}\PY{p}{]}
+         \PY{n}{n3\PYZus{}props} \PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mf}{0.373}\PY{p}{,} \PY{l+m+mf}{0.627}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.369}\PY{p}{,}\PY{l+m+mf}{0.182}\PY{p}{,}\PY{l+m+mf}{0.449}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.754}\PY{p}{,} \PY{l+m+mf}{0.246}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.351}\PY{p}{,} \PY{l+m+mf}{0.261}\PY{p}{,} \PY{l+m+mf}{0.388}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.573}\PY{p}{,} \PY{l+m+mf}{0.187}\PY{p}{,} \PY{l+m+mf}{0.136}\PY{p}{,} \PY{l+m+mf}{0.104}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.421}\PY{p}{,} \PY{l+m+mf}{0.326}\PY{p}{,} \PY{l+m+mf}{0.253}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.331}\PY{p}{,} \PY{l+m+mf}{0.475}\PY{p}{,} \PY{l+m+mf}{0.194}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.527}\PY{p}{,} \PY{l+m+mf}{0.224}\PY{p}{,} \PY{l+m+mf}{0.249}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.517}\PY{p}{,} \PY{l+m+mf}{0.483}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.712}\PY{p}{,} \PY{l+m+mf}{0.143}\PY{p}{,} \PY{l+m+mf}{0.145}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.526}\PY{p}{,} \PY{l+m+mf}{0.202}\PY{p}{,} \PY{l+m+mf}{0.273}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.08}\PY{p}{,} \PY{l+m+mf}{0.92}\PY{p}{]}\PY{p}{]}
          
          \PY{c}{\PYZsh{} proportion reporting testing in the last year, by risk factor level}
-         \PY{n}{n3\PYZus{}test} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mf}{0.404}\PY{p}{,} \PY{l+m+mf}{0.311}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.345}\PY{p}{,} \PY{l+m+mf}{0.333}\PY{p}{,} \PY{l+m+mf}{0.352}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{0.253}\PY{p}{,}\PY{l+m+mf}{0.396}\PY{p}{,}\PY{l+m+mf}{0.492}\PY{p}{]}\PY{p}{]} 
+         \PY{n}{n3\PYZus{}test} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mf}{0.404}\PY{p}{,} \PY{l+m+mf}{0.311}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.345}\PY{p}{,} \PY{l+m+mf}{0.333}\PY{p}{,} \PY{l+m+mf}{0.352}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.336}\PY{p}{,} \PY{l+m+mf}{0.378}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.256}\PY{p}{,} \PY{l+m+mf}{0.334}\PY{p}{,} \PY{l+m+mf}{0.453}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.26}\PY{p}{,} \PY{l+m+mf}{0.403}\PY{p}{,} \PY{l+m+mf}{0.43}\PY{p}{,} \PY{l+m+mf}{0.609}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.26}\PY{p}{,} \PY{l+m+mf}{0.367}\PY{p}{,} \PY{l+m+mf}{0.463}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.270}\PY{p}{,} \PY{l+m+mf}{0.343}\PY{p}{,} \PY{l+m+mf}{0.488}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.253}\PY{p}{,}\PY{l+m+mf}{0.396}\PY{p}{,}\PY{l+m+mf}{0.492}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.335}\PY{p}{,} \PY{l+m+mf}{0.38}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.329}\PY{p}{,} \PY{l+m+mf}{0.497}\PY{p}{,} \PY{l+m+mf}{0.385}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.281}\PY{p}{,} \PY{l+m+mf}{0.399}\PY{p}{,} \PY{l+m+mf}{0.432}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.339}\PY{p}{,} \PY{l+m+mf}{0.424}\PY{p}{]}\PY{p}{]} 
          
          \PY{c}{\PYZsh{} proportion reporting diagnosis in the last year, by risk factor level}
          \PY{n}{n3\PYZus{}diag} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{l+m+mf}{0.404}\PY{o}{*}\PY{l+m+mf}{0.047}\PY{p}{,} \PY{l+m+mf}{0.311}\PY{o}{*}\PY{l+m+mf}{0.067}\PY{p}{]}\PY{p}{,}
                     \PY{p}{[}\PY{l+m+mf}{0.345}\PY{o}{*}\PY{l+m+mf}{0.052}\PY{p}{,} \PY{l+m+mf}{0.333}\PY{o}{*}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mf}{0.352}\PY{o}{*}\PY{l+m+mf}{0.065}\PY{p}{]}\PY{p}{,}
-                    \PY{p}{[}\PY{l+m+mf}{0.253}\PY{o}{*}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{l+m+mf}{0.396}\PY{o}{*}\PY{l+m+mf}{0.038}\PY{p}{,}\PY{l+m+mf}{0.492}\PY{o}{*}\PY{l+m+mf}{0.123}\PY{p}{]}\PY{p}{]}
+                    \PY{p}{[}\PY{l+m+mf}{0.336}\PY{o}{*}\PY{l+m+mf}{0.053}\PY{p}{,} \PY{l+m+mf}{0.378}\PY{o}{*}\PY{l+m+mf}{0.072}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.256}\PY{o}{*}\PY{l+m+mf}{0.028}\PY{p}{,} \PY{l+m+mf}{0.334}\PY{o}{*}\PY{l+m+mf}{0.047}\PY{p}{,} \PY{l+m+mf}{0.453}\PY{o}{*}\PY{l+m+mf}{0.078}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.26}\PY{o}{*}\PY{l+m+mf}{0.034}\PY{p}{,} \PY{l+m+mf}{0.403}\PY{o}{*}\PY{l+m+mf}{0.009}\PY{p}{,} \PY{l+m+mf}{0.43}\PY{o}{*}\PY{l+m+mf}{0.015}\PY{p}{,} \PY{l+m+mf}{0.609}\PY{o}{*}\PY{l+m+mf}{0.212}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.26}\PY{o}{*}\PY{l+m+mf}{0.055}\PY{p}{,} \PY{l+m+mf}{0.367}\PY{o}{*}\PY{l+m+mf}{0.04}\PY{p}{,} \PY{l+m+mf}{0.463}\PY{o}{*}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.270}\PY{o}{*}\PY{l+m+mf}{0.018}\PY{p}{,} \PY{l+m+mf}{0.343}\PY{o}{*}\PY{l+m+mf}{0.049}\PY{p}{,} \PY{l+m+mf}{0.488}\PY{o}{*}\PY{l+m+mf}{0.109}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.253}\PY{o}{*}\PY{l+m+mf}{0.01}\PY{p}{,}\PY{l+m+mf}{0.396}\PY{o}{*}\PY{l+m+mf}{0.038}\PY{p}{,}\PY{l+m+mf}{0.492}\PY{o}{*}\PY{l+m+mf}{0.123}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.335}\PY{o}{*}\PY{l+m+mf}{0.043}\PY{p}{,} \PY{l+m+mf}{0.38}\PY{o}{*}\PY{l+m+mf}{0.074}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.329}\PY{o}{*}\PY{l+m+mf}{0.067}\PY{p}{,} \PY{l+m+mf}{0.497}\PY{o}{*}\PY{l+m+mf}{0.065}\PY{p}{,} \PY{l+m+mf}{0.385}\PY{o}{*}\PY{l+m+mf}{0.013}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.281}\PY{o}{*}\PY{l+m+mf}{0.035}\PY{p}{,} \PY{l+m+mf}{0.399}\PY{o}{*}\PY{l+m+mf}{0.04}\PY{p}{,} \PY{l+m+mf}{0.432}\PY{o}{*}\PY{l+m+mf}{0.098}\PY{p}{]}\PY{p}{,}
+                    \PY{p}{[}\PY{l+m+mf}{0.339}\PY{o}{*}\PY{l+m+mf}{0.058}\PY{p}{,} \PY{l+m+mf}{0.424}\PY{o}{*}\PY{l+m+mf}{0.051}\PY{p}{]}\PY{p}{]}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
          
          \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{n3\PYZus{}test}\PY{p}{)}\PY{p}{)}\PY{p}{:}
              \PY{n}{wav} \PY{o}{=} \PY{l+m+mi}{0}
              \PY{n}{wav\PYZus{}pos} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.09}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{0.8}\PY{l+s}{\PYZsq{}}\PY{p}{)}
              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{n3\PYZus{}test}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{:}
                  \PY{n}{cov} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{n3\PYZus{}test}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
                  \PY{n}{adpc} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{n3\PYZus{}diag}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
@@ -998,12 +1035,12 @@ and diagnosed in the whole population, for comparison.
                                   \PY{n}{incsol}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p\PYZus{}asymp}\PY{p}{)}\PY{p}{,} 
                                   \PY{n}{scrsol}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos} \PY{o}{+} \PY{n}{att\PYZus{}symp}\PY{o}{*}\PY{n}{p\PYZus{}true\PYZus{}pos}
                                  \PY{p}{)}
-                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{prev}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.b}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{prev}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ob}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{markerfacecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{20}\PY{o}{*}\PY{n}{sqrt}\PY{p}{(}\PY{n}{n3\PYZus{}props}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
                  \PY{n}{wav} \PY{o}{=} \PY{n}{wav} \PY{o}{+} \PY{n}{n3\PYZus{}props}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{prev}
                  \PY{n}{wav\PYZus{}pos} \PY{o}{=} \PY{n}{wav\PYZus{}pos} \PY{o}{+} \PY{n}{n3\PYZus{}props}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{adpc}\PY{o}{/}\PY{n}{cov}
                  
              \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{wav}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ob}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-             \PY{n}{plt}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.05}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{factors}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.082}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{p}{(}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{factors}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{verticalalignment}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          
          \PY{c}{\PYZsh{} overall}
          \PY{n}{cov} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.346}\PY{p}{)}
@@ -1019,26 +1056,28 @@ and diagnosed in the whole population, for comparison.
          
          \PY{n}{cur\PYZus{}axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
          \PY{n}{cur\PYZus{}axes}\PY{o}{.}\PY{n}{axes}\PY{o}{.}\PY{n}{get\PYZus{}yaxis}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{set\PYZus{}ticks}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.09}\PY{p}{]}\PY{p}{)}
-         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{26}\PY{p}{]}\PY{p}{)}
          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Estimated Prevalence}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Stratification}\PY{l+s}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x113a0ce90>
+{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x10a5f7890>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\includegraphics[width=10cm]{three_compartment_model_files/three_compartment_model_25_1.png}\end{center}
-        \caption{Sensitivity of prevalence estimates in 16-24-year-old men to risk-dependent differences in testing. Small markers: risk-level-specific estimates. Large markers: weighted mean of level-specific estimates. Vertical line: estimate using aggregated proportions tested and diagnosed.}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{three_compartment_model_files/three_compartment_model_25_1.png}\end{center}
+        \caption{Sensitivity of prevalence estimates in 16-24-year-old men to risk-dependent differences in testing. Hollow markers: risk-level-specific estimates. Marker area is proportional to the proportion of the population in each risk category. Solid markers: weighted mean of level-specific estimates. Vertical line: estimate using aggregated proportions tested and diagnosed.}
         \label{}
     \end{figure}
     
-    In this figure, small markers show risk-level-specific prevalence
-estimates and large markers show the weighted average of these
+    In this figure, hollow markers show risk-level-specific prevalence
+estimates and their area represents the proportion of the population in
+each risk group. Large markers show the weighted average of these
 level-specific estimates. The solid line shows prevalence estimated from
 aggregated testing and diagnosis (ie. not stratified by risk). It should
 be emphasised that due to limitations of the data, the analysis is
