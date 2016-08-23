@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  11 AUG 2016 16:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  23 AUG 2016 16:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -723,7 +723,7 @@ File: local_authorities_files/local_authorities_34_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_34_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_34_1.png use
-d on input line 1432.
+d on input line 1447.
 (pdftex.def)             Requested size: 213.39566pt x 198.84056pt.
  [20 <./local_authorities_files/local_authorities_34_1.png>]
 <local_authorities_files/local_authorities_36_1.png, id=163, 620.61862pt x 606.
@@ -732,7 +732,7 @@ File: local_authorities_files/local_authorities_36_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_36_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_36_1.png use
-d on input line 1481.
+d on input line 1499.
 (pdftex.def)             Requested size: 620.61711pt x 606.16315pt.
 
 <local_authorities_files/local_authorities_37_1.png, id=164, 400.19513pt x 270.
@@ -741,43 +741,43 @@ File: local_authorities_files/local_authorities_37_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_37_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_37_1.png use
-d on input line 1513.
+d on input line 1531.
 (pdftex.def)             Requested size: 284.52756pt x 192.04259pt.
- [21 <./local_authorities_files/local_authorities_36_1.png>]
-<local_authorities_files/local_authorities_39_1.png, id=171, 620.61862pt x 606.
+ [21] [22 <./local_authorities_files/local_authorities_36_1.png> <./local_autho
+rities_files/local_authorities_37_1.png>]
+<local_authorities_files/local_authorities_39_1.png, id=178, 620.61862pt x 606.
 16463pt>
 File: local_authorities_files/local_authorities_39_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_39_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_39_1.png use
-d on input line 1559.
+d on input line 1577.
 (pdftex.def)             Requested size: 620.61711pt x 606.16315pt.
- [22 <./local_authorities_files/local_authorities_37_1.png>] [23 <./local_autho
-rities_files/local_authorities_39_1.png>]
-<local_authorities_files/local_authorities_40_1.png, id=185, 400.19513pt x 270.
+
+<local_authorities_files/local_authorities_40_1.png, id=179, 400.19513pt x 270.
 10913pt>
 File: local_authorities_files/local_authorities_40_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_40_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_40_1.png use
-d on input line 1589.
+d on input line 1607.
 (pdftex.def)             Requested size: 284.52756pt x 192.04259pt.
-
+ [23 <./local_authorities_files/local_authorities_39_1.png>]
 <local_authorities_files/local_authorities_42_1.png, id=186, 620.61862pt x 325.
 215pt>
 File: local_authorities_files/local_authorities_42_1.png Graphic file (type png
 )
  <use local_authorities_files/local_authorities_42_1.png>
 Package pdftex.def Info: local_authorities_files/local_authorities_42_1.png use
-d on input line 1630.
+d on input line 1648.
 (pdftex.def)             Requested size: 620.61711pt x 325.2142pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1651.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1669.
  [24 <./local_authorities_files/local_authorities_40_1.png>] [25 <./local_autho
 rities_files/local_authorities_42_1.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1651.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1669.
  (./local_authorities.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1651.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1651.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1669.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1669.
 
 Package rerunfilecheck Info: File `local_authorities.out' has not changed.
 (rerunfilecheck)             Checksum: 74F48D5C788F425FCC23FE7E2AFFB2FE;416.
@@ -788,12 +788,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1651.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1669.
  ) 
 Here is how much of TeX's memory you used:
  8830 strings out of 493089
  131519 string characters out of 6134843
- 234994 words of memory out of 5000000
+ 239623 words of memory out of 5000000
  12106 multiletter control sequences out of 15000+600000
  12353 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -810,7 +810,7 @@ cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on local_authorities.pdf (25 pages, 841304 bytes).
+Output written on local_authorities.pdf (25 pages, 844339 bytes).
 PDF statistics:
  253 PDF objects out of 1000 (max. 8388607)
  178 compressed objects within 2 object streams

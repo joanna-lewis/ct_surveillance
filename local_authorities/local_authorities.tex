@@ -542,7 +542,7 @@ between observed positivity and our estimated prevalence.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.text.Text at 0x10e8c7d90>
+{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.text.Text at 0x11a355d90>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -614,7 +614,7 @@ sample of model parameters, testing and diagnosis rates:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x10f569690>
+{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x116876550>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -680,7 +680,7 @@ diagnoses per capita (without allowing for the fact that not all
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}9}]:} [<matplotlib.lines.Line2D at 0x115486510>]
+{\color{outcolor}Out[{\color{outcolor}9}]:} [<matplotlib.lines.Line2D at 0x11c796510>]
 \end{Verbatim}
     \end{footnotesize}
         
@@ -722,7 +722,7 @@ correlated with, but not equal to, diagnosis rate.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}10}]:} [<matplotlib.lines.Line2D at 0x11578fc10>]
+{\color{outcolor}Out[{\color{outcolor}10}]:} [<matplotlib.lines.Line2D at 0x11c991c10>]
 \end{Verbatim}
     \end{footnotesize}
         
@@ -814,7 +814,7 @@ national numbers of tests and diagnoses.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.legend.Legend at 0x10f556550>
+{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.legend.Legend at 0x1167df390>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1015,7 +1015,7 @@ no Isles of Scilly 00HF E06000053
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}14}]:} <matplotlib.text.Text at 0x11761a510>
+{\color{outcolor}Out[{\color{outcolor}14}]:} <matplotlib.text.Text at 0x11e92b510>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1197,7 +1197,7 @@ We can also show local prevalence on a map:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} <matplotlib.text.Text at 0x11ca87f90>
+{\color{outcolor}Out[{\color{outcolor}15}]:} <matplotlib.text.Text at 0x123da0290>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1361,7 +1361,7 @@ Another approach to examing the same question is shown below:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} <matplotlib.text.Text at 0x121fc8990>
+{\color{outcolor}Out[{\color{outcolor}17}]:} <matplotlib.text.Text at 0x1292fb990>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1391,7 +1391,7 @@ infections in women, and vice versa.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{c}{\PYZsh{} Figure 10}
+{\color{incolor}In [{\color{incolor}37}]:} \PY{c}{\PYZsh{} Figure 10}
          \PY{c}{\PYZsh{}plt.rc(\PYZdq{}savefig\PYZdq{}, dpi=2300) \PYZsh{} for high\PYZhy{}resolution version}
          \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{savefig}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{80}\PY{p}{)}
          
@@ -1404,10 +1404,25 @@ infections in women, and vice versa.
          \PY{n}{plt\PYZus{}ppc}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{n}{inc\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}F98400}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.15}\PY{p}{)}
          \PY{n}{plt\PYZus{}ppc}\PY{p}{(}\PY{n}{ax1}\PY{p}{,} \PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{,} \PY{n}{inc\PYZus{}m\PYZus{}la}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{95}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}00A08A}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.15}\PY{p}{)}
          
-         \PY{n}{interest} \PY{o}{=} \PY{n}{where}\PY{p}{(}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{phec} \PY{o}{==} \PY{l+s}{\PYZsq{}}\PY{l+s}{London}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{inc\PYZus{}f\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{xk}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{percentile}\PY{p}{(}\PY{n}{inc\PYZus{}m\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{xk}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         
+         \PY{c}{\PYZsh{} add inner London boroughs}
+         \PY{n}{inn\PYZus{}london\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{Lambeth}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Southwark}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Lewisham}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Camden}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Islington}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Tower Hamlets}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+                             \PY{l+s}{\PYZsq{}}\PY{l+s}{Hackney}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Haringey}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Newham}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Westminster}\PY{l+s}{\PYZsq{}} \PY{l+s}{\PYZsq{}}\PY{l+s}{Kensington and Chelsea}\PY{l+s}{\PYZsq{}}\PY{p}{,} 
+                             \PY{l+s}{\PYZsq{}}\PY{l+s}{Hammersmith and Fulham}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Wandsworth}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{inn\PYZus{}london\PYZus{}prop\PYZus{}msm} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{15.6}\PY{p}{,} \PY{l+m+mf}{11.1}\PY{p}{,} \PY{l+m+mf}{4.9}\PY{p}{,} \PY{l+m+mf}{11.2}\PY{p}{,} \PY{l+m+mf}{10.8}\PY{p}{,} \PY{l+m+mf}{7.7}\PY{p}{,} \PY{l+m+mf}{7.6}\PY{p}{,} \PY{l+m+mf}{4.3}\PY{p}{,} \PY{l+m+mf}{2.9}\PY{p}{,} \PY{l+m+mf}{9.8}\PY{p}{,} \PY{l+m+mf}{10.7}\PY{p}{,} \PY{l+m+mf}{7.5}\PY{p}{,} \PY{l+m+mf}{4.2}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{inn\PYZus{}london\PYZus{}names}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{interest} \PY{o}{=} \PY{n}{where}\PY{p}{(}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{la} \PY{o}{==} \PY{n}{inn\PYZus{}london\PYZus{}names}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                          \PY{n}{percentile}\PY{p}{(}\PY{n}{inc\PYZus{}f\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                          \PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{markerfacecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+                          \PY{n}{markersize} \PY{o}{=} \PY{n}{inn\PYZus{}london\PYZus{}prop\PYZus{}msm}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                          \PY{p}{)}
+                 \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                          \PY{n}{percentile}\PY{p}{(}\PY{n}{inc\PYZus{}m\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
+                          \PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{markerfacecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}
+                          \PY{n}{markersize} \PY{o}{=} \PY{n}{inn\PYZus{}london\PYZus{}prop\PYZus{}msm}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                          \PY{p}{)}
+                 
+                 
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.17}\PY{p}{]}\PY{p}{)}
          
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in sexually active 15\PYZhy{}24\PYZhy{}year\PYZhy{}olds}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{;} 
@@ -1417,26 +1432,29 @@ infections in women, and vice versa.
          \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.16}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in men; incidence in women}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mf}{0.005}\PY{p}{,} \PY{l+m+mf}{0.15}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{.}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}00A08A}\PY{l+s}{\PYZsq{}}\PY{p}{)}
          \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.15}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Prevalence in women; incidence in men}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
-         \PY{c}{\PYZsh{} ax1.plot(0.005, 0.14, \PYZsq{}x\PYZsq{}, c=\PYZsq{}k\PYZsq{}) \PYZsh{} this line can be used to add \PYZsq{}x\PYZsq{} markers for the London Boroughs}
-         \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.14}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{London boroughs}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{l+m+mf}{0.005}\PY{p}{,} \PY{l+m+mf}{0.14}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{markerfacecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{)} \PY{c}{\PYZsh{} this line can be used to add \PYZsq{}x\PYZsq{} markers for the London Boroughs}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{text}\PY{p}{(}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.14}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Inner London boroughs}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{va}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{center}\PY{l+s}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
     \end{footnotesize}
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x125ec3790>
+{\color{outcolor}Out[{\color{outcolor}37}]:} <matplotlib.text.Text at 0x130f386d0>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
         \begin{center}\includegraphics[width=7.5cm]{local_authorities_files/local_authorities_34_1.png}\end{center}
-        \caption{Sampled incidence in each sex against prevalence in the other. Markers and error bars indicate median samples and central 95\% credible intervals. }
+        \caption{Sampled incidence in each sex against prevalence in the other. Markers and error bars indicate median samples and central 95\% credible intervals. Hollow circles highlight inner London boroughs, with circle area proportional to the percentage of the 16-44-year-old population estimated to be MSM.}
         \label{}
     \end{figure}
     
     Orange indicates the relationship between prevalence in men and
 incidence in women, and green shows the relationship between prevalence
-in women and incidence in men.
+in women and incidence in men. Hollow circles highlight inner London
+boroughs, with circle area proportional to the percentage of the male
+population aged 16-44 years estimated to be MSM (Ruf \emph{et al.},
+\emph{Int J. STD AIDS} \textbf{22}:25-29; 2011).
 
 An natural question is why some LAs have higher incidence and prevalence
 than others. One possibility is that higher screening rates in some
@@ -1445,7 +1463,7 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{c}{\PYZsh{} Figure 11}
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c}{\PYZsh{} Figure 11}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
@@ -1473,7 +1491,7 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}19}]:} <matplotlib.text.Text at 0x1277cff90>
+{\color{outcolor}Out[{\color{outcolor}38}]:} <matplotlib.text.Text at 0x13110d650>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1485,7 +1503,7 @@ incidence against screening in men and women:
     
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{c}{\PYZsh{} Figure 12}
+{\color{incolor}In [{\color{incolor}39}]:} \PY{c}{\PYZsh{} Figure 12}
          
          \PY{c}{\PYZsh{} examine the Spearman correlation by sample}
          \PY{n}{spearman} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
@@ -1505,7 +1523,7 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}20}]:} <matplotlib.text.Text at 0x12799dd10>
+{\color{outcolor}Out[{\color{outcolor}39}]:} <matplotlib.text.Text at 0x131300e90>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1523,7 +1541,7 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{c}{\PYZsh{} Figure 13}
+{\color{incolor}In [{\color{incolor}40}]:} \PY{c}{\PYZsh{} Figure 13}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
@@ -1551,7 +1569,7 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}21}]:} <matplotlib.text.Text at 0x127de4f90>
+{\color{outcolor}Out[{\color{outcolor}40}]:} <matplotlib.text.Text at 0x13186a710>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1563,7 +1581,7 @@ We also examine the relationship with prevalence:
     
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{c}{\PYZsh{} Figure 14}
+{\color{incolor}In [{\color{incolor}41}]:} \PY{c}{\PYZsh{} Figure 14}
          \PY{c}{\PYZsh{} examine the Spearman correlation by sample}
          \PY{n}{spearman} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
          
@@ -1581,7 +1599,7 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}22}]:} <matplotlib.text.Text at 0x12800da90>
+{\color{outcolor}Out[{\color{outcolor}41}]:} <matplotlib.text.Text at 0x131a65c10>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1598,7 +1616,7 @@ screening in men vs.~women?
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{c}{\PYZsh{} Figure 15}
+{\color{incolor}In [{\color{incolor}42}]:} \PY{c}{\PYZsh{} Figure 15}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
          
@@ -1622,7 +1640,7 @@ screening in men vs.~women?
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}23}]:} <matplotlib.text.Text at 0x125319190>
+{\color{outcolor}Out[{\color{outcolor}42}]:} <matplotlib.text.Text at 0x131e61810>
 \end{Verbatim}
     \end{footnotesize}
         
