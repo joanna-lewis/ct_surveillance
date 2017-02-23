@@ -391,7 +391,9 @@ and the rates of new tests and diagnoses.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c}{\PYZsh{}plt.rc(\PYZdq{}savefig\PYZdq{}, dpi=600) \PYZsh{} for high\PYZhy{}resolution version}
+        
+        \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
         
         \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{231}\PY{p}{)}
         \PY{n}{p} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{pcolor}\PY{p}{(}\PY{n}{inc}\PY{p}{,}\PY{n}{scr}\PY{p}{,} \PY{n}{ZU}\PY{p}{)}
@@ -460,6 +462,7 @@ and the rates of new tests and diagnoses.
         \PY{n}{ax6}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
         
         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}   
+        \PY{c}{\PYZsh{}plt.rc(\PYZdq{}savefig\PYZdq{}, dpi=80) \PYZsh{} reset resolution}
 \end{Verbatim}
     \end{footnotesize}
 
@@ -749,7 +752,7 @@ The results of the simulations are then plotted.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.legend.Legend at 0x10a9ae850>
+{\color{outcolor}Out[{\color{outcolor}12}]:} <matplotlib.legend.Legend at 0x113a81710>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -932,7 +935,7 @@ Dudley & 0.075 & 0.239 & 0.020 & 0.006 & 1.1\% & 2.4\%\tabularnewline
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:} <matplotlib.legend.Legend at 0x10b738c90>
+{\color{outcolor}Out[{\color{outcolor}16}]:} <matplotlib.legend.Legend at 0x113a3a5d0>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1065,7 +1068,7 @@ and diagnosed in the whole population, for comparison.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x10a5f7890>
+{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x114ad1250>
 \end{Verbatim}
     \end{footnotesize}
         
