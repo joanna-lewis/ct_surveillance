@@ -366,8 +366,8 @@ diagnosed, for men and women separately.
         \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}4}]:} \PY{c}{\PYZsh{} Figure 1:}
         \PY{c}{\PYZsh{} plot testing and diagnosis rates to examine correlation}
-        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
         
         \PY{k}{def} \PY{n+nf}{plt\PYZus{}ppc}\PY{p}{(}\PY{n}{ax}\PY{p}{,} \PY{n}{xsample}\PY{p}{,} \PY{n}{ysample}\PY{p}{,} \PY{n}{index}\PY{p}{,} \PY{n}{ci}\PY{p}{,} \PY{n}{col}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:} 
             \PY{c}{\PYZsh{} ci is the confidence interval required, as a \PYZpc{}}
@@ -542,7 +542,7 @@ between observed positivity and our estimated prevalence.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.text.Text at 0x11a355d90>
+{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.text.Text at 0x112a40610>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -587,13 +587,13 @@ sample of model parameters, testing and diagnosis rates:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:} [array([  1.04755350e-173,   2.06354452e-014]),
-         array([  1.29156539e-65,   4.90912283e-10]),
-         array([  2.89673284e-29,   4.20692935e-08]),
-         array([  5.76022005e-21,   3.17066706e-07]),
-         array([  5.88944724e-16,   2.00062271e-06]),
-         array([  1.49526226e-10,   3.80620189e-05]),
-         array([  9.51334495e-07,   2.51852969e-03])]
+{\color{outcolor}Out[{\color{outcolor}7}]:} array([[  3.70060796e-168,   4.23711965e-014],
+               [  1.01795840e-065,   4.68893618e-010],
+               [  2.55174930e-029,   4.31957479e-008],
+               [  6.11024768e-021,   3.27909497e-007],
+               [  6.81467099e-016,   1.98874916e-006],
+               [  1.76112604e-010,   3.90869699e-005],
+               [  2.86722577e-006,   4.44397678e-003]])
 \end{Verbatim}
     \end{footnotesize}
         
@@ -612,14 +612,19 @@ sample of model parameters, testing and diagnosis rates:
 \end{Verbatim}
     \end{footnotesize}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Library/Python/2.7/site-packages/matplotlib/\_\_init\_\_.py:878: UserWarning: axes.color\_cycle is deprecated and replaced with axes.prop\_cycle; please use the latter.
+  warnings.warn(self.msg\_depr \% (key, alt\_key))
+    \end{Verbatim}
+
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x116876550>
+{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.text.Text at 0x114fa4790>
 \end{Verbatim}
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\includegraphics[width=10cm]{local_authorities_files/local_authorities_14_1.png}\end{center}
+        \begin{center}\includegraphics[width=10cm]{local_authorities_files/local_authorities_14_2.png}\end{center}
         \caption{Histogram of Spearman correlations between local positivity and estimated prevalence, calculated at each of 10000 parameter samples.}
         \label{}
     \end{figure}
@@ -680,7 +685,7 @@ diagnoses per capita (without allowing for the fact that not all
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}9}]:} [<matplotlib.lines.Line2D at 0x11c796510>]
+{\color{outcolor}Out[{\color{outcolor}9}]:} [<matplotlib.lines.Line2D at 0x114fa8cd0>]
 \end{Verbatim}
     \end{footnotesize}
         
@@ -722,7 +727,7 @@ correlated with, but not equal to, diagnosis rate.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}10}]:} [<matplotlib.lines.Line2D at 0x11c991c10>]
+{\color{outcolor}Out[{\color{outcolor}10}]:} [<matplotlib.lines.Line2D at 0x1152b4f10>]
 \end{Verbatim}
     \end{footnotesize}
         
@@ -814,7 +819,7 @@ national numbers of tests and diagnoses.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.legend.Legend at 0x1167df390>
+{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.legend.Legend at 0x116c41f10>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -897,10 +902,10 @@ We now use our samples to compare prevalence by local authority.
     \end{footnotesize}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Lowest prevalence in men (median sample): 0.00819755429809
-Highest prevalence in men (median sample): 0.0513318116948
-Lowest prevalence in women (median sample): 0.0178619507471
-Highest prevalence in women (median sample): 0.0561422126184
+Lowest prevalence in men (median sample): 0.00820409619463
+Highest prevalence in men (median sample): 0.051332995016
+Lowest prevalence in women (median sample): 0.0178465850706
+Highest prevalence in women (median sample): 0.0562589740204
     \end{Verbatim}
 
     \begin{figure}
@@ -1015,7 +1020,7 @@ no Isles of Scilly 00HF E06000053
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}14}]:} <matplotlib.text.Text at 0x11e92b510>
+{\color{outcolor}Out[{\color{outcolor}14}]:} <matplotlib.text.Text at 0x117197110>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1197,7 +1202,7 @@ We can also show local prevalence on a map:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} <matplotlib.text.Text at 0x123da0290>
+{\color{outcolor}Out[{\color{outcolor}15}]:} <matplotlib.text.Text at 0x11ccabf10>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1250,6 +1255,11 @@ LA, at each sampled set of model parameters.
 \end{Verbatim}
     \end{footnotesize}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Library/Python/2.7/site-packages/matplotlib/cbook.py:137: MatplotlibDeprecationWarning: The set\_color\_cycle attribute was deprecated in version 1.5. Use set\_prop\_cycle instead.
+  warnings.warn(message, mplDeprecation, stacklevel=1)
+    \end{Verbatim}
+
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}16}]:} (0, 0.1)
@@ -1257,7 +1267,7 @@ LA, at each sampled set of model parameters.
     \end{footnotesize}
         
     \begin{figure}
-        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_29_1.png}\end{center}
+        \begin{center}\adjustimage{max size={0.9\linewidth}{0.4\paperheight}}{local_authorities_files/local_authorities_29_2.png}\end{center}
         \caption{All prevalence samples, for all LA. Horizontal position indicates whether sampled parameter values generally estimated prevalence to be high or low. Vertical position gives the prevalence sampled. Colour (unique to each LA) corresponds to median sampled prevalence for that authority.}
         \label{}
     \end{figure}
@@ -1361,7 +1371,7 @@ Another approach to examing the same question is shown below:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} <matplotlib.text.Text at 0x1292fb990>
+{\color{outcolor}Out[{\color{outcolor}17}]:} <matplotlib.text.Text at 0x1225566d0>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1391,8 +1401,8 @@ infections in women, and vice versa.
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}37}]:} \PY{c}{\PYZsh{} Figure 10}
-         \PY{c}{\PYZsh{}plt.rc(\PYZdq{}savefig\PYZdq{}, dpi=2300) \PYZsh{} for high\PYZhy{}resolution version}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c}{\PYZsh{} Figure 10}
+         \PY{c}{\PYZsh{}plt.rc(\PYZdq{}savefig\PYZdq{}, dpi=300) \PYZsh{} for high\PYZhy{}resolution version}
          \PY{n}{plt}\PY{o}{.}\PY{n}{rc}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{savefig}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{80}\PY{p}{)}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{2300}\PY{p}{)}
@@ -1409,18 +1419,18 @@ infections in women, and vice versa.
                              \PY{l+s}{\PYZsq{}}\PY{l+s}{Hackney}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Haringey}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Newham}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Westminster}\PY{l+s}{\PYZsq{}} \PY{l+s}{\PYZsq{}}\PY{l+s}{Kensington and Chelsea}\PY{l+s}{\PYZsq{}}\PY{p}{,} 
                              \PY{l+s}{\PYZsq{}}\PY{l+s}{Hammersmith and Fulham}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Wandsworth}\PY{l+s}{\PYZsq{}}\PY{p}{]}
          \PY{n}{inn\PYZus{}london\PYZus{}prop\PYZus{}msm} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{15.6}\PY{p}{,} \PY{l+m+mf}{11.1}\PY{p}{,} \PY{l+m+mf}{4.9}\PY{p}{,} \PY{l+m+mf}{11.2}\PY{p}{,} \PY{l+m+mf}{10.8}\PY{p}{,} \PY{l+m+mf}{7.7}\PY{p}{,} \PY{l+m+mf}{7.6}\PY{p}{,} \PY{l+m+mf}{4.3}\PY{p}{,} \PY{l+m+mf}{2.9}\PY{p}{,} \PY{l+m+mf}{9.8}\PY{p}{,} \PY{l+m+mf}{10.7}\PY{p}{,} \PY{l+m+mf}{7.5}\PY{p}{,} \PY{l+m+mf}{4.2}\PY{p}{]}
-         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{inn\PYZus{}london\PYZus{}names}\PY{p}{)}\PY{p}{)}\PY{p}{:}
-                 \PY{n}{interest} \PY{o}{=} \PY{n}{where}\PY{p}{(}\PY{p}{(}\PY{n}{alldata}\PY{o}{.}\PY{n}{la} \PY{o}{==} \PY{n}{inn\PYZus{}london\PYZus{}names}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
-                 \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}m\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
-                          \PY{n}{percentile}\PY{p}{(}\PY{n}{inc\PYZus{}f\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
-                          \PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{markerfacecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}
-                          \PY{n}{markersize} \PY{o}{=} \PY{n}{inn\PYZus{}london\PYZus{}prop\PYZus{}msm}\PY{p}{[}\PY{n}{i}\PY{p}{]}
-                          \PY{p}{)}
-                 \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{percentile}\PY{p}{(}\PY{n}{prev\PYZus{}f\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
-                          \PY{n}{percentile}\PY{p}{(}\PY{n}{inc\PYZus{}m\PYZus{}la}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{interest}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}
-                          \PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{markerfacecolor}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{None}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k}\PY{l+s}{\PYZsq{}}\PY{p}{,}
-                          \PY{n}{markersize} \PY{o}{=} \PY{n}{inn\PYZus{}london\PYZus{}prop\PYZus{}msm}\PY{p}{[}\PY{n}{i}\PY{p}{]}
-                          \PY{p}{)}
+         \PY{c}{\PYZsh{} for i in xrange(len(inn\PYZus{}london\PYZus{}names)):}
+         \PY{c}{\PYZsh{}         interest = where((alldata.la == inn\PYZus{}london\PYZus{}names[i]))}
+         \PY{c}{\PYZsh{}         ax1.plot(percentile(prev\PYZus{}m\PYZus{}la[:,interest], 50, 0)[0], }
+         \PY{c}{\PYZsh{}                  percentile(inc\PYZus{}f\PYZus{}la[:,interest], 50, 0)[0],}
+         \PY{c}{\PYZsh{}                  \PYZsq{}o\PYZsq{}, markerfacecolor=\PYZsq{}None\PYZsq{}, c=\PYZsq{}k\PYZsq{},}
+         \PY{c}{\PYZsh{}                  markersize = inn\PYZus{}london\PYZus{}prop\PYZus{}msm[i]}
+         \PY{c}{\PYZsh{}                  )}
+         \PY{c}{\PYZsh{}         ax1.plot(percentile(prev\PYZus{}f\PYZus{}la[:,interest], 50, 0)[0], }
+         \PY{c}{\PYZsh{}                  percentile(inc\PYZus{}m\PYZus{}la[:,interest], 50, 0)[0],}
+         \PY{c}{\PYZsh{}                  \PYZsq{}o\PYZsq{}, markerfacecolor=\PYZsq{}None\PYZsq{}, c=\PYZsq{}k\PYZsq{},}
+         \PY{c}{\PYZsh{}                  markersize = inn\PYZus{}london\PYZus{}prop\PYZus{}msm[i]}
+         \PY{c}{\PYZsh{}                  )}
                  
                  
          \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.08}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mf}{0.17}\PY{p}{]}\PY{p}{)}
@@ -1439,7 +1449,7 @@ infections in women, and vice versa.
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}37}]:} <matplotlib.text.Text at 0x130f386d0>
+{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.text.Text at 0x126ba6a50>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1463,7 +1473,7 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}38}]:} \PY{c}{\PYZsh{} Figure 11}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c}{\PYZsh{} Figure 11}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
@@ -1491,7 +1501,7 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}38}]:} <matplotlib.text.Text at 0x13110d650>
+{\color{outcolor}Out[{\color{outcolor}19}]:} <matplotlib.text.Text at 0x11d8cb210>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1503,7 +1513,7 @@ incidence against screening in men and women:
     
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}39}]:} \PY{c}{\PYZsh{} Figure 12}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c}{\PYZsh{} Figure 12}
          
          \PY{c}{\PYZsh{} examine the Spearman correlation by sample}
          \PY{n}{spearman} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
@@ -1523,7 +1533,7 @@ incidence against screening in men and women:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}39}]:} <matplotlib.text.Text at 0x131300e90>
+{\color{outcolor}Out[{\color{outcolor}20}]:} <matplotlib.text.Text at 0x127db4f90>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1541,7 +1551,7 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}40}]:} \PY{c}{\PYZsh{} Figure 13}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c}{\PYZsh{} Figure 13}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
          \PY{n}{ax1} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{add\PYZus{}subplot}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{)}
@@ -1569,7 +1579,7 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}40}]:} <matplotlib.text.Text at 0x13186a710>
+{\color{outcolor}Out[{\color{outcolor}21}]:} <matplotlib.text.Text at 0x1280dddd0>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1581,7 +1591,7 @@ We also examine the relationship with prevalence:
     
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}41}]:} \PY{c}{\PYZsh{} Figure 14}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c}{\PYZsh{} Figure 14}
          \PY{c}{\PYZsh{} examine the Spearman correlation by sample}
          \PY{n}{spearman} \PY{o}{=} \PY{n}{empty}\PY{p}{(}\PY{p}{[}\PY{n}{n\PYZus{}sample}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
          
@@ -1599,7 +1609,7 @@ We also examine the relationship with prevalence:
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}41}]:} <matplotlib.text.Text at 0x131a65c10>
+{\color{outcolor}Out[{\color{outcolor}22}]:} <matplotlib.text.Text at 0x116ce2fd0>
 \end{Verbatim}
     \end{footnotesize}
         
@@ -1616,7 +1626,7 @@ screening in men vs.~women?
 
     \begin{footnotesize}
         \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}42}]:} \PY{c}{\PYZsh{} Figure 15}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c}{\PYZsh{} Figure 15}
          
          \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
          
@@ -1640,7 +1650,7 @@ screening in men vs.~women?
 
     \begin{footnotesize}
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}42}]:} <matplotlib.text.Text at 0x131e61810>
+{\color{outcolor}Out[{\color{outcolor}23}]:} <matplotlib.text.Text at 0x128858850>
 \end{Verbatim}
     \end{footnotesize}
         
