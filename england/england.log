@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  19 AUG 2016 17:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.8.5)  19 APR 2017 10:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -570,60 +570,60 @@ File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 421.
  [3] [4]
-[5] <england_files/england_11_1.png, id=83, 610.28pt x 303.1325pt>
+[5] <england_files/england_11_1.png, id=83, 612.2875pt x 303.1325pt>
 File: england_files/england_11_1.png Graphic file (type png)
 
 <use england_files/england_11_1.png>
 Package pdftex.def Info: england_files/england_11_1.png used on input line 612.
 
-(pdftex.def)             Requested size: 610.2785pt x 303.13176pt.
+(pdftex.def)             Requested size: 612.28601pt x 303.13176pt.
  [6 <./england_files/england_11_1.png>]
-<england_files/england_14_1.png, id=91, 366.36874pt x 278.03876pt>
+<england_files/england_14_1.png, id=91, 368.37625pt x 278.03876pt>
 File: england_files/england_14_1.png Graphic file (type png)
 
 <use england_files/england_14_1.png>
 Package pdftex.def Info: england_files/england_14_1.png used on input line 688.
 
-(pdftex.def)             Requested size: 284.52756pt x 215.94023pt.
+(pdftex.def)             Requested size: 284.52756pt x 214.75233pt.
  [7 <./england_files/england_14_1.png>]
-[8] <england_files/england_20_1.png, id=103, 366.36874pt x 272.01625pt>
+[8] <england_files/england_20_1.png, id=103, 368.37625pt x 272.01625pt>
 File: england_files/england_20_1.png Graphic file (type png)
 
 <use england_files/england_20_1.png>
 Package pdftex.def Info: england_files/england_20_1.png used on input line 826.
 
-(pdftex.def)             Requested size: 284.52756pt x 211.26282pt.
+(pdftex.def)             Requested size: 284.52756pt x 210.10065pt.
  [9 <./england_files/england_20_1.png>]
-[10] <england_files/england_27_1.png, id=114, 606.265pt x 313.17pt>
+[10] <england_files/england_27_1.png, id=114, 608.2725pt x 313.17pt>
 File: england_files/england_27_1.png Graphic file (type png)
 
 <use england_files/england_27_1.png>
-Package pdftex.def Info: england_files/england_27_1.png used on input line 1003
+Package pdftex.def Info: england_files/england_27_1.png used on input line 1004
 .
-(pdftex.def)             Requested size: 606.26352pt x 313.16922pt.
+(pdftex.def)             Requested size: 608.27103pt x 313.16922pt.
  [11] [12 <./england_files/england_27_1.png>] [13] <england_files/england_32_1.
-png, id=130, 623.32875pt x 744.7825pt>
+png, id=130, 625.33624pt x 745.78625pt>
 File: england_files/england_32_1.png Graphic file (type png)
 
 <use england_files/england_32_1.png>
-Package pdftex.def Info: england_files/england_32_1.png used on input line 1185
+Package pdftex.def Info: england_files/england_32_1.png used on input line 1186
 .
-(pdftex.def)             Requested size: 426.79134pt x 509.95702pt.
+(pdftex.def)             Requested size: 426.79134pt x 509.00562pt.
  [14] [15 <./england_files/england_32_1.png>] <england_files/england_34_1.png, 
-id=141, 623.32875pt x 225.84375pt>
+id=141, 624.3325pt x 225.84375pt>
 File: england_files/england_34_1.png Graphic file (type png)
 
 <use england_files/england_34_1.png>
-Package pdftex.def Info: england_files/england_34_1.png used on input line 1236
+Package pdftex.def Info: england_files/england_34_1.png used on input line 1237
 .
-(pdftex.def)             Requested size: 426.79134pt x 154.63655pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1252.
+(pdftex.def)             Requested size: 426.79134pt x 154.38843pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1253.
  [16 <./england_files/england_34_1.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1252.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1253.
 
 (./england.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1252.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1252.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1253.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1253.
 
 Package rerunfilecheck Info: File `england.out' has not changed.
 (rerunfilecheck)             Checksum: 66004E96C3A3904CAFC265D6F0142DCD;818.
@@ -631,12 +631,12 @@ Package rerunfilecheck Info: File `england.out' has not changed.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1252.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1253.
  ) 
 Here is how much of TeX's memory you used:
  8299 strings out of 493089
  123758 string characters out of 6134843
- 236772 words of memory out of 5000000
+ 236776 words of memory out of 5000000
  11591 multiletter control sequences out of 15000+600000
  12353 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -651,7 +651,7 @@ sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/lo
 cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on england.pdf (16 pages, 330415 bytes).
+Output written on england.pdf (16 pages, 345911 bytes).
 PDF statistics:
  191 PDF objects out of 1000 (max. 8388607)
  149 compressed objects within 2 object streams
